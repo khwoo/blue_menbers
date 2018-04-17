@@ -92,10 +92,10 @@ var vm = new Vue({
             this.alertShow = false
             this.alertOption = true
             this.btnOptionShow = false
-            if(this.buySuccess == true) {
-                this.alertTitle = '구매완료'
-                this.alertContent = '구매가 완료되었습니다.<br/>' +
-                    '구매한 상품은 보관함에서 확인할 수 <br/>있습니다.'
+            if(this.buySuccess == true) { // buySuccess 구매 성공 시
+                this.alertTitle = '선물완료'
+                this.alertContent = '구매 완료되어 입력한 연락처로 상품을 <br/>SMS로 발송합니다.<br/>' +
+                    '선물내역은 보관함에서 확인하실 수<br/> 있습니다.'
 
             }else{
                 this.alertTitle = '구매실패'

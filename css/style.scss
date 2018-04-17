@@ -5,6 +5,13 @@ input:focus::-webkit-input-placeholder,textarea:focus::-webkit-input-placeholder
 input:focus:-moz-placeholder,textarea:focus:-moz-placeholder {/* Mozilla Firefox 4 to 18 */color:transparent;}
 input:focus::-moz-placeholder,textarea:focus::-moz-placeholder {/* Mozilla Firefox 19+ */color:transparent;}
 input:focus:-ms-input-placeholder,textarea:focus:-ms-input-placeholder {/* Internet Explorer 10+ */color:transparent;}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
 button {border:0 none; background:transparent; cursor:pointer;}
 table caption {width:0; height:0; visibility:hidden; font-size:0; line-height:0;}
 table {border-collapse:collapse; border-spacing:0;}
@@ -207,36 +214,38 @@ body {
     }
   }
   .header_menu {
+    width:px2rem(488px);
     height:100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    box-shadow: px2rem(2px) 0 px2rem(5px) rgba(255,255,255,.1);
     li {
       display: inline-block;
       height:100%;
       margin-right: px2rem(36px);
-      opacity: .5;
-      transition: opacity .5s;
       a {
         justify-content: center;
         height:100%;
         padding:0 px2rem(32px);
       }
-      p {
-        font-size: px2rem(22px);
-        color:$theme_1_line;
-      }
       .menu_name {
-        padding-top:px2rem(28px);
+        font-size: px2rem(22px);
+        padding-top:px2rem(32px);
+        color:rgba(255,255,255,.5);
       }
       .icon_down {
         font-size: px2rem(18px);
         margin-top: px2rem(2px);
         margin-left: px2rem(-3px);
-        opacity: 0;
+        color:transparent;
       }
 
       &.on {
-        opacity: 1;
+        .menu_name {
+          color:#fff;
+        }
         .icon_down {
-          opacity: 1;
+          color:#fff;
         }
       }
     }
@@ -319,6 +328,8 @@ body {
   .modal_box {
     position:relative;
     width:px2rem(593px);
+    max-height: 80%;
+    overflow-y: auto;
     background-color: $theme_1_color;
     border-radius: px2rem(14px);
     padding:px2rem(40px) 0 px2rem(12px);
@@ -476,6 +487,58 @@ body {
       font-size: px2rem(28px);
       box-sizing: border-box;
       color: $theme_1_line;
+    }
+  }
+}
+
+/* alert */
+/* alert */
+.alert {
+  .bg_shadow {
+    padding-top: px2rem(200px);
+  }
+  .modal_box {
+    padding-bottom:px2rem(40px);
+    .title {
+      padding-top:px2rem(65px);
+      font-weight: bold;
+      font-size: px2rem(35px);
+      color: $theme_1_color;
+    }
+
+    .alert_content {
+      width:px2rem(460px);
+      padding:px2rem(49px) 0;
+      line-height:px2rem(32px);
+      font-weight: lighter;
+      font-size: px2rem(26px);
+      color: $theme_1_color;
+    }
+
+    .btn_group {
+      width:px2rem(460px);
+      height:px2rem(80px);
+      a {
+        width:px2rem(220px);
+        height:100%;
+        background-color:$theme_1_color;
+        p {
+          font-weight: lighter;
+          font-size: px2rem(24px);
+          color: $theme_1_line;
+        }
+        &.btn_one {
+          width:100%;
+        }
+      }
+      .btn_left {
+        background-color: #fff;
+        box-sizing: border-box;
+        border: 2px solid $theme_1_color;
+        p {
+          color: $theme_1_color;
+        }
+      }
     }
   }
 }

@@ -7,91 +7,232 @@ var vm = new Vue ({
                 name: '홈'
             },
             {
-                name: '태마'
+                name: '태마1'
             },
             {
-                name: '업종'
+                name: '태마2'
+            },
+            {
+                name: '태마3'
+            },
+            {
+                name: '태마4'
+            },
+            {
+                name: '태마5'
             }
         ],
         menuShow: false,
-        perLineFive: false,
+        perLineFive: false, // category_box 에 한줄에 매뉴 노출 수량 4개 or 5개
         categoryIdx: 0,
-        categoryTheme: [
+        categoryList: [
             {
-                iconMenu:'images/icon_all_category.png',
-                nameMenu:'전체'
+                'categoryType': '태마1',
+                'parts': [
+                    {
+                        'iconMenu': 'images/icon_all_category.png',
+                        'nameMenu': '전체1'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item01.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item02.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item03.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item04.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item05.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item06.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item07.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item08.png',
+                        'nameMenu': '골프'
+                    },
+                ]
             },
             {
-                iconMenu:'images/icon_item01.png',
-                nameMenu:'골프'
+                'categoryType': '태마2',
+                'parts': [
+                    {
+                        'iconMenu': 'images/icon_all_category.png',
+                        'nameMenu': '전체2'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item01.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item02.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item03.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item04.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item05.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item06.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item07.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item08.png',
+                        'nameMenu': '골프'
+                    },
+                ]
             },
             {
-                iconMenu:'images/icon_item02.png',
-                nameMenu:'편리점'
+                'categoryType': '태마3',
+                'parts': [
+                    {
+                        'iconMenu': 'images/icon_all_category.png',
+                        'nameMenu': '전체3'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item01.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item02.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item03.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item04.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item05.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item06.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item07.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item08.png',
+                        'nameMenu': '골프'
+                    },
+                ]
             },
             {
-                iconMenu:'images/icon_item03.png',
-                nameMenu:'여행'
+                'categoryType': '태마4',
+                'parts': [
+                    {
+                        'iconMenu': 'images/icon_all_category.png',
+                        'nameMenu': '전체4'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item01.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item02.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item03.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item04.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item05.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item06.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item07.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item08.png',
+                        'nameMenu': '골프'
+                    },
+                ]
             },
             {
-                iconMenu:'images/icon_item04.png',
-                nameMenu:'자동차'
-            },
-            {
-                iconMenu:'images/icon_item05.png',
-                nameMenu:'서점'
-            },
-            {
-                iconMenu:'images/icon_item06.png',
-                nameMenu:'식사'
-            },
-            {
-                iconMenu:'images/icon_item07.png',
-                nameMenu:'식사'
-            },
-            {
-                iconMenu:'images/icon_item08.png',
-                nameMenu:'식사'
-            },
+                'categoryType': '태마5',
+                'parts': [
+                    {
+                        'iconMenu': 'images/icon_all_category.png',
+                        'nameMenu': '전체5'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item01.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item02.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item03.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item04.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item05.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item06.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item07.png',
+                        'nameMenu': '골프'
+                    },
+                    {
+                        'iconMenu': 'images/icon_item08.png',
+                        'nameMenu': '골프'
+                    },
+                ]
+            }
         ],
-        categoryIndustry: [
-            {
-                iconMenu:'images/icon_all_category.png',
-                nameMenu:'전체'
-            },
-            {
-                iconMenu:'images/icon_item01.png',
-                nameMenu:'골프'
-            },
-            {
-                iconMenu:'images/icon_item02.png',
-                nameMenu:'편리점'
-            },
-            {
-                iconMenu:'images/icon_item03.png',
-                nameMenu:'여행'
-            },
-            {
-                iconMenu:'images/icon_item04.png',
-                nameMenu:'자동차'
-            },
-            {
-                iconMenu:'images/icon_item05.png',
-                nameMenu:'서점'
-            },
-            {
-                iconMenu:'images/icon_item06.png',
-                nameMenu:'식사'
-            },
-            {
-                iconMenu:'images/icon_item07.png',
-                nameMenu:'식사'
-            },
-            {
-                iconMenu:'images/icon_item08.png',
-                nameMenu:'식사'
-            },
-        ],
+
 
         mainSwiper: [
             {swiperImg: 'images/img_main_banner01.png'},
@@ -141,11 +282,8 @@ var vm = new Vue ({
         })
     },
     computed: {
-        filterCategoryTheme:function(){
-            return this.categoryTheme.slice(1);
-        },
-        filterCategoryIndustry:function(){
-            return this.categoryIndustry.slice(1);
+        filterCategory:function(){
+            return this.categoryList.parts.slice(1);
         }
     },
     methods: {
