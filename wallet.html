@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Echoss Mall</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/wallet.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="js/px2rem.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div v-cloak class="container_box">
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" href="javascript:void(0)">
+                <img src="images/icon_back.png"/>
+            </a>
+            <p class="title">쿠폰월렛</p>
+            <a class="btn_coupon_box flex_center" href="coupon_box.html">
+                <img src="images/icon_coupon_box.png"/>
+            </a>
+        </div>
+
+        <ul class="section">
+            <li v-show="onReady" class="article article_1" :class="{show_motion:onReady}">
+                <a class="bg_box" href="wallet_submain_img.html">
+                    <img src="images/emart_logo.png" alt="emart24 logo" class="logo_emart"/>
+                    <div class="content">
+                        <p class="title">새로운 라이프스타일<br/>이마트 편의점</p>
+                        <p class="text">
+                            이마트24만의 다양한 차별화 <br/>
+                            상품을 블루멤버스 포인트로 <br/>
+                            이용해보세요. <br/>
+                        </p>
+                    </div>
+                    <img src="images/shap_1.png" alt="shap" class="shap_1"/>
+                    <img src="images/shop_img_1.png" alt="product image" class="img_emart_1"/>
+                </a>
+            </li>
+
+            <li v-show="onReady" class="article article_2" :class="{show_motion:onReady}">
+                <a class="bg_box" href="javascript:void(0)">
+                    <img src="images/logo_jejuair.png" alt="jejuair logo" class="logo_ja">
+                </a>
+            </li>
+
+            <li v-show="onReady" class="article article_3" :class="{show_motion:onReady}">
+                <a class="bg_box" href="wallet_submain_text.html">
+                    <img src="images/icon_2.png" alt="아이콘 최인아책방" class="logo_cui">
+                    <div class="content">
+                        <p class="title">최인아책방</p>
+                        <p class="text">
+                            블루멤버스 포인트로<br/>
+                            혼자만의 시간을 즐겨보세요.
+                        </p>
+                    </div>
+                </a>
+            </li>
+
+            <li v-show="onReady" class="article article_4" :class="{show_motion:onReady}">
+                <a class="bg_box" href="javascript:void(0)">
+                    <img src="images/shop_img_3.png" alt="golf image" class="img_golf"/>
+                    <img src="images/shap_2.png" alt="shap" class="shap_2">
+                    <div class="content">
+                        <p class="title">플라자 용인CC</p>
+                        <p class="text">
+                            블루멤버스 회원전용 예약서비스를<br/>
+                            통해 편리한 서비스를 누리세요.
+                        </p>
+                    </div>
+                </a>
+            </li>
+
+            <div class="article bottom">
+                <p class="h2">쿠폰월렛 카테고리</p>
+            </div>
+            <div class="category">
+                <ul>
+                    <li>
+                        <a href="main.html?all=2">
+                            <img src="images/icon_category_1.png">
+                            <p>골프</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <img src="images/icon_category_2.png">
+                            <p>생활·편의</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <img src="images/icon_category_3.png">
+                            <p>여행</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <img src="images/icon_category_4.png">
+                            <p>자동차</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="category_all">
+                    <a class="flex_center" href="main.html?all=1">
+                        <p>전체 카테고리보기</p><p class="icon_right"> &nbsp;&nbsp;〉</p>
+                    </a>
+                </div>
+            </div>
+        </ul> <!-- end of .section -->
+        <footer>
+            <p class="content">
+                현대자동차는 통신판매중개자로서 블루멤버스 쿠폰서비스에서의 상품판매의 당사자가 아닙니다.
+                상품판매와 관련하여 상품 주문, 청약 철회, 배송, 교환, 반품 및 환불 등 일체의 사항은
+                (주)타미마케팅의 책임하에 운영되고, 현대 자동차는 이와 관련된 책임을 부담하지 않습니다.
+            </p>
+            <p class="content">
+                블루멤버스 쿠폰함서비스에서 판매되는 상품이나 서비스에 대한 모든 문의는 (주)타미마케팅
+                고객센터 (080-040-6000 / 평일 09:00  18:00)로 연락주시기 바랍니다.
+            </p>
+            <a href="e_info.html">
+                <p>사업자 정보</p>
+            </a>
+        </footer>
+
+    </div><!-- end of .container_box -->
+</div>
+<script type="text/javascript" src="js/wallet.js"></script>
+
+</body>
+</html>

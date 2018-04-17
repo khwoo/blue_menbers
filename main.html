@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Echoss Mall</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet"/>
+    <link href="css/lib/swiper-4.1.0.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="js/px2rem.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div v-cloak class="container_box">
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" href="wallet.html">
+                <img src="images/icon_back.png"/>
+            </a>
+            <p class="title">MALL</p>
+        </div>
+
+        <div class="section">
+            <div class="header">
+                <div class="header_top">
+                    <ul class="header_menu flex_row_center">
+                        <li class="flex_center" v-for="(item,index) in menuList" :class="{'on':index == menuIdx}">
+                            <a class="flex_column_center" href="javascript:void(0)" @click="menuIdx=index">
+                                <p class="menu_name">{{item.name}}</p>
+                                <p class="icon_down">〉</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <a class="btn_menu flex_center" href="javascript:void(0)" @click="menuShow=true">
+                        <p>Category</p>
+                        <ul class="icon_menu_group flex_column_center">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </a>
+                </div>
+                <div v-if="menuIdx==1" class="category_banner">
+                    <ul class="category_list">
+                        <li v-for="(item,index) in categoryTheme" :class="{'on':index == categoryIdx}">
+                            <a class="flex_column_center" href="javascript:void(0)" @click="categoryIdx=index">
+                                <div class="icon_menu_bg flex_center">
+                                    <div class="icon_menu bg_cover" :style="{backgroundImage:'url('+ item.iconMenu +')'}"></div>
+                                </div>
+                                <p class="name_menu">{{item.nameMenu}}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div v-if="menuIdx==2" class="category_banner">
+                    <ul class="category_list">
+                        <li v-for="(item,index) in categoryIndustry" :class="{'on':index == categoryIdx}">
+                            <a class="flex_column_center" href="javascript:void(0)" @click="categoryIdx=index">
+                                <div class="icon_menu_bg flex_center">
+                                    <div class="icon_menu bg_cover" :style="{backgroundImage:'url('+ item.iconMenu +')'}"></div>
+                                </div>
+                                <p class="name_menu">{{item.nameMenu}}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main_swiper swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide bg_cover" v-for="item in mainSwiper" :style="{backgroundImage:'url('+ item.swiperImg +')'}">
+                        <a href="javascript:void(0)"></a>
+                    </div>
+                </div>
+                <div class="main_pagination swiper-pagination"></div>
+            </div>
+            <div class="product_list">
+                <ul class="product_list_ul">
+                    <li v-for="item in productList">
+                        <a class="flex_row_center" :href="item.productHref">
+                            <div class="product_img bg_cover" :style="{backgroundImage:'url('+ item.productImg +')'}">
+                            </div>
+                            <div class="product_info">
+                                <p class="name">{{item.brandName}}</p>
+                                <p class="product_name">{{item.productName}}</p>
+                                <p class="after_price">{{item.priceAfter | formatPoint}}</p>
+                            </div>
+                        </a>
+                    </li>
+                    <div class="loading_more flex_center">
+                        <div class="move_circle">
+                            <img class="icon_loading" src="images/icon_loading.png">
+                        </div>
+                        <p>Loading . . .</p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <!-- modal category -->
+        <div class="modal category_box" :class="{menu_show:menuShow}">
+            <div class="bg_shadow flex_center">
+                <transition name="bounce_a">
+                    <div v-if="menuShow" class="modal_box flex_column_center">
+                        <div class="menu_type menu_theme flex_column_center">
+                            <p class="h5">태마</p>
+                            <ul class="category_list" :class="{perline_5:perLineFive}">
+                                <li v-for="item in filterCategoryTheme">
+                                    <a class="flex_column_center" href="javascript:void(0)">
+                                        <div class="icon_menu_bg flex_center">
+                                            <div class="icon_menu bg_cover" :style="{backgroundImage:'url('+ item.iconMenu +')'}"></div>
+                                        </div>
+                                        <p class="name_menu">{{item.nameMenu}}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu_type menu_industry flex_column_center">
+                            <p class="h5">업종</p>
+                            <ul class="category_list" :class="{perline_5:perLineFive}">
+                                <li v-for="item in filterCategoryIndustry">
+                                    <a class="flex_column_center" href="javascript:void(0)">
+                                        <div class="icon_menu_bg flex_center">
+                                            <div class="icon_menu bg_cover" :style="{backgroundImage:'url('+ item.iconMenu +')'}"></div>
+                                        </div>
+                                        <p class="name_menu">{{item.nameMenu}}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="btn_close" href="javascript:void(0)" @click="menuShow=false">×</a>
+                    </div>
+                </transition>
+            </div>
+        </div>
+
+    </div><!-- end of container_box -->
+</div>
+<script type="text/javascript" src="js/lib/swiper-4.1.0.min.js"></script>
+<script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

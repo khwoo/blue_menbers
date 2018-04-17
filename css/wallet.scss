@@ -1,0 +1,322 @@
+/* sass 변수 정의  *//************************************************************/
+@function px2rem($px) {
+  $rem: 64px;
+  @return ($px / $rem) + rem;
+}
+
+/* 컬러 컨셉 이분분에서 수정 */
+$theme_1_color: #00498C; /* 태마 컨셉 컬러 */
+$theme_1_line: #fff; /* 태마 컨셉 라인 & 폰트 컬러 */
+$dark: #303030; /* 태마 일반 dark 폰트 컬러 */
+$light: #fff; /* light 폰트 컬러 */
+
+
+@mixin css3($property, $value) {
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    #{$prefix}#{$property}: $value;
+  }
+}
+
+.container {
+  /* coupon_wallet.html */
+  /* 공통 */
+  .section {
+    .show_motion {
+      //transform: translate(0,300%);
+      &:nth-child(1) {
+        animation: showAnimate .5s ease-out;
+      }
+      &:nth-child(2) {
+        animation: showAnimate .6s ease-out;
+      }
+      &:nth-child(3) {
+        animation: showAnimate .7s ease-out;
+      }
+      &:nth-child(4) {
+        animation: showAnimate .8s ease-out;
+      }
+      @keyframes showAnimate {
+        0% {
+          transform: translate(0, 300%);
+        }
+        80% {
+          transform: translate(0, -13%);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+    }
+  }
+  .article {
+    position: relative;
+    width: 100%;
+
+    .bg_box {
+      position: absolute;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    img {
+      position: absolute;
+    }
+  }
+
+  .article_1 {
+    height: px2rem(330px);
+    .bg_box {
+      display: block;
+      width: 100%;
+      background-color: #FBDA33;
+    }
+
+    .logo_emart {
+      position: static;
+      width: px2rem(197px);
+      margin-top: px2rem(58px);
+      margin-left: px2rem(52px);
+    }
+    .content {
+      padding-top: px2rem(20px);
+      padding-left: px2rem(52px);
+      .title {
+        line-height: px2rem(29px);
+        font-weight: bold;
+        font-size: px2rem(24px);
+      }
+      .text {
+        line-height: px2rem(22px);
+        font-size: px2rem(15px);
+      }
+    }
+
+    .shap_1 {
+      top: px2rem(59px);
+      right: 0;
+      width: px2rem(223px);
+    }
+
+    .img_emart_1 {
+      top: px2rem(147px);
+      right: px2rem(34px);
+      width: px2rem(308px);
+    }
+  }
+
+  .article_2 {
+    height: px2rem(360px);
+    top: px2rem(-53px);
+    .bg_box {
+      left: px2rem(-36px);
+      width: px2rem(720px);
+      background-color: #fff;
+      transform: rotate(-8deg);
+    }
+
+    .logo_ja {
+      top: px2rem(54px);
+      left: px2rem(108px);
+      width: px2rem(484px);
+    }
+  }
+
+  .article_3 {
+    height: px2rem(225px);
+    top: px2rem(-184px);
+    .bg_box {
+      left: px2rem(-36px);
+      width: px2rem(720px);
+      background-color: #F79300;
+      transform: rotate(-8deg);
+    }
+    .logo_cui {
+      top: px2rem(40px);
+      left: px2rem(332px);
+      width: px2rem(36px);
+
+      transform: rotate(8deg);
+    }
+
+    .content {
+      position: absolute;
+      top: px2rem(40px);
+      left: px2rem(402px);
+
+      transform: rotate(9deg);
+
+      p {
+        color: #fff;
+      }
+      .title {
+        line-height: px2rem(30px);
+        font-weight: bold;
+        font-size: px2rem(25px);
+        margin-bottom: px2rem(6px);
+      }
+
+      .text {
+        line-height: px2rem(22px);
+        font-size: px2rem(15px);
+      }
+    }
+  }
+
+  .article_4 {
+    height: px2rem(494px);
+    top: px2rem(-298px);
+    .bg_box {
+      left: px2rem(-58px);
+      width: px2rem(708px);
+      transform: rotate(12deg);
+    }
+
+    .img_golf {
+      top: px2rem(-130px);
+      left: 0;
+      width: px2rem(708px);
+    }
+
+    .shap_2 {
+      left: 0;
+      top: px2rem(108px);
+      width: px2rem(212px);
+
+      transform: rotate(-12deg);
+    }
+
+    .content {
+      position: absolute;
+      top: px2rem(90px);
+      left: px2rem(390px);
+
+      transform: rotate(-12deg);
+
+      p {
+        color: #fff;
+      }
+
+      .title {
+        line-height: px2rem(31px);
+        font-weight: bold;
+        font-size: px2rem(26px);
+        margin-bottom: px2rem(6px);
+      }
+
+      .text {
+        line-height: px2rem(22px);
+        font-size: px2rem(15px);
+      }
+    }
+  }
+
+  .bottom {
+    width: 100%;
+    top: px2rem(-546px);
+    left: px2rem(-38px);
+    width: px2rem(720px);
+    height: px2rem(115px);
+    background-color: #00498C;
+    transform: rotate(9deg);
+
+    .h2 {
+      padding-left: px2rem(94px);
+      padding-top: px2rem(28px);
+      font-size: px2rem(25px);
+      font-weight: bold;
+      color: #fff;
+
+      transform: rotate(-9deg);
+    }
+  }
+
+  .category {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    background-color: #00498C;
+    margin-top: px2rem(-600px);
+    padding-bottom:px2rem(30px);
+
+    ul {
+      padding-top: px2rem(23px);
+      padding-left: px2rem(54px);
+
+      li {
+        float: left;
+        width: px2rem(103.5px);
+        margin-right: px2rem(35.5px);
+      }
+
+      a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+      }
+
+      p {
+        text-align: center;
+        font-size: px2rem(22px);
+        color: #fff;
+      }
+
+      img {
+        height: px2rem(103.5px);
+        height: px2rem(103.5px);
+        margin-bottom: px2rem(10px);
+      }
+    }
+
+    .category_all {
+      padding-bottom: px2rem(14px);
+      a {
+        width: 100%;
+        height: 100%;
+        padding-top: px2rem(30px);
+      }
+
+      p {
+        font-weight: bold;
+        font-size: px2rem(21px);
+        color: #fff;
+        text-align: center;
+      }
+
+      img {
+        display: block;
+        width: px2rem(12.1px);
+        margin: px2rem(10px) auto 0;
+      }
+    }
+  }
+
+  footer {
+    position: relative;
+    top:0;
+    left: 0;
+    padding: px2rem(42px) px2rem(29px) px2rem(29px);
+    background-color: #444444;
+    p {
+      line-height: px2rem(35px);
+      font-size: px2rem(24px);
+      color: #fff;
+    }
+
+    .content {
+      margin-bottom: px2rem(35px);
+    }
+
+    a {
+      &:hover {
+        p {
+          color: $theme_1_color;
+        }
+      }
+      p {
+        padding: px2rem(29px);
+        margin-left: px2rem(-29px);
+        text-decoration: underline;
+      }
+    }
+  }
+}
