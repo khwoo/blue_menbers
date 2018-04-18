@@ -144,7 +144,7 @@ var vm = new Vue ({
             for(var i = 0 ; i < data.salGoodsList.length ; i++ ){
                 var _item = data.salGoodsList[i];
                 _item.url = 'details.html'+
-                    '?key_custNo='+ that.custNo +''+
+                    '?custNo='+ that.key_custNo +''+
                     '&productId='+ _item.goodsCd +' ';
                 productList.push( _item );
             }
@@ -268,6 +268,12 @@ var vm = new Vue ({
             that.categoryIdx = id;
 
             var param = new Array();
+
+            if(that.menuShow){
+                that.menuShow = false;
+                that.menuIdx = parent.getAttribute('data-group_id');
+            }
+
             param.custNo = that.key_custNo;
             param.ctgrGrpCd = that.menuIdx;
             if( that.categoryIdx === '-1' ){
@@ -286,6 +292,8 @@ var vm = new Vue ({
                     that.banrData( res );
 
                 }
+                //menuShow
+                console.log(that.menuShow);
                 that.productData(  true , res );
 
             },function( code , msg ){

@@ -7,6 +7,7 @@
     <title>Echoss Mall</title>
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/gift.css" rel="stylesheet"/>
+    <link href="css/utils.css" rel="stylesheet"/>
     <script type="text/javascript" src="js/lib/vue.min.js"></script>
     <script type="text/javascript" src="js/px2rem.js"></script>
 </head>
@@ -15,10 +16,10 @@
     <div v-cloak class="container_box">
 
         <div class="nav flex_center">
-            <a class="btn_back flex_center" href="details.html">
+            <a class="btn_back flex_center" :href="details_url">
                 <img src="images/icon_back.png"/>
             </a>
-            <p class="title">{{navTitle}}</p>
+            <p class="title" v-text="navTitle"></p>
         </div>
 
         <div class="section">
@@ -26,29 +27,33 @@
                 <ul>
                     <li class="flex_column_center">
                         <label for="gift_quantity">선물 받을 연락처 입력</label>
-                        <input type="number" id="gift_quantity" placeholder="숫자만 입력"/>
+                        <input v-model="gift_quantity_value" type="number" id="gift_quantity" placeholder="숫자만 입력"/>
                     </li>
                     <li class="flex_column_center">
                         <label for="gift_to">보내는 사람</label>
-                        <input  id="gift_to" placeholder="성명 (최대 5자)" maxlength="5"/>
+                        <input v-model="gift_to_value" id="gift_to" placeholder="성명 (최대 5자)" maxlength="5"/>
                     </li>
                 </ul>
             </form>
             <div class="total_count total_quantity flex_between">
                 <p class="title">총 수량</p>
-                <p class="num">{{totalQuantity}} 개</p>
+                <p class="num"  v-text="totalQuantity_text"></p>
             </div>
             <div class="total_count flex_between">
                 <p class="title">총 결제 금액</p>
-                <p class="num">{{totalPrice | formatMoney}}</p>
+                <p class="num" v-text="totalPrice_text"></p>
             </div>
         </div>
         <div class="btn_box flex_between">
-            <a class="btn_left flex_center" href="details.html">
-                <p>취소</p>
+            <a class="btn_left flex_center" :href="details_url">
+                <p>
+                    취소
+                </p>
             </a>
             <a class="btn_right flex_center" href="javascript:void(0)" @click="tap_buy">
-                <p>확인</p>
+                <p>
+                    확인
+                </p>
             </a>
         </div>
 
@@ -56,18 +61,26 @@
             <div v-if="alertShow" class="modal alert">
                 <div class="bg_shadow flex_column_center">
                     <div class="modal_box flex_column_center">
-                        <p class="title">구매확인</p>
+
+                        <p class="title">
+                            구매확인
+                        </p>
+
                         <p class="alert_content">
-                            블루멤버스 포인트 {{totalPrice | formatMoney}}점이<br/>
-                            차감됩니다.<br/>
+                            블루멤버스 포인트 {{totalPrice | formatMoney}}점이 차감됩니다.<br/>
                             구매를 진행하시겠습니까?
                         </p>
+
                         <div class="btn_group flex_between">
                             <a class="btn_left flex_center" href="javascript:void(0)" @click="tap_cancel">
-                                <p>취소</p>
+                                <p>
+                                    취소
+                                </p>
                             </a>
                             <a class="flex_center" href="javascript:void(0)" @click="tap_buyConfirm">
-                                <p>확인</p>
+                                <p>
+                                    확인
+                                </p>
                             </a>
                         </div>
                     </div>
@@ -79,7 +92,7 @@
                 <div class="bg_shadow flex_column_center">
                     <div class="modal_box flex_column_center">
                         <p class="title">{{alertTitle}}</p>
-                        <p class="alert_content" v-html="alertContent">{{alertContent}}</p>
+                        <p class="alert_content" :style="alertStyle" v-html="alertContent"></p>
                         <div class="btn_group flex_between">
                             <a class="btn_one flex_center" href="javascript:void(0)" @click="tap_buyOptionConfirm">
                                 <p>확인</p>
@@ -90,7 +103,11 @@
             </div>
         </transition>
     </div><!-- end of .container_box -->
+
+    <div :loading_type="loading_type" is="loading"></div>
 </div>
+<script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
+<script type="text/javascript" src="js/lib/utils.js"></script>
 <script type="text/javascript" src="js/gift.js"></script>
 
 </body>
