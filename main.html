@@ -7,6 +7,7 @@
     <title>Echoss Mall</title>
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
+    <link href="css/utils.css" rel="stylesheet"/>
     <link href="css/lib/swiper-4.1.0.min.css" rel="stylesheet" />
     <script type="text/javascript" src="js/lib/vue.min.js"></script>
     <script type="text/javascript" src="js/px2rem.js"></script>
@@ -20,16 +21,19 @@
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title">MALL</p>
+            <a class="btn_coupon_box flex_center" href="coupon_box.html">
+                <img src="images/icon_coupon_box.png"/>
+            </a>
         </div>
 
         <div class="section">
             <div class="header">
                 <div class="header_top">
                     <ul class="header_menu flex_row_center">
-                        <li class="flex_center" v-for="(item,index) in menuList" :class="{'on':index == menuIdx}">
-                            <a class="flex_column_center" href="javascript:void(0)" @click="menuIdx=index">
-                                <p class="menu_name">{{item.name}}</p>
-                                <p class="icon_down" :class="{'on':index == menuIdx}">〉</p>
+                        <li class="flex_center" v-for="item in menuList" :class="{'on':item.id == menuIdx}">
+                            <a class="flex_column_center" href="javascript:void(0)" :data-id="item.id" @click.stop="selectgroup">
+                                <p class="menu_name" v-text="item.name"></p>
+                                <p class="icon_down" :class="{'on':item.id == menuIdx}">〉</p>
                             </a>
                         </li>
                     </ul>
@@ -43,16 +47,16 @@
                     </a>
                 </div>
                 <transition name="bounce_a">
-                    <div v-if="menuIdx>0" class="category_banner">
+                    <div v-if="menuIdx!=0" class="category_banner">
                         <ul class="category_list">
-                            <li v-if="menuIdx==index+1" v-for="(item,index) in categoryList">
+                            <li v-if="menuIdx==item.categoryType" v-for="item in categoryList">
                                 <ol>
-                                    <li v-for="(part,index) in item.parts">
-                                        <a class="flex_column_center" href="javascript:void(0)">
+                                    <li v-for="part in item.parts">
+                                        <a v-on:click="selectCategory" :data-id="part.ctgrCd" class="flex_column_center" href="javascript:void(0)">
                                             <div class="icon_menu_bg flex_center">
-                                                <div class="icon_menu bg_cover" :style="{backgroundImage:'url('+ part.iconMenu +')'}"></div>
+                                                <div :class="part.ctgrCd == categoryIdx ? 'on' : '' " class="icon_menu bg_cover" :style="{backgroundImage:'url('+ part.ctgrImg +')'}"></div>
                                             </div>
-                                            <p class="name_menu">{{part.nameMenu}}</p>
+                                            <p class="name_menu" v-text="part.ctgrNm"></p>
                                         </a>
                                     </li>
                                 </ol>
@@ -61,28 +65,36 @@
                     </div>
                 </transition>
             </div>
-            <div v-if="menuIdx==0" class="main_swiper swiper-container">
+
+
+            <!-- 배너 -->
+            <div :style="menuIdx == 0 ? '' : 'display:none;' " class="main_swiper swiper-container">
+
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide bg_cover" v-for="item in mainSwiper" :style="{backgroundImage:'url('+ item.swiperImg +')'}">
+                    <div class="swiper-slide bg_cover"  v-for="item in mainSwiper" :style="{backgroundImage:'url('+ item.bnrImg +')'}">
                         <a href="javascript:void(0)"></a>
                     </div>
                 </div>
+
                 <div class="main_pagination swiper-pagination"></div>
             </div>
+
+
+            <!-- 상품 -->
             <div class="product_list">
                 <ul class="product_list_ul">
                     <li v-for="item in productList">
-                        <a class="flex_row_center" :href="item.productHref">
-                            <div class="product_img bg_cover" :style="{backgroundImage:'url('+ item.productImg +')'}">
+                        <a class="flex_row_center" :href="item.url">
+                            <div class="product_img bg_cover" :style="{backgroundImage:'url('+ item.goodsImg +')'}">
                             </div>
                             <div class="product_info">
-                                <p class="name">{{item.brandName}}</p>
-                                <p class="product_name">{{item.productName}}</p>
-                                <p class="after_price">{{item.priceAfter | formatPoint}}</p>
+                                <p class="name">{{item.brdNm}}</p>
+                                <p class="product_name">{{item.goodsNm}}</p>
+                                <p class="after_price">{{item.goodsSalPrice | formatPoint}}</p>
                             </div>
                         </a>
                     </li>
-                    <div class="loading_more flex_center">
+                    <div class="loading_more flex_center" :style="loading_show ? 'display:none;' : '' ">
                         <div class="move_circle">
                             <img class="icon_loading" src="images/icon_loading.png">
                         </div>
@@ -91,6 +103,7 @@
                 </ul>
             </div>
         </div>
+
         <!-- modal category -->
         <div class="modal category_box" :class="{menu_show:menuShow}">
             <div class="bg_shadow flex_center">
@@ -99,14 +112,14 @@
                         <ol>
                             <li v-for="item in categoryList">
                                 <div class="menu_type menu_theme flex_column_center">
-                                    <p class="h5">{{item.categoryType}}</p>
+                                    <p v-text="item.categoryNm" class="h5"></p>
                                     <ul class="category_list" :class="{perline_5:perLineFive}">
-                                        <li v-if="0<index" v-for="(part,index) in item.parts">
-                                            <a class="flex_column_center" href="javascript:void(0)">
+                                        <li  v-for="( part , index ) in item.parts">
+                                            <a v-on:click="selectCategory" :data-id="part.ctgrCd" class="flex_column_center" href="javascript:void(0)">
                                                 <div class="icon_menu_bg flex_center">
-                                                    <div class="icon_menu bg_cover" :style="{backgroundImage:'url('+ part.iconMenu +')'}"></div>
+                                                    <div class="icon_menu bg_cover" :style="{backgroundImage:'url('+ part.ctgrImg +')'}"></div>
                                                 </div>
-                                                <p class="name_menu">{{part.nameMenu}}</p>
+                                                <p class="name_menu" v-text="part.ctgrNm"></p>
                                             </a>
                                         </li>
                                     </ul>
@@ -125,6 +138,8 @@
 <script type="text/javascript" src="js/lib/swiper-4.1.0.min.js"></script>
 <script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
 <script type="text/javascript" src="js/lib/utils.js"></script>
+<script type="text/javascript" src="js/lib/scroll.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+
 </body>
 </html>

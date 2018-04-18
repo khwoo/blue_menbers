@@ -8,3 +8,6 @@
     overflow: hidden;
 
 }
+ .icon_menu.bg_cover.on {
+     opacity: 1!important;
+}

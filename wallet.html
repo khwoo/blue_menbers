@@ -79,30 +79,14 @@
             </div>
             <div class="category">
                 <ul>
-                    <li>
-                        <a href="main.html?all=2">
-                            <img src="images/icon_category_1.png">
-                            <p>골프</p>
+
+                    <li v-for="item in bizlist ">
+                        <a href="" :href="item.url">
+                            <img  :src="item.bizImg">
+                            <p v-text="item.categoryNm"></p>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <img src="images/icon_category_2.png">
-                            <p>생활·편의</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <img src="images/icon_category_3.png">
-                            <p>여행</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <img src="images/icon_category_4.png">
-                            <p>자동차</p>
-                        </a>
-                    </li>
+
                 </ul>
                 <div class="category_all">
                     <a class="flex_center" href="main.html?all=1">
