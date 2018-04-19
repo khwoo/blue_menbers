@@ -14,9 +14,21 @@ utils.install = function( Vue ){
         for(var i = 0 ; i < _paramList.length ; i++ ){
             var _str = _paramList[i];
             var _item = _str.split('=');
-            that['key_' + _item[0] ] = _item[1];
+
+            if( _item[0] ==='uid' ){
+
+                that['key_custNo'] = _item[1];
+
+            }else{
+
+                that['key_' + _item[0] ] = _item[1];
+
+            }
+
         }
-        that['key_custNo'] = '00012105';
+
+        //uid
+        //that['key_custNo'] = '00012105';
     }
 
     //일자 설정
@@ -41,6 +53,43 @@ utils.install = function( Vue ){
         ].join('');
         return arr;
     }
+
+    Vue.prototype.$utils_popup = function( that , show , title , content  ){
+
+        if(that.popdata == null || that.popdata == 'undefined'){
+            that.popdata = {};
+        }
+
+        if(show == null || show == 'undefined' ){
+                that.popdata.alertOption = false;
+        }else{
+            that.popdata.alertOption = show;
+        }
+        that.popdata.alertOption = true;
+        that.popdata.alertTitle = title;
+        that.popdata.alertContent = content;
+
+
+    }
+
+    Vue.component('popup' , {
+        template : '<transition name="fade">' +
+        '            <div v-if="popdata.alertOption" class="modal alert">' +
+        '                <div class="bg_shadow flex_column_center">' +
+        '                    <div class="modal_box flex_column_center">' +
+        '                        <p class="title" v-text="popdata.alertTitle"></p>' +
+        '                        <p style="text-align:center;" class="alert_content" v-text="popdata.alertContent"></p>' +
+        '                        <div class="btn_group flex_between">' +
+        '                            <a class="btn_one flex_center" href="javascript:void(0)" @click="popdata.alertOption=!popdata.alertOption">' +
+        '                                <p>확인</p>' +
+        '                            </a>' +
+        '                        </div>' +
+        '                    </div>' +
+        '                </div>' +
+        '            </div>' +
+        '        </transition>'
+        ,props: ['popdata']
+    });
 
     //로드 component
     Vue.component('loading', {

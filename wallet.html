@@ -19,7 +19,7 @@
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title">쿠폰월렛</p>
-            <a class="btn_coupon_box flex_center" href="coupon_box.html">
+            <a class="btn_coupon_box flex_center" href="" :href="coupon_box">
                 <img src="images/icon_coupon_box.png"/>
             </a>
         </div>
@@ -89,7 +89,7 @@
 
                 </ul>
                 <div class="category_all">
-                    <a class="flex_center" href="main.html?all=1">
+                    <a class="flex_center" :href="main_url">
                         <p>전체 카테고리보기</p><p class="icon_right"> &nbsp;&nbsp;〉</p>
                     </a>
                 </div>
@@ -112,6 +112,7 @@
 
     </div><!-- end of .container_box -->
 </div>
+<script type="text/javascript" src="js/lib/utils.js"></script>
 <script type="text/javascript" src="js/wallet.js"></script>
 
 </body>

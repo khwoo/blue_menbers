@@ -19,6 +19,17 @@ var vm = new Vue ({
         productList: [], //상품
         productCountType : 1 //
         ,loading_show : true
+        ,coupon_box : ''
+        ,wallet_url : ''
+        ,popdata : {
+
+            alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+
+        }
+
     },
     filters:{
         formatPoint:function(value,unit){
@@ -28,14 +39,23 @@ var vm = new Vue ({
     },
     mounted: function() {
         var that = this;
+
         that.$utils_location_params( that );
 
         that.$ScrollStart( that , function(){
-
             that.productData( false );
-
         });
 
+        that.coupon_box = [
+            'coupon_box.html'
+            ,'?'
+            ,'custNo=' + that.key_custNo
+        ].join('');
+
+        that.wallet_url =[
+            'wallet.html'
+            ,'?custNo=' + that.key_custNo
+        ].join('');
 
         var param = {};
         param.custNo = that.key_custNo;
@@ -59,13 +79,17 @@ var vm = new Vue ({
         BM.MAIN( param ,function( res ){
             console.log(res);
             that.mainData( res );
+
             if(res.bnrList.length > 0){
                 that.banrData( res );
             }
+
             that.productData(  true , res );
 
         },function( code , msg ){
-            console.log(code , msg );
+
+            that.$utils_popup( that , true , '' , msg );
+
         });
 
     },
@@ -246,7 +270,7 @@ var vm = new Vue ({
                     that.productData(  true , res );
 
                 },function( code , msg ){
-                    console.log(code , msg );
+                    that.$utils_popup( that , true , '' , msg );
                 });
 
             }
@@ -297,7 +321,7 @@ var vm = new Vue ({
                 that.productData(  true , res );
 
             },function( code , msg ){
-                console.log(code , msg );
+                that.$utils_popup( that , true , '' , msg );
             });
 
         }

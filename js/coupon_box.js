@@ -4,10 +4,10 @@ var vm = new Vue ({
         menuIdx: 0,
         menuList: [
             {
-                name: '홈'
+                name: 'My쿠폰'
             },
             {
-                name: '태마1'
+                name: '이용내역'
             }
         ],
 

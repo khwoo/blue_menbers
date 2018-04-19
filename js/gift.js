@@ -16,6 +16,7 @@ var vm = new Vue({
         gift_quantity_value : '' ,
         gift_to_value : '' ,
         alertStyle : '',
+        buySuccess           : false,
         alertContent: ''
     },
     filters:{
@@ -104,22 +105,20 @@ var vm = new Vue({
                 that.alertOption    = true;
                 that.btnOptionShow  = false;
                 that.loading_type   = false;
+
                 that.alertPop( '선물완료',  [
                     '구매 완료되어 입력한 연락처로 상품을 SMS로 발송합니다.</br>'
                     ,'선물내역은 보관함에서 확인하실수 있습니다.'
                 ].join('') );
 
+                that.buySuccess = true;
+
             },function( code , msg ){
+
                 that.loading_type = false;
                 that.alertPop( '선물실패',  msg );
 
             });
-
-
-
-
-
-
 
             // if(that.buySuccess == true) {
             //
@@ -136,8 +135,16 @@ var vm = new Vue({
 
         },
         tap_buyOptionConfirm: function() {
+            var that = this;
+            that.alertOption = false
+            if(that.buySuccess){
 
-            this.alertOption = false
+                location.href =[
+                    'coupon_box.html'
+                    ,'?custNo=' + that.key_custNo
+                ].join('');
+
+            }
 
         }
     }

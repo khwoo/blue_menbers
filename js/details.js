@@ -1,32 +1,41 @@
 var vm = new Vue({
    el: '.container',
    data: {
-       navTitle: '상품상세',
-       main_url : '',
-       productImg: '',
-       brandName: '',
-       productName: '',
-       productNotice: '',
-       priceAfter: '',
-       subMenuIdx: 0,
-       subMenuList: [
-           {name: '상품안내'},{name: '구매정보'},{name: '가맹점정보'}
-       ],
-       subContentList: [],
-       btnOptionShow:false,
-       productQuantity: 1,
-       maxProductQuantity: 10, /* 최대 구매 수량 */
-       totalPrice: 0,
+       navTitle             : '상품상세',
+       main_url             : '',
+       productImg           : '',
+       brandName            : '',
+       productName          : '',
+       productNotice        : '',
+       priceAfter           : '',
+       subMenuIdx           : 0,
+       subMenuList          : [
+                   {name: '상품안내'},{name: '구매정보'},{name: '가맹점정보'}
+               ],
+       subContentList       : [],
+       btnOptionShow        :false,
+       productQuantity      : 1,
+       maxProductQuantity   : 10, /* 최대 구매 수량 */
+       totalPrice           : 0,
 
        /* 구매 alert */
-       alertShow: false,
-       giftHref: 'javascript:void(0)',
+       alertShow            : false,
+       giftHref             : 'javascript:void(0)',
        /* 구매서공, 구매실패, 선물성공 alert */
-       alertOption: false,
-       alertTitle: '',
-       prstPsbYn : 'Y',
-       loading_type : false,
-       alertContent: ''
+       alertOption          : false,
+       alertTitle           : '',
+       prstPsbYn            : 'Y',
+       loading_type         : false,
+       alertContent         : '',
+       buySuccess           : false
+       ,popdata : {
+
+            alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+
+        }
 
    },
     filters:{
@@ -46,7 +55,7 @@ var vm = new Vue({
        that.main_url = [
            'main.html'
            ,'?'
-           ,'key_custNo=' + that.key_custNo
+           ,'custNo=' + that.key_custNo
        ].join('');
 
         that.productDetailsData();
@@ -90,7 +99,7 @@ var vm = new Vue({
 
            },function( code , msg ){
 
-               console.log( code , msg );
+               that.$utils_popup( that , true , '' , msg );
 
            });
 
@@ -107,18 +116,13 @@ var vm = new Vue({
             param.ordGbn = '1';
 
             BM.ORDER( param , function( res ){
-
+                that.alertOption = true;
                 that.alertTitle = '구매완료';
-                that.alertContent = '구매가 완료되었습니다.<br/>' +
-                                    '구매한 상품은 보관함에서 확인할 수 있습니다.';
-                return callback();
-
+                that.alertContent = '구매가 완료되었습니다.<br/>구매한 상품은 보관함에서 확인할 수 있습니다.';
+                return callback(true);
             },function( code , msg ){
-
-                that.alertTitle = '구매실패';
-                that.alertContent = msg;
-
-                return callback();
+                that.$utils_popup(that,true , '' , msg );
+                return callback(false);
 
             });
         }
@@ -199,19 +203,35 @@ var vm = new Vue({
             that.loading_type = true;
             that.alertShow      = false;
 
-            that.product_order(function(){
+            that.product_order(function( res ){
+
 
                 that.loading_type = false;
-
-                that.alertOption    = true;
                 that.btnOptionShow  = false;
+
+                if( res ){
+
+                    that.buySuccess = true;
+
+                }else{
+
+                    that.buySuccess = false;
+
+                }
+
 
             });
 
         },
         tap_buyOptionConfirm: function() {
            //보관함 이동.
-            this.alertOption = false;
+            var that = this;
+            if( that.buySuccess ){
+                location.href=[
+                    'coupon_box.html'
+                    ,'?custNo=' + that.key_custNo
+                ].join('');
+            }
         }
     }
 
