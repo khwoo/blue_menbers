@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Echoss Mall</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/coupon_details.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="js/px2rem.js"></script>
+</head>
+<body>
+<div class="container">
+    <div v-cloak class="container_box">
+
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" href="coupon_box.html">
+                <img src="images/icon_back.png"/>
+            </a>
+            <p class="title">{{navTitle}}</p>
+        </div>
+
+        <div class="section">
+            <div class="coupon_product_img bg_cover" :style="{backgroundImage:'url(' + productImg +')'}"></div>
+            <div v-if="couponDisable" class="disable_box flex_column_center">
+                <img class="disable_mark" :src="[couponUsed? 'images/icon_used.png':'images/icon_past.png']"/>
+                <ul v-if="couponUsed" class="coupon_used_info flex_center">
+                    <li class="flex_column_center">
+                        <p class="title">사용일시</p>
+                        <p class="content">{{usedDate}}</p>
+                    </li>
+                    <li class="flex_column_center">
+                        <p class="title">사용처</p>
+                        <p class="content">{{usedPlace}}</p>
+                    </li>
+                </ul>
+                <ul v-if="!couponUsed" class="coupon_past_info flex_center">
+                    <li class="flex_column_center">
+                        <p class="title">유효기간</p>
+                        <p class="content">{{expiryDate}} 까지</p>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="method_use">
+                <div v-if="stampMethod" class="method_stamp flex_row_center">
+                    <img class="icon_stamp" src="images/icon_gift_stamp.png"/>
+                    <p>
+                        본 화면을 매장에 제시해주세요.<br/>
+                        매장의 스탬프를 찍어 사용 처리합니다.
+                    </p>
+                </div>
+                <div v-if="!stampMethod" class="method_bar_code flex_center">
+                    <img class="img_bar_code" :src="barCodeImg"/>
+                </div>
+            </div>
+            <div class="coupon_info">
+                <p class="brand_name">{{brandName}}</p>
+                <p class="product_name">{{productName}}</p>
+                <p class="use_date">유효기간 : {{useDate}}</p>
+                <p class="coupon_number flex_center">쿠폰번호 : {{couponNumber}}</p>
+            </div>
+            <div class="coupon_notice">
+                <ul>
+                    <li v-for="item in noticeList">
+                        <p class="title">{{item.noticeTitle}}</p>
+                        <p class="content" v-html="item.productNotice">{{item.productNotice}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="btn_box flex_center">
+            <a class="flex_center" :href="[couponDisable? 'coupon_box.html':'javascript:void(0)']">
+                <p>{{couponDisable? '닫기':'구매취소'}}</p>
+            </a>
+        </div>
+
+    </div><!-- end of .container_box -->
+</div>
+<script type="text/javascript" src="js/coupon_details.js"></script>
+
+</body>
+</html>

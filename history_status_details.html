@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Echoss Mall</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/history_status_details.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="js/px2rem.js"></script>
+</head>
+<body>
+<div class="container">
+    <div v-cloak class="container_box flex_column_center">
+
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" href="coupon_box.html">
+                <img src="images/icon_back.png"/>
+            </a>
+            <p class="title">{{navTitle}}</p>
+        </div>
+
+        <div class="section flex_column_center">
+            <div class="article flex_column_center">
+                <table class="normal_info">
+                    <colgroup>
+                        <col/>
+                        <col/>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>상품명</th>
+                            <td>{{productName}}</td>
+                        </tr>
+                        <tr>
+                            <th>구분</th>
+                            <td :class="{cancel_font:canceled}">{{usedStatus}}</td>
+                        </tr>
+                        <tr>
+                            <th>고객번호 </th>
+                            <td>{{customerNumber}}</td>
+                        </tr>
+                        <tr>
+                            <th>{{bought? '구매':'사용'}}일시</th>
+                            <td>{{usedDate}}</td>
+                        </tr>
+                        <tr v-if="bought">
+                            <th>구매수량</th>
+                            <td>{{boughtQuantity}}개</td>
+                        </tr>
+                        <tr>
+                            <th>사용포인트</th>
+                            <td>{{usedPoint | formatPoint}}</td>
+                        </tr>
+                        <tr v-if="!bought">
+                            <th>사용처</th>
+                            <td>{{usedPlace}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table v-if="!bought&&canceled" class="cancel_info">
+                    <colgroup>
+                        <col />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>취소일시</th>
+                        <td>{{cancelDate}}</td>
+                    </tr>
+                    <tr>
+                        <th>취소내용</th>
+                        <td>{{cancelContent}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table v-if="bought&&canceled" class="cancel_info used_info">
+                    <colgroup>
+                        <col />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>사용일시</th>
+                        <td>{{usedDate}}</td>
+                    </tr>
+                    <tr>
+                        <th>사용처</th>
+                        <td>{{usedPlace}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div v-if="bought" class="btn_group">
+                    <div class="flex_between">
+                        <a v-if="!canceled" class="btn_left flex_center" href="javascript:void(0)" @click="tap_buyCancel">
+                            <p>구매취소</p>
+                        </a>
+                        <a class="flex_center" href="coupon_details.html">
+                            <p>쿠폰보기</p>
+                        </a>
+                    </div>
+                </div>
+
+                <img class="side_lace" src="images/icon_side_lace.png"/>
+            </div>
+
+        </div>
+        <div class="btn_box flex_center">
+            <a class="flex_center" href="coupon_box.html">
+                <p>확인</p>
+            </a>
+        </div>
+
+        <transition name="fade">
+            <div v-if="alertShow" class="modal alert">
+                <div class="bg_shadow flex_column_center">
+                    <div class="modal_box flex_column_center">
+                        <p class="title">구매취소</p>
+                        <p class="alert_content">
+                            구매를 취소 하시겠습니까?
+                        </p>
+                        <div class="btn_group flex_between">
+                            <a class="btn_left flex_center" href="javascript:void(0)" @click="tap_cancel">
+                                <p>취소</p>
+                            </a>
+                            <a class="flex_center" href="javascript:void(0)" @click="tap_buyConfirm">
+                                <p>확인</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+
+    </div><!-- end of .container_box -->
+</div>
+<script type="text/javascript" src="js/history_status_details.js"></script>
+
+</body>
+</html>

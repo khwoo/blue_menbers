@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>brand</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="js/px2rem.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div v-cloak class="container_box">
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" href="wallet.html">
+                <img src="images/icon_back.png"/>
+            </a>
+            <p class="title">{{brandName}}</p>
+        </div>
+
+        <div class="section">
+            <div class="product_list">
+                <ul class="product_list_ul">
+                    <li v-for="item in productList">
+                        <a class="flex_row_center" :href="item.productHref">
+                            <div class="product_img bg_cover" :style="{backgroundImage:'url('+ item.productImg +')'}">
+                            </div>
+                            <div class="product_info">
+                                <p class="name">{{item.brandName}}</p>
+                                <p class="product_name">{{item.productName}}</p>
+                                <p class="after_price">{{item.priceAfter | formatPoint}}</p>
+                            </div>
+                        </a>
+                    </li>
+                    <div class="loading_more flex_center">
+                        <div class="move_circle">
+                            <img class="icon_loading" src="images/icon_loading.png">
+                        </div>
+                        <p>Loading . . .</p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div><!-- end of container_box -->
+</div>
+<script type="text/javascript" src="js/brand_gift.js"></script>
+</body>
+</html>

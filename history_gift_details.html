@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Echoss Mall</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/history_status_details.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="js/px2rem.js"></script>
+</head>
+<body>
+<div class="container">
+    <div v-cloak class="container_box flex_column_center">
+
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" href="coupon_box.html">
+                <img src="images/icon_back.png"/>
+            </a>
+            <p class="title">{{navTitle}}</p>
+        </div>
+
+        <div class="section status_gift flex_column_center">
+            <div class="article flex_column_center">
+                <div class="product_img bg_cover" :style="{backgroundImage:'url('+ productImg +')'}"></div>
+                <table class="gift_info">
+                    <colgroup>
+                        <col/>
+                        <col/>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>상품명</th>
+                        <td>{{productName}}</td>
+                    </tr>
+                    <tr>
+                        <th>받는사람</th>
+                        <td>{{giftTo}}</td>
+                    </tr>
+                    <tr>
+                        <th>보낸사람</th>
+                        <td>{{giftFrom}}</td>
+                    </tr>
+                    <tr>
+                        <th>선물 메세지</th>
+                        <td class="message" v-html="giftMessage">{{giftMessage}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="normal_info">
+                    <colgroup>
+                        <col/>
+                        <col/>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>구분</th>
+                        <td :class="{cancel_font:canceled}">{{usedStatus}}</td>
+                    </tr>
+                    <tr>
+                        <th>고객번호 </th>
+                        <td>{{customerNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>구매일시</th>
+                        <td>{{usedDate}}</td>
+                    </tr>
+                    <tr v-if="canceled">
+                        <th>취소일시</th>
+                        <td>{{cancelDate}}</td>
+                    </tr>
+                    <tr>
+                        <th>구매수량</th>
+                        <td>{{boughtQuantity}}개</td>
+                    </tr>
+                    <tr>
+                        <th>사용포인트</th>
+                        <td>{{usedPoint | formatPoint}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div v-if="!canceled" class="btn_group">
+                    <div class="flex_between">
+                        <a v-if="!canceled" class="btn_left flex_center" href="javascript:void(0)" @click="tap_giftCancel">
+                            <p>선물취소</p>
+                        </a>
+                        <a class="flex_center" href="javascript:void(0)" @click="tap_giftAgain">
+                            <p>재전송</p>
+                        </a>
+                    </div>
+                </div>
+
+                <img class="side_lace" src="images/icon_side_lace.png"/>
+            </div>
+
+        </div>
+        <div class="btn_box flex_center">
+            <a class="flex_center" href="coupon_box.html">
+                <p>확인</p>
+            </a>
+        </div>
+
+        <transition name="fade">
+            <div v-if="alertShow" class="modal alert">
+                <div class="bg_shadow flex_column_center">
+                    <div class="modal_box flex_column_center">
+                        <p class="title">선물취소</p>
+                        <p class="alert_content">
+                            취소 시 쿠폰을 더 이상 사용할 수 없습니다.<br/>
+                            선물받으신 분께 취소메시지가 발송됩니다.<br/>
+                            선물을 취소하시겠습니까?
+                        </p>
+                        <div class="btn_group flex_between">
+                            <a class="btn_left flex_center" href="javascript:void(0)" @click="tap_cancel">
+                                <p>취소</p>
+                            </a>
+                            <a class="flex_center" href="javascript:void(0)" @click="tap_cancelConfirm">
+                                <p>확인</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+        <transition name="fade">
+            <div v-if="alertOption" class="modal alert">
+                <div class="bg_shadow flex_column_center">
+                    <div class="modal_box flex_column_center">
+                        <p class="title">{{alertTitle}}</p>
+                        <p class="alert_content" v-html="alertContent">{{alertContent}}</p>
+                        <div class="btn_group flex_between">
+                            <a class="btn_one flex_center" href="javascript:void(0)" @click="tap_buyOptionConfirm">
+                                <p>확인</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+
+    </div><!-- end of .container_box -->
+</div>
+<script type="text/javascript" src="js/history_gift_details.js"></script>
+
+</body>
+</html>

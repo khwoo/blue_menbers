@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Echoss Mall</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/point_use.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="js/px2rem.js"></script>
+</head>
+<body>
+<div class="container">
+    <div v-cloak class="container_box">
+
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" href="wallet.html">
+                <img src="images/icon_back.png"/>
+            </a>
+            <p class="title">{{navTitle}}</p>
+        </div>
+
+        <div class="section">
+            <div class="use_coupon">
+                <div class="use_coupon_box flex_column_center">
+                    <div class="use_coupon_section flex_column_center">
+                        <p class="point_title">나의 보유포인트</p>
+                        <p class="point_num">{{myPoint | formatMoney}}</p>
+                        <p class="shap_line">━━</p>
+                        <p class="content">
+                            현장에서 바로 포인트를 차감해서<br/>
+                            사용할 수 있는 쿠폰입니다.<br/>
+                            사용을 원하는 쿠폰을 선택해 결제 시 제시해 주세요.
+                        </p>
+                        <p class="notice" v-html="noticeContent">
+                            {{noticeContent}}
+                        </p>
+                        <ul class="point_list">
+                            <li v-for="(item,index) in pointList" class="bg_cover" :class="{'item_opacity':item.usePoint>myPoint}">
+                                <a href="javascript:void(0)" @click="tap_pointUse(index)">
+                                    <p>
+                                        {{item.usePoint | formatMoney}} 사용 >
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="shap_btn">
+                    <a href="javascript:void(0)"></a>
+                </div>
+            </div>
+
+        </div>
+        <transition name="bounce_a">
+            <div v-if="usePage" class="modal use_coupon_page">
+                <div class="nav flex_center">
+                    <a class="btn_back flex_center" href="javascript:void(0)" @click="usePage=false">
+                        <img src="images/icon_back.png"/>
+                    </a>
+                    <p class="title">{{navTitle}}</p>
+                </div>
+                <div class="modal_box flex_column_center">
+                    <div class="box_header bg_cover">
+                        <a class="flex_center" href="javascript:void(0)" @click="tap_buyConfirm">{{headerPoint | formatMoney}} 사용 ></a>
+                    </div>
+                    <p class="header_notice">
+                        결제 시 해당 화면을 카운터에 제시해주세요.<br/>
+                        블루멤버스 포인트가 차감됩니다.
+                    </p>
+                    <div class="box_bar_code flex_center">
+                        <img src="images/bar_code.png"/>
+                    </div>
+                    <div class="box_stamp flex_column_center">
+                        <img src="images/icon_use_point_stamp.png"/>
+                        <p>
+                            스탬프 이용매장은 <br/>
+                            본 화면에 스탬프를 찍어주세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </transition>
+
+        <transition name="fade">
+            <div v-if="alertOption" class="modal alert">
+                <div class="bg_shadow flex_column_center">
+                    <div class="modal_box flex_column_center">
+                        <p class="title">{{alertTitle}}</p>
+                        <p class="alert_content" v-html="alertContent">{{alertContent}}</p>
+                        <div class="btn_group flex_between">
+                            <a class="btn_one flex_center" href="javascript:void(0)" @click="tap_buyOptionConfirm">
+                                <p>확인</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </div><!-- end of .container_box -->
+</div>
+<script type="text/javascript" src="js/point_use.js"></script>
+
+</body>
+</html>
