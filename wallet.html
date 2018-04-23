@@ -26,7 +26,7 @@
 
         <ul class="section">
             <li v-show="onReady" class="article article_1" :class="{show_motion:onReady}">
-                <a class="bg_box" href="wallet_submain_img.html">
+                <a class="bg_box" :href="brandUrllist[0].link_url">
                     <img src="images/emart_logo.png" alt="emart24 logo" class="logo_emart"/>
                     <div class="content">
                         <p class="title">새로운 라이프스타일<br/>이마트 편의점</p>
@@ -42,13 +42,13 @@
             </li>
 
             <li v-show="onReady" class="article article_2" :class="{show_motion:onReady}">
-                <a class="bg_box" href="javascript:void(0)">
+                <a class="bg_box" :href="brandUrllist[1].link_url">
                     <img src="images/logo_jejuair.png" alt="jejuair logo" class="logo_ja">
                 </a>
             </li>
 
             <li v-show="onReady" class="article article_3" :class="{show_motion:onReady}">
-                <a class="bg_box" href="wallet_submain_text.html">
+                <a class="bg_box" :href="brandUrllist[2].link_url">
                     <img src="images/icon_2.png" alt="아이콘 최인아책방" class="logo_cui">
                     <div class="content">
                         <p class="title">최인아책방</p>
@@ -61,7 +61,7 @@
             </li>
 
             <li v-show="onReady" class="article article_4" :class="{show_motion:onReady}">
-                <a class="bg_box" href="javascript:void(0)">
+                <a class="bg_box" :href="brandUrllist[3].link_url">
                     <img src="images/shop_img_3.png" alt="golf image" class="img_golf"/>
                     <img src="images/shap_2.png" alt="shap" class="shap_2">
                     <div class="content">

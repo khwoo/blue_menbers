@@ -16,10 +16,36 @@ var vm = new Vue({
         '선별한 좋은 책들이 주제별로 진열되어 있고 지인들이 <br/>' +
         '추천한 책 안에는 추천 이유를 진솔하게 <br/>' +
         '적은 북카드가 들어있어 자신에게 필요한 <br/>' +
-        '책을 쉬이 선택할 수 있습니다. <br/>'
+        '책을 쉬이 선택할 수 있습니다. <br/>',
+        point_use_url : '',
+        brand_gift_url : '',
+        coupon_box :''
     },
 
     mounted: function() {
+
+        var that = this;
+
+        that.$utils_location_params(that);
+
+        that.coupon_box = [
+            'coupon_box.html'
+            ,'?'
+            ,'custNo=' + that.key_custNo
+        ].join('');
+
+        that.point_use_url = [
+            'point_use.html'
+            ,'?custNo=' + that.key_custNo
+            ,'&brandCd=' + that.key_brandCd
+        ].join('');
+
+        that.brand_gift_url = [
+            'brand_gift.html'
+            ,'?custNo=' + that.key_custNo
+            ,'&brandCd=' + that.key_brandCd
+        ].join('');
+
         this.$nextTick(function() {
             this.onReady = !this.onReady;
 
@@ -28,7 +54,19 @@ var vm = new Vue({
         })
     },
     methods: {
+        wallet_url : function(){
 
+            var that = this;
+
+            var _url = [
+                'wallet.html'
+                ,'?'
+                ,'custNo=' + that.key_custNo
+            ].join('');
+
+            location.href = _url;
+
+        }
     }
 
 });

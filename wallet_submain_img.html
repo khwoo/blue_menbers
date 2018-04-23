@@ -15,11 +15,11 @@
     <div v-cloak class="container_box">
 
         <div class="nav flex_center">
-            <a class="btn_back flex_center" href="wallet.html">
+            <a class="btn_back flex_center" v-on:click="wallet_url" >
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title">{{navTitle}}</p>
-            <a class="btn_coupon_box flex_center" href="coupon_box.html">
+            <a class="btn_coupon_box flex_center" :href="coupon_box">
                 <img src="images/icon_coupon_box.png"/>
             </a>
         </div>
@@ -31,10 +31,10 @@
                 </div>
             </div>
             <div class="btn_group">
-                <a class="btn_point" href="point_use.html">
+                <a class="btn_point" :href="point_use_url">
                     <p>포인트사용하기 > </p>
                 </a>
-                <a class="btn_gift" href="brand_gift.html">
+                <a class="btn_gift" :href="brand_gift_url">
                     <p>선물하기 > </p>
                 </a>
             </div>
@@ -46,6 +46,7 @@
         </a>
     </div><!-- end of .container_box -->
 </div>
+<script type="text/javascript" src="js/lib/utils.js" ></script>
 <script type="text/javascript" src="js/wallet_submain_img.js"></script>
 
 </body>

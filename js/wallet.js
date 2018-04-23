@@ -33,14 +33,21 @@ var vm = new Vue({
                     "url" : "main.html?custNo=00012105&menuIdx=CTG0002&categoryIdx=CTG0002CT0001"
                 }
         ]
+        ,brandUrllist : []
         ,coupon_box :''
         ,main_url :''
     },
 
-    mounted: function() {
+    created:function(){
+        this.brand_url();
+    }
+    ,mounted: function() {
 
         var that = this;
         that.$utils_location_params(that);
+
+        that.brand_url();
+
         that.coupon_box = [
             'coupon_box.html'
             ,'?'
@@ -64,7 +71,37 @@ var vm = new Vue({
 
             var that = this;
 
+            var _url = new Array();
 
+            _url.push({
+                link_url : [
+                    'wallet_submain_img.html'
+                    ,'?'
+                    ,'custNo=' + that.key_custNo
+                    ,'&'
+                    ,'brandCd=V00A044B003'
+                ].join('')
+            });
+
+            _url.push({
+                link_url : ['javascript:void(0);'].join('')
+            });
+
+            _url.push({
+                link_url : [
+                    'wallet_submain_text.html'
+                    ,'?'
+                    ,'custNo=' + that.key_custNo
+                    ,'&'
+                    ,'brandCd=V00A044B003'
+                ].join('')
+            });
+
+            _url.push({
+                link_url : ['javascript:void(0);'].join('')
+            });
+
+            that.brandUrllist = _url;
 
         }
         ,company_url:function(){

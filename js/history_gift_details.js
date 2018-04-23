@@ -26,6 +26,7 @@ var vm = new Vue ({
         coupon_box_url : '',
         ordGbn : '3' , // 상테
         btnType : '9' , // 1 [ 구매취소 쿠폰보기 ] 2 [ 선물취소 , 재전송 ] 9  [ 노출 않함. ]
+        ordCanPsbYn : 'Y' , //구매 선물 취소 여부 Y 취소 가능
         popdata : {
 
              alertOption : false
@@ -195,6 +196,8 @@ var vm = new Vue ({
                 that.boughtQuantity = data.ordQtt +" 개";
 
                 that.usedPoint = data.payAmt +"P";
+
+                that.ordCanPsbYn = data.ordCanPsbYn;
 
                 return callbackSuccess(data);
 
