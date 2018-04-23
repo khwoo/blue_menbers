@@ -66,6 +66,7 @@
                     <p class="border_right flex_center">{{productQuantity}}</p>
                     <a class="flex_center" href="javascript:void(0)" @click="tap_plus">﹢</a>
                 </div>
+                <p v-if="goodsQttGbn == '2' " class="inventory">(잔여수량 : {{goodsCnt}})</p>
                 <p class="total_price">총 {{totalPrice | formatMoney}}</p>
             </div>
 

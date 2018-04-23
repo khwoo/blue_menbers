@@ -140,6 +140,7 @@ var vm = new Vue ({
                 }
                 console.log(param);
                 BM.SAL_GOODS_LIST( param ,function(res){
+
                     that.loadStatus = true;
                     that.loading_show = true;
                     if( res.salGoodsList.length > 0 ){

@@ -58,6 +58,7 @@
     height: 2.8125rem;
     margin-right: 0.46875rem; }
   .product_list .product_info {
+    position: relative;
     width: 5.15625rem;
     margin-top: 0.140625rem; }
     .product_list .product_info p {

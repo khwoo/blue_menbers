@@ -510,3 +510,11 @@ body {
     .product_list .product_info .after_price {
       font-weight: bold;
       font-size: 0.46875rem; }
+.product_list .product_info .inventory {
+  width: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-weight: bold;
+  font-size: 0.3125rem;
+  color: #00498C; }

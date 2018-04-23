@@ -9,6 +9,26 @@ var vm = new Vue({
         giftNum: '8033 0204 5002',
         giftValidity: '2018.12.31까지',
         barCodeSrc: 'images/bar_code.png',
+        popdata : {
+
+            alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+
+        }
+        ,popformdata : {
+
+            alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+            ,alertCall_1 : null
+            ,alertCall_2 : null
+            ,cancelShow : true
+
+        }
+        ,loading_type : false
     },
     filters:{
 

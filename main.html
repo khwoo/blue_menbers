@@ -93,9 +93,11 @@
                                     <p class="name">{{item.brdNm}}</p>
                                     <p class="product_name">{{item.goodsNm}}</p>
                                     <p class="after_price">{{item.goodsSalPrice | formatPoint}}</p>
+                                    <p v-if="item.goodsQttGbn == '2' " class="inventory">
+                                        (잔여수량 : {{item.goodsCnt}})
+                                    </p>
                                 </div>
                             </a>
-
                     </li>
                     <div class="loading_more flex_center" :style="loading_show ? 'display:none;' : '' ">
                         <div class="move_circle">

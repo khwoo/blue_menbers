@@ -96,6 +96,8 @@ var vm = new Vue({
                that.priceAfter = res.goodsSalPrice;
                that.totalPrice = res.goodsSalPrice;
                that.prstPsbYn = res.prstPsbYn;
+               that.goodsQttGbn = res.goodsQttGbn;
+               that.goodsCnt = res.goodsCnt;
 
                that.subContentList.push({
                    contentText : res.goodsDesc1
