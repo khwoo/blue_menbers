@@ -207,3 +207,29 @@
       padding: 0.453125rem;
       margin-left: -0.453125rem;
       text-decoration: underline; }
+
+/* company_info */
+.company {
+  position: fixed;
+  width: 100%;
+  height: 100%; }
+  .company .intro {
+    width: 9.0625rem;
+    height: 100%;
+    padding-bottom: 8.28125rem;
+    overflow-y: auto;
+    margin-top: 0.46875rem;
+    background-color: #fff; }
+    .company .intro p {
+      padding: 0 0.46875rem; }
+    .company .intro .h3 {
+      margin-bottom: 0.953125rem;
+      padding-top: 0.5rem;
+      font-size: 0.390625rem; }
+    .company .intro .content {
+      line-height: 0.6875rem;
+      font-size: 0.34375rem; }
+  .company footer {
+    position: fixed;
+    top: auto;
+    bottom: 0; }

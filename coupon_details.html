@@ -7,6 +7,7 @@
     <title>Echoss Mall</title>
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/coupon_details.css" rel="stylesheet"/>
+    <link href="stampEffect/stampEffect.css" rel="stylesheet" />
     <script type="text/javascript" src="js/lib/vue.min.js"></script>
     <script type="text/javascript" src="js/px2rem.js"></script>
 </head>
@@ -15,10 +16,10 @@
     <div v-cloak class="container_box">
 
         <div class="nav flex_center">
-            <a class="btn_back flex_center" href="coupon_box.html">
+            <a class="btn_back flex_center" :href="coupon_box_url">
                 <img src="images/icon_back.png"/>
             </a>
-            <p class="title">{{navTitle}}</p>
+            <p class="title" v-text="navTitle"></p>
         </div>
 
         <div class="section">
@@ -28,7 +29,7 @@
                 <ul v-if="couponUsed" class="coupon_used_info flex_center">
                     <li class="flex_column_center">
                         <p class="title">사용일시</p>
-                        <p class="content">{{usedDate}}</p>
+                        <p class="content" v-text="usedDate"></p>
                     </li>
                     <li class="flex_column_center">
                         <p class="title">사용처</p>
@@ -45,16 +46,28 @@
             </div>
 
             <div class="method_use">
-                <div v-if="stampMethod" class="method_stamp flex_row_center">
+                <div v-if="ticketUseCd == '1' " class="method_stamp flex_row_center">
                     <img class="icon_stamp" src="images/icon_gift_stamp.png"/>
                     <p>
                         본 화면을 매장에 제시해주세요.<br/>
                         매장의 스탬프를 찍어 사용 처리합니다.
                     </p>
                 </div>
-                <div v-if="!stampMethod" class="method_bar_code flex_center">
-                    <img class="img_bar_code" :src="barCodeImg"/>
+                <div v-if="ticketUseCd == '2'" class="method_bar_code flex_center">
+                    <barcode height="100px" :value="couponNumber" tag="img"></barcode>
                 </div>
+
+                <div v-if="ticketUseCd == '9' " class="method_stamp flex_row_center">
+                    <img class="icon_stamp" src="images/icon_gift_stamp.png"/>
+                    <p>
+                        본 화면을 매장에 제시해주세요.<br/>
+                        매장의 스탬프를 찍어 사용 처리합니다.
+                    </p>
+                </div>
+                <div v-if="ticketUseCd == '9'" class="method_bar_code flex_center">
+                    <barcode height="100px" :value="couponNumber" tag="img"></barcode>
+                </div>
+
             </div>
             <div class="coupon_info">
                 <p class="brand_name">{{brandName}}</p>
@@ -72,13 +85,23 @@
             </div>
         </div>
         <div class="btn_box flex_center">
-            <a class="flex_center" :href="[couponDisable? 'coupon_box.html':'javascript:void(0)']">
-                <p>{{couponDisable? '닫기':'구매취소'}}</p>
+            <a class="flex_center" :href="coupon_box_url">
+                <p>닫기</p>
             </a>
         </div>
 
+        <div is="popup" :popdata="popdata"></div>
+
     </div><!-- end of .container_box -->
+
+    <div :loading_type="loading_type" is="loading"></div>
+
 </div>
+<script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
+<script type="text/javascript" src="https://developer.echoss.co.kr/sdk/echoss-lite-min.js"></script>
+<script type="text/javascript" src="dist/vue-barcode.js"></script>
+<script type="text/javascript" src="js/lib/utils.js"></script>
+<script type="text/javascript" src="stampEffect/stampEffect.js"></script>
 <script type="text/javascript" src="js/coupon_details.js"></script>
 
 </body>

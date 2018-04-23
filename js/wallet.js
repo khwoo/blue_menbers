@@ -60,6 +60,27 @@ var vm = new Vue({
     },
     methods: {
 
+        brand_url : function(){
+
+            var that = this;
+
+
+
+        }
+        ,company_url:function(){
+
+            var that = this;
+
+            var _url = [
+                'company_info.html'
+                ,'?'
+                ,'custNo=' + that.key_custNo
+            ].join('');
+
+            location.href = _url;
+
+        }
+
     }
 
 });

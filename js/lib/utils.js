@@ -52,6 +52,31 @@ utils.install = function( Vue ){
             ,item_3
         ].join('');
         return arr;
+
+    }
+
+    Vue.prototype.$utils_popupForm = function( that , show , title , content  , cancelShow ,  callbackSuccess , callbackFail ){
+
+        if(that.popformdata == null || that.popformdata == 'undefined'){
+            that.popformdata = {};
+        }
+            console.log(that.popformdata);
+        if(show == null || show == 'undefined' ){
+            that.popformdata.alertOption = false;
+        }else{
+            that.popformdata.alertOption = show;
+        }
+        that.popformdata.alertOption = true;
+        that.popformdata.alertTitle = title;
+        that.popformdata.alertContent = content;
+        that.popformdata.alertCall_1 = callbackSuccess;
+        if(that.popformdata.cancelShow) {
+            that.popformdata.alertCall_2 = callbackFail;
+        }
+        that.popformdata.cancelShow = cancelShow;
+
+
+
     }
 
     Vue.prototype.$utils_popup = function( that , show , title , content  ){
@@ -70,7 +95,88 @@ utils.install = function( Vue ){
         that.popdata.alertContent = content;
 
 
+
     }
+
+    //초기화
+    Vue.prototype.$utils_echoss_init = function( that, callbackSuccess , callbackFail ){
+        var API_KEY = 'd608b72f661734755a401db13973b26c0';
+        echoss.initialize(API_KEY, echoss.REGION_CODE_TYPE.KOREA);
+        echoss.initializeSuccess = function() {
+
+            echoss.setLanguageCode(echoss.Common.LANGUAGE_CODE_TYPE.KOREAN);
+            echoss.Stamp.init( function(locUseTyp) {
+                echoss.Icon.init();
+                echoss.Icon.enableStampingErrorMsg(true);
+                echoss.Icon.setEchossIconData({
+
+                    aprvData    : "1,"+CHANNEL_CODE+","+that.key_ticketNo,
+                    funcCd      : "SBLPT",
+                    isuDivCd    : echoss.Icon.OTP_ISSUE_TYPE.COMMON_ETC,
+                    cntYn       : "N"
+
+                }, function(res) {
+                    console.log(res);
+                    echoss.Icon.hideIcon();
+                }, function(errorCode, errorMessage) {
+                    showAlert(errorMessage, "확인");
+                });
+
+                echoss.Icon.showIcon();
+
+                return callbackSuccess(true);
+            }, function(errorCode, errorMsg) {
+                return callbackFail( errorCode , errorMsg );
+            });
+        }
+    }
+
+    Vue.prototype.$utils_echoss_onStamp = function( callbackSuccess , callbackFail ){
+        echoss.Stamp.onStamp = function(stampParams) {
+            startStampAnimation();
+            return callbackSuccess(stampParams);
+        }
+        echoss.Stamp.onError = function(errorCode, errorMsg) {
+            alert(errorMsg);
+            return callbackFail(errorCode , errorMsg);
+        };
+    }
+
+    Vue.component('popupform' , {
+        template : '<transition name="fade">' +
+        '            <div v-if="popformdata.alertOption" class="modal alert">' +
+        '                <div class="bg_shadow flex_column_center">' +
+        '                    <div class="modal_box flex_column_center">' +
+        '                        <p class="title" v-text="popformdata.alertTitle"></p>' +
+        '                        <p style="text-align:center;" class="alert_content" v-text="popformdata.alertContent"></p>' +
+        '                        <div class="btn_group flex_between">' +
+        '                            <a v-if="!popformdata.cancelShow" class="btn_one flex_center" href="javascript:void(0)" @click="fail" style="margin: 0 5px 0 0;">' +
+        '                                <p>취소</p>' +
+        '                            </a>' +
+        '                            <a class="btn_one flex_center" href="javascript:void(0)" @click="success">' +
+        '                                <p>확인</p>' +
+        '                            </a>' +
+        '                        </div>' +
+        '                    </div>' +
+        '                </div>' +
+        '            </div>' +
+        '        </transition>'
+        ,props: ['popformdata']
+        ,methods : {
+            success : function(){
+                var that = this;
+                that.popformdata.alertOption = false;
+                return that.popformdata.alertCall_1();
+            },
+
+            fail:function(){
+                var that = this;
+                that.popformdata.alertOption = false;
+                return that.popformdata.alertCall_2();
+            }
+        }
+    });
+
 
     Vue.component('popup' , {
         template : '<transition name="fade">' +
@@ -91,6 +197,8 @@ utils.install = function( Vue ){
         ,props: ['popdata']
     });
 
+    var VueBarcode = window.VueBarcode;
+    Vue.component('barcode', VueBarcode);
     //로드 component
     Vue.component('loading', {
         template: '<div v-show="loading_type" class="loading_parent"><div class="loading_sub"></div></div>'

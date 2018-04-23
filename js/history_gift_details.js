@@ -2,27 +2,49 @@ var vm = new Vue ({
     el:".container",
     data: {
         navTitle: '이용내역',
-        productImg: 'images/product_item_02.jpg',
+        productImg: '',
 
-        productName: '스타벅스코리아 아이스아메리카노 1+1 SET 2줄 일수도 있지',
+        productName: '',
         usedStatus: 5,
-        giftTo: '010-7744-1251',
-        giftFrom: '홍길동',
-        giftMessage: '유진아 생일을 정말 축하해~<br/>' +
-        '행복한 생일 보내길 바래!!행복한 생일 보내길 바래!!',
+        giftTo: '',
+        giftFrom: '',
 
-        customerNumber: '023397984216',
-        usedDate: '2018-04-09 15:00',
-        usedPoint: 1000,
+        customerNumber: '',
+        usedDate: '',
+        usedPoint: 0,
 
         canceled: null, // 취소는 true, 아니면 false
-        cancelDate: '2018. 04. 09 12:00',
+        cancelDate: '',
 
-        boughtQuantity: 10,
+        boughtQuantity: 0,
         alertShow: false,
         alertOption: false,
         alertTitle: '',
         alertContent: '',
+        loading_type: true ,
+        history_type : false, // true 선물  ,   false 구매
+        coupon_box_url : '',
+        ordGbn : '3' , // 상테
+        btnType : '9' , // 1 [ 구매취소 쿠폰보기 ] 2 [ 선물취소 , 재전송 ] 9  [ 노출 않함. ]
+        popdata : {
+
+             alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+
+        },
+        popformdata : {
+
+             alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+            ,alertCall_1 : null
+            ,alertCall_2 : null
+            ,cancelShow : true
+
+        },
         giftUsed: true
     },
     filters:{
@@ -31,8 +53,31 @@ var vm = new Vue ({
             return parseInt(value).toLocaleString() + unit;
         }
     },
+    created:function(){
+        var that = this;
+    }
+    ,mounted: function() {
 
-    mounted: function() {
+        var that = this;
+
+        that.$utils_location_params(that);
+
+
+        that.coupon_box_url = [
+            'coupon_box.html'
+            ,'?'
+            ,'custNo=' + that.key_custNo
+        ].join('');
+
+        that.history_details(function(){
+
+            that.loading_type = false;
+
+        },function(code , msg ){
+            that.loading_type = false;
+            that.$utils_popup(that,true,'' , msg );
+        });
+
         this.$nextTick(function() {
 
             if(this.usedStatus == 5) {
@@ -47,6 +92,222 @@ var vm = new Vue ({
     },
 
     methods: {
+
+        //이용내역 정보 처리
+        history_details : function( callbackSuccess , callbackFail ){
+
+            var that = this;
+
+            var param = {};
+
+            param.trxNo = that.key_trxNo;
+
+            BM.CUST_ORD_DTL_INFO( param , function( res ){
+
+                console.log(res);
+
+                var data = res.ordDtlInfo;
+                that.ticketList = res.ticketList;
+                console.log(data);
+                // "ordStCd": "2", //2:발급 완료, 9:주문 취소
+                // "ordGbn": "1",  //1:구매 ,2:선물 ,3:현장구매     [9-3] 현장취소  [9-2] 선물취소  [9-1] 구매취소
+
+                that.ordGbn = data.ordGbn;
+
+                if( data.ordGbn == '2' ){ //선물
+
+                    that.history_type   = true;
+                    that.productImg     = data.goodsImg;
+                    that.productName    = data.goodsNm;
+                    that.giftTo         = data.recvTelNo;
+                    that.giftFrom       = data.custNm;
+
+                }
+
+                if(data.ordGbn == '3'){
+                    that.productName    = data.brdNm;
+                }else{
+                    that.productName    = data.goodsNm;
+                }
+
+                //취소는 true, 아니면 false
+                if( data.ordStCd === '2' ){
+
+                    switch(data.ordGbn){
+                        case "1":
+                            _status = '구매';
+                            that.btnType = data.ordGbn;
+                            break;
+                        case "2":
+                            _status = '선물';
+                            that.btnType = data.ordGbn;
+                            break;
+                        case "3":
+                            _status = '현장구매';
+                            break;
+                    }
+
+                    that.canceled = false;
+
+                }else if( data.ordStCd === '9' ){
+                    switch(data.ordGbn){
+                        case "1":
+                            _status = '구매취소';
+                            break;
+                        case "2":
+                            _status = '선물취소';
+                            break;
+                        case "3":
+                            _status = '현장취소';
+                            break;
+                    }
+
+                    that.cancelDate = [
+                        data.ordCanDt.substr( 0, 4 )
+                        ,'. '
+                        ,data.ordCanDt.substr( 4, 2 )
+                        ,'. '
+                        ,data.ordCanDt.substr( 6, 2 )
+                        ,'   '
+                        ,data.ordCanTm.substr( 0 , 2 )
+                        ,':'
+                        ,data.ordCanTm.substr(2,2)
+                    ].join('') ;//'2018. 06. 21  21:00';
+
+                    that.canceled = true;
+                }
+
+                that.usedStatus = _status;
+                that.customerNumber = that.key_custNo;
+
+                that.usedDate = [
+                    data.ordDt.substr( 0, 4 )
+                    ,'. '
+                    ,data.ordDt.substr( 4, 2 )
+                    ,'. '
+                    ,data.ordDt.substr( 6, 2 )
+                    ,'   '
+                    ,data.ordTm.substr( 0 , 2 )
+                    ,':'
+                    ,data.ordTm.substr(2,2)
+                ].join('') ;//'2018. 06. 21  21:00';
+
+                that.boughtQuantity = data.ordQtt +" 개";
+
+                that.usedPoint = data.payAmt +"P";
+
+                return callbackSuccess(data);
+
+            },function( code , msg ){
+                return callbackFail(code , msg);
+            });
+
+
+        },
+
+        //쿠폰 보기 [ 쿠폰 상세 이동 ]
+        coupon_details_url: function(){
+            var that = this;
+            if(that.ticketList.length <= 0 ){
+                return;
+            }
+            var ticket_info = that.ticketList[0];
+
+            var _url = [
+                'coupon_details.html'
+                ,'?'
+                ,'custNo=' + that.key_custNo
+                ,'&'
+                ,'ticketNo=' + ticket_info.ticketNo
+            ].join('');
+
+            location.href = _url;
+
+        },
+        //구매 취소
+        coupon_cancel : function( e ){
+
+            var that = this;
+
+            var _target = e.target;
+
+            var _len = 0 ;
+
+            var _cancelType = true;
+            while( _cancelType){
+
+                if(_len > 10 ){
+
+                    _cancelType = false;
+
+                }
+
+                if( _target.getAttribute('data-type') == null){
+
+                    _target = _target.parentNode;
+                    _len += 1;
+
+                }else{
+                    _cancelType = false;
+                }
+            }
+
+            var message_1 = '';
+            var message_2 = '';
+
+            if( _target.dataset.type == 'coupon' ){
+
+                message_1 = '구매 취소하시겠습니까?';
+                message_2 = '구매 취소가 완료되었습니다';
+
+            }else if(_target.dataset.type =='gift'){
+
+                message_1 = '취소 시 쿠폰을 더 이상 사용할 수 없습니다.' +
+                            '선물받으신 분께 취소메시지가 발송됩니다.' +
+                            '선물을 취소하시겠습니까?';
+                message_2 = '선물 취소가 완료되었습니다.';
+
+            }
+
+            that.$utils_popupForm( that , true , '' , message_1 , false , function(){
+
+                var param = {};
+                param.trxNo = that.key_trxNo;
+                that.loading_type = true;
+
+                    BM.ORDER_CANCEL( param, function( res){
+
+                        that.loading_type = false;
+                        that.$utils_popupForm(that, true , '' , message_2 , true , function(){
+
+                            that.loading_type = true;
+                            //정보 다시 조회
+                            that.history_details(function(){
+
+                                that.loading_type = false;
+
+                            },function(code , msg ){
+                                setTimeout(function(){
+
+                                    that.loading_type = false;
+                                    that.$utils_popup(that,true,'' , msg );
+                                },1);
+                            });
+
+                        });
+                    },function( code , msg ){
+
+                        that.loading_type = false;
+
+                        that.$utils_popup(that , true , '' , msg , true );
+
+                    });
+            },function(){
+                //취소
+            });
+
+        },
+
         tap_giftCancel: function() {
             this.alertShow = true
         },

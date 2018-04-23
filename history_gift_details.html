@@ -6,6 +6,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <title>Echoss Mall</title>
     <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/utils.css" rel="stylesheet"/>
     <link href="css/history_status_details.css" rel="stylesheet"/>
     <script type="text/javascript" src="js/lib/vue.min.js"></script>
     <script type="text/javascript" src="js/px2rem.js"></script>
@@ -15,7 +16,7 @@
     <div v-cloak class="container_box flex_column_center">
 
         <div class="nav flex_center">
-            <a class="btn_back flex_center" href="coupon_box.html">
+            <a class="btn_back flex_center" :href="coupon_box_url">
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title">{{navTitle}}</p>
@@ -23,8 +24,11 @@
 
         <div class="section status_gift flex_column_center">
             <div class="article flex_column_center">
-                <div class="product_img bg_cover" :style="{backgroundImage:'url('+ productImg +')'}"></div>
-                <table class="gift_info">
+
+                <!-- 선물 -->
+
+                <div v-if="history_type" class="product_img bg_cover" :style="{backgroundImage:'url('+ productImg +')'}"></div>
+                <table v-if="history_type" class="gift_info">
                     <colgroup>
                         <col/>
                         <col/>
@@ -32,64 +36,82 @@
                     <tbody>
                     <tr>
                         <th>상품명</th>
-                        <td>{{productName}}</td>
+                        <td v-text="productName"></td>
                     </tr>
                     <tr>
                         <th>받는사람</th>
-                        <td>{{giftTo}}</td>
+                        <td v-text="giftTo"></td>
                     </tr>
                     <tr>
                         <th>보낸사람</th>
                         <td>{{giftFrom}}</td>
                     </tr>
-                    <tr>
-                        <th>선물 메세지</th>
-                        <td class="message" v-html="giftMessage">{{giftMessage}}</td>
-                    </tr>
+
                     </tbody>
                 </table>
+
+                <!-- 구매 -->
                 <table class="normal_info">
                     <colgroup>
                         <col/>
                         <col/>
                     </colgroup>
                     <tbody>
+                    <tr v-if="ordGbn == '3' || ordGbn == '1' " >
+                        <th>상품명</th>
+                        <td v-text="productName"></td>
+                    </tr>
                     <tr>
                         <th>구분</th>
-                        <td :class="{cancel_font:canceled}">{{usedStatus}}</td>
+                        <td :class="{cancel_font:canceled}" v-text="usedStatus"></td>
                     </tr>
                     <tr>
                         <th>고객번호 </th>
-                        <td>{{customerNumber}}</td>
+                        <td v-text="customerNumber"></td>
                     </tr>
                     <tr>
                         <th>구매일시</th>
-                        <td>{{usedDate}}</td>
+                        <td v-text="usedDate"></td>
                     </tr>
                     <tr v-if="canceled">
                         <th>취소일시</th>
-                        <td>{{cancelDate}}</td>
+                        <td v-text="cancelDate"></td>
                     </tr>
-                    <tr>
+                    <tr v-if="ordGbn != '3' ">
                         <th>구매수량</th>
-                        <td>{{boughtQuantity}}개</td>
+                        <td v-text="boughtQuantity"></td>
                     </tr>
                     <tr>
                         <th>사용포인트</th>
-                        <td>{{usedPoint | formatPoint}}</td>
+                        <td v-text="usedPoint"></td>
                     </tr>
                     </tbody>
                 </table>
 
                 <div v-if="!canceled" class="btn_group">
-                    <div class="flex_between">
-                        <a v-if="!canceled" class="btn_left flex_center" href="javascript:void(0)" @click="tap_giftCancel">
+
+                    <!-- 구매 -->
+                    <div v-if="btnType == '1' " class="flex_between">
+                        <a v-if="!canceled" class="btn_left flex_center" data-type="coupon" href="javascript:void(0)" @click="coupon_cancel">
+                            <p>구매취소</p>
+                        </a>
+                        <a class="flex_center" href="javascript:void(0)" @click="coupon_details_url">
+                            <p>쿠폰보기</p>
+                        </a>
+                    </div>
+
+
+                    <!-- 선물 -->
+                    <div v-if="btnType == '2' " class="flex_between">
+                        <a v-if="!canceled" class="btn_left flex_center" data-type="gift" href="javascript:void(0)" @click="coupon_cancel">
                             <p>선물취소</p>
                         </a>
                         <a class="flex_center" href="javascript:void(0)" @click="tap_giftAgain">
                             <p>재전송</p>
                         </a>
                     </div>
+
+
                 </div>
 
                 <img class="side_lace" src="images/icon_side_lace.png"/>
@@ -97,7 +119,7 @@
 
         </div>
         <div class="btn_box flex_center">
-            <a class="flex_center" href="coupon_box.html">
+            <a class="flex_center" :href="coupon_box_url">
                 <p>확인</p>
             </a>
         </div>
@@ -140,8 +162,15 @@
             </div>
         </transition>
 
+
+        <div is="popup" :popdata="popdata"></div>
+        <div is="popupform" :popFormdata="popformdata"></div>
     </div><!-- end of .container_box -->
+
+    <div :loading_type="loading_type" is="loading"></div>
 </div>
+<script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
+<script type="text/javascript" src="js/lib/utils.js"></script>
 <script type="text/javascript" src="js/history_gift_details.js"></script>
 
 </body>

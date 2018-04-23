@@ -1,0 +1,35 @@
+
+new Vue ({
+    el :'.container'
+    ,data :{
+    }
+    ,created:function(){
+
+
+    }
+    ,mounted : function(){
+
+        var that = this;
+
+        that.$utils_location_params(that);
+
+    }
+    ,methods :{
+
+        wallet_url : function(){
+
+            var that = this;
+
+            var _url = [
+                'wallet.html'
+                ,'?'
+                ,'custNo=' + that.key_custNo
+            ].join('');
+
+            location.href = _url;
+
+        }
+
+    }
+
+});
