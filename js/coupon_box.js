@@ -330,13 +330,13 @@ var vm = new Vue ({
                 _coupon.couponDisable   = false;
                 _coupon.isPast          = false;
 
-                if( _item.isuSt === '2' || _item.isuSt === '8' ){
+                if( _item.stCd === '2' || _item.stCd === '8' ){
 
                     //isPast true 기간만료 false 사용완료
-                   if( _item.isuSt === '2' ){
+                   if( _item.stCd === '2' ){
                        _coupon.isPast  = false;
                     }
-                    if( _item.isuSt === '8' ){
+                    if( _item.stCd === '8' ){
                         _coupon.isPast  = true;
                     }
                     _coupon.couponDisable = true;
@@ -344,7 +344,7 @@ var vm = new Vue ({
                 }
 
                 _coupon.brandName   = _item.brdNm;
-                _coupon.productName = _item.goodsNm;
+                _coupon.productName = _item.ticketGoodsNm;
 
                 if( _item.expiDt.length == 2 ) {
                     if( _item.expiDt.indexOf("일") >= 0 )

@@ -49,6 +49,7 @@ var vm = new Vue({
 
         }
         ,loading_type : false
+        ,echoss_onStamp_type : false
     },
     filters:{
         formatMoney:function(value,unit){
@@ -68,9 +69,26 @@ var vm = new Vue({
             ,'custNo=' + that.key_custNo
         ].join('');
 
-        that.cust_point_info( function(){
+        that.cust_point_info( function( res ){
 
+                var _cust_point = res;
 
+            that.$utils_echoss_init( that ,function( res ){
+
+                console.log(_cust_point);
+
+                that.myPoint = _cust_point.custPoint;
+
+                that.loading_type = false;
+
+                echoss.Icon.hideIcon();
+
+            },function( code , msg  ){
+
+                that.loading_type = false;
+                that.$utils_popup( that, true , '' , msg );
+
+            });
 
         },function(code , msg ){
 
@@ -81,20 +99,7 @@ var vm = new Vue({
 
 
 
-        that.$utils_echoss_init( that ,function( res ){
 
-            that.$utils_echoss_onStamp( function( res ){
-                //쿠폰 사용
-                that.coupon_use(res);
-            },function(code , msg ){
-                that.$utils_echoss_onStamp( code , msg );
-            });
-
-        },function( code , msg  ){
-
-            that.$utils_popup( that, true , '' , msg );
-
-        });
 
         this.$nextTick(function() {
 
@@ -104,12 +109,61 @@ var vm = new Vue({
     },
     methods: {
 
+        cust_point_use : function( data ){
+
+            var that = this;
+
+            var param = {};
+
+            param.custNo = that.key_custNo;
+            param.usePoint = that.headerPoint;
+            param.eq = data.equipTyp;
+            param.s = data.s;
+            param.p = data.p;
+            param.c = data.c;
+            param.version = data.version;
+            param.brdId = that.key_brandCd;
+
+            BM.POINT_USE( param , function(){
+
+                var _message = '블루멤버스 포인트 '+ that.headerPoint +'점 사용처리가 완료되었습니다.';
+
+                stopStampAnimation();
+
+                that.$utils_popupForm(that, true , '' , _message , true , function(){
+
+                    that.cust_point_info(function( res ){
+
+                        that.myPoint = res.custPoint;
+                        that.loading_type = false;
+
+                    },function( code , msg ){
+
+                        that.$utils_popup(that,true,'', msg );
+
+                    });
+
+                    that.point_use_close();
+
+                },function(){
+
+                });
+
+            },function( code , msg ){
+
+                stopStampAnimation();
+                that.$utils_popup(that, true , '' , msg );
+
+            });
+
+        }
         /*
         *
         * 유저 포인트 정보 조회
         *
         * */
-        cust_point_info : function( callbackSuccess , callbackFail ){
+        ,cust_point_info : function( callbackSuccess , callbackFail ){
+
             var that = this;
             var param = {};
 
@@ -119,10 +173,7 @@ var vm = new Vue({
 
             BM.CUST_POINT_SEARCH(param , function( res ){
 
-                that.loading_type = false;
-                that.myPoint = res.custPoint;
-
-                return callbackSuccess(true);
+                return callbackSuccess(res);
 
             },function( code , msg ){
                 that.loading_type = false;
@@ -132,14 +183,58 @@ var vm = new Vue({
 
         }
 
+        /*
+        *
+        * 포인트 사용 페이지
+        *
+        * */
         ,tap_pointUse: function(index) {
-            if(this.myPoint>=this.pointList[index].usePoint) {
-                this.usePage = true
-                this.headerPoint = this.pointList[index].usePoint
-            }
-        },
 
-        tap_buyConfirm: function() {
+            var that = this;
+
+            if(that.myPoint>=that.pointList[index].usePoint) {
+
+                that.usePage = true;
+                that.headerPoint = that.pointList[index].usePoint;
+
+                if(!that.echoss_onStamp_type){
+
+                    that.$utils_echoss_onStamp( function( res ){
+                        //포인트 사용
+                        that.cust_point_use( res );
+
+                    },function(code , msg ){
+
+                        that.$utils_echoss_onStamp( code , msg );
+
+                    });
+
+                    that.echoss_onStamp_type = true;
+
+                }
+
+                echoss.Icon.showIcon();
+
+
+            }
+
+        }
+
+        /*
+        *
+        * 포인트 사용 close
+        *
+        * */
+        ,point_use_close : function(){
+
+            var that = this;
+
+            that.usePage = false;
+
+            echoss.Icon.hideIcon();
+
+        }
+        ,tap_buyConfirm: function() {
             this.alertOption = true
             if(this.buySuccess == true) {
                 this.alertTitle = ''

@@ -52,11 +52,24 @@ var vm = new Vue({
        var that = this;
        that.$utils_location_params( that );
 
-       that.main_url = [
-           'main.html'
-           ,'?'
-           ,'custNo=' + that.key_custNo
-       ].join('');
+        that.main_url = [
+            'main.html'
+            ,'?'
+            ,'custNo=' + that.key_custNo
+        ].join('');
+
+        if(that.key_link == 'brand_gift'){
+
+            that.main_url = [
+                'brand_gift.html'
+                ,'?'
+                ,'custNo=' + that.key_custNo
+                ,'&brandCd=' + that.key_brandCd
+            ].join('');
+
+        }
+
+
 
         that.productDetailsData();
 

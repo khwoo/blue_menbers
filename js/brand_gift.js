@@ -1,37 +1,17 @@
+Vue.use(scroll);
 var vm = new Vue ({
     el:".container",
     data: {
-        brandName: 'Brand name',
-        productList: [
-            {
-                productHref: 'details.html',
-                productImg: 'images/product_item_01.jpg',
-                brandName: 'Brand name',
-                productName: 'product nameproduct nameproduct nameproduct nameproduct name',
-                priceAfter: '3500'
-            },
-            {
-                productHref: 'details.html',
-                productImg: 'images/product_item_02.jpg',
-                brandName: 'Brand name',
-                productName: 'product name',
-                priceAfter: '3500'
-            },
-            {
-                productHref: 'details.html',
-                productImg: 'images/product_item_03.jpg',
-                brandName: 'Brand name',
-                productName: 'product name',
-                priceAfter: '3500'
-            },
-            {
-                productHref: 'details.html',
-                productImg: 'images/product_item_04.jpg',
-                brandName: 'Brand name',
-                productName: 'product name',
-                priceAfter: '3500'
-            },
-        ]
+        brandName: '',
+        productList: [],
+        productLength : 0,
+        wallet_url :'',
+        loading_type : false,
+        loadValue : 100, //로드 위치
+        productCountType : 1, //
+        loadStatus :true,  //로드 상태
+        loading_show : true,
+        productLoading : false //페이지 초기화 여부
     },
     filters:{
         formatPoint:function(value,unit){
@@ -40,9 +20,128 @@ var vm = new Vue ({
         }
     },
     mounted: function() {
-        this.$nextTick(function() {
 
-        })
+        var that = this;
+
+        that.$utils_location_params(that);
+
+        that.$ScrollStart( that, function(){
+
+            that.brandProductList();
+
+        });
+
+        that.wallet_url = [
+            'wallet.html'
+            ,'?'
+            ,'custNo=' + that.key_custNo
+        ].join('');
+
+        that.brandProductList();
+
+    }
+    ,methods : {
+
+        /**
+         *
+         *  브랜드 상품 정보 조회
+         *
+         * */
+        brandProductList : function(){
+
+            var that = this;
+
+            var param = {};
+
+            if(that.productCountType <= 0){
+
+                return;
+
+            }
+
+            param.custNo = that.key_custNo;
+            param.brdId = that.key_brandCd;
+            param.lastSelNo = that.productLength;
+
+            if( !that.productLoading ){
+
+                that.loading_type = true;
+
+            }else{
+
+                that.loadStatus = false;
+                that.loading_show = false;
+
+            }
+
+            BM.BRD_GOODS_LIST( param , function( res ){
+
+                console.log( res );
+
+                if(res.brdGoodsList.length <= 0){
+
+                    that.productCountType = 0;
+                    that.loading_type = false;
+                    that.loadStatus = true;
+                    that.loading_show = true;
+                    return;
+
+                }
+
+                that.productLength += 10;
+
+                var list = new Array();
+
+                for(var i = 0 ; i < res.brdGoodsList.length ;i++ ){
+
+                    var _item = res.brdGoodsList[i];
+
+                    var _info = {};
+                    console.log(_item.brdNm);
+                    that.brandName = _item.brdNm;
+                    _info.brandName = _item.brdNm;
+                    _info.productImg = _item.goodsImg;
+                    _info.productName = _item.goodsNm;
+                    _info.priceAfter = _item.goodsSalPrice;
+
+                    _info.productHref = 'details.html'+
+                        '?custNo='+ that.key_custNo +''+
+                        '&productId='+ _item.goodsCd +'' +
+                        '&brandCd='+ that.key_brandCd +'' +
+                        '&link=brand_gift';
+
+                    list.push( _info );
+
+                }
+
+                if( that.productLoading ){
+
+                    for(var i = 0 ; i < list.length ;i++ ){
+
+                        that.productList.push(list[i]);
+
+                    }
+
+                    that.loadStatus = true;
+                    that.loading_show = true;
+
+                }else{
+
+                    that.productLoading = true;
+                    that.loading_type = false;
+                    that.productList = list;
+
+                }
+
+            },function( code , msg ){
+
+                that.loading_type = false;
+                that.$utils_popup(that, true ,'' , msg );
+
+            });
+
+        }
+
     }
 });
 

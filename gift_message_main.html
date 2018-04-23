@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Echoss Mall</title>
+    <link href="css/gift_message_main.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="js/px2rem.js"></script>
+</head>
+<body>
+<div class="container">
+    <div v-cloak class="container_box flex_column_center">
+        <div class="section flex_center">
+            <img class="bg_shape bg_left" src="images/shap_bg_2.png"/>
+            <img class="bg_shape bg_right" src="images/shap_bg_2.png"/>
+            <div class="content_box flex_column_center">
+                <p class="h1">{{brandName}}</p>
+                <div class="title_container flex_between">
+                    <img class="mark_left" src="images/gift_title_bg.png"/>
+                    <img class="mark_right" src="images/gift_title_bg.png"/>
+                    <p>{{presenter}} 님의 선물</p>
+                </div>
+                <div class="content flex_column_center">
+                    <div class="main_img bg_cover" :style="{backgroundImage:'url('+ imgUrl +')'}"></div>
+                    <p class="gift_name">{{giftName}}</p>
+                    <img class="shape_gift" src="images/icon_shap_gift.png"/>
+                    <p class="gift_number">쿠폰번호 : {{giftNum}}</p>
+                    <p class="validity">유효기간 : {{giftValidity}}</p>
+                    <div v-if="stampType" class="stamp_type type_use flex_center">
+                        <p class="h4">스탬프를 찍어 사용하세요!</p>
+                        <img src="images/icon_gift_stamp.png"/>
+                        <p class="text">
+                            스탬프 이용매장은<br/>
+                            본 화면에 스탬프를 찍어주세요.
+                        </p>
+                    </div>
+                    <div v-if="!stampType" class="bar_code_type type_use flex_center">
+                        <img :src="barCodeSrc"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end of .container_box -->
+
+    <div is="popup" :popdata="popdata"></div>
+    <div is="popupform" :popFormdata="popformdata"></div>
+
+    <div :loading_type="loading_type" is="loading"></div>
+
+</div>
+<script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
+<script type="text/javascript" src="js/lib/utils.js"></script>
+<script type="text/javascript" src="js/gift_message_main.js"></script>
+
+</body>
+</html>

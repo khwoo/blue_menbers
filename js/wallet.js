@@ -79,7 +79,7 @@ var vm = new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A044B003'
+                    ,'brandCd=V00A044B001'
                 ].join('')
             });
 
@@ -93,7 +93,7 @@ var vm = new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A044B003'
+                    ,'brandCd=V00A044B001'
                 ].join('')
             });
 

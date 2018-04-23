@@ -8,6 +8,7 @@
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/point_use.css" rel="stylesheet"/>
     <link href="css/utils.css" rel="stylesheet"/>
+    <link href="stampEffect/stampEffect.css" rel="stylesheet" />
     <script type="text/javascript" src="js/lib/vue.min.js"></script>
     <script type="text/javascript" src="js/px2rem.js"></script>
 </head>
@@ -57,7 +58,7 @@
         <transition name="bounce_a">
             <div v-if="usePage" class="modal use_coupon_page">
                 <div class="nav flex_center">
-                    <a class="btn_back flex_center" href="javascript:void(0)" @click="usePage=false">
+                    <a class="btn_back flex_center" href="javascript:void(0)" @click="point_use_close">
                         <img src="images/icon_back.png"/>
                     </a>
                     <p class="title">{{navTitle}}</p>
@@ -111,7 +112,9 @@
 
 
 <script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
+<script type="text/javascript" src="https://developer.echoss.co.kr/sdk/echoss-lite-min.js"></script>
 <script type="text/javascript" src="js/lib/utils.js" ></script>
+<script type="text/javascript" src="stampEffect/stampEffect.js"></script>
 <script type="text/javascript" src="js/point_use.js"></script>
 
 </body>
