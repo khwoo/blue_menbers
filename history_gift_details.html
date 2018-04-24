@@ -16,7 +16,10 @@
     <div v-cloak class="container_box flex_column_center">
 
         <div class="nav flex_center">
-            <a class="btn_back flex_center" :href="coupon_box_url">
+            <!--<a class="btn_back flex_center" :href="coupon_box_url">-->
+            <a class="btn_back flex_center" href="javascript:history.back();">
+            <!--<a class="btn_back flex_center" href="javascript:void(0);" v-on:click="history_replaceState">-->
+
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title">{{navTitle}}</p>
@@ -106,7 +109,7 @@
                         <a v-if="!canceled && ordCanPsbYn == 'Y' " class="btn_left flex_center" data-type="gift" href="javascript:void(0)" @click="coupon_cancel">
                             <p>선물취소</p>
                         </a>
-                        <a class="flex_center" href="javascript:void(0)" @click="tap_giftAgain">
+                        <a :style="retryYn == 'N' ? 'background-color:#fff;' : '' " class="flex_center" href="javascript:void(0)" @click="tap_giftAgain">
                             <p>재전송</p>
                         </a>
                     </div>
@@ -119,7 +122,8 @@
 
         </div>
         <div class="btn_box flex_center">
-            <a class="flex_center" :href="coupon_box_url">
+            <!--<a class="flex_center" :href="coupon_box_url">-->
+            <a class="flex_center" href="javascript:history.back();">
                 <p>확인</p>
             </a>
         </div>

@@ -60,6 +60,7 @@ body {
 
 .article_bottom {
   .content {
+    padding-bottom:px2rem(100px);
     li {
       padding:px2rem(38px) px2rem(30px);
       p {
@@ -73,17 +74,37 @@ body {
 
 /* btn_container */
 .btn_container {
+  border-top-left-radius: px2rem(20px);
+  border-top-right-radius: px2rem(20px);
   .btn_box {
     padding-top:px2rem(28px);
   }
 }
-.icon_btn_slide {
+
+.slide_btn_box {
   position:absolute;
-  top:px2rem(-7.5px);
+  width: px2rem(90px);
+  top: px2rem(-7.5px);
   left:50%;
-  margin-left:px2rem(-45px);
-  width:px2rem(90px);
+  margin-left: px2rem(-45px);
+  .icon_btn_slide {
+    position:absolute;
+    top:0;
+    left:0;
+    width:px2rem(90px);
+  }
+
+  .icon_up {
+    position:absolute;
+    top: px2rem(12px);
+    width:px2rem(18px);
+    transition: transform .2s;
+    &.icon_down {
+      transform: rotate(180deg);
+    }
+  }
 }
+
 .btn_option {
   padding:px2rem(32px) px2rem(25px) 0;
   background-color:$theme_1_color;
@@ -117,55 +138,12 @@ body {
   font-size: px2rem(37px);
   color: $theme_1_line;
 }
-
-/* alert */
-.alert {
-  .bg_shadow {
-    padding-top: px2rem(200px);
-  }
-  .modal_box {
-    padding-bottom:px2rem(40px);
-    .title {
-      padding-top:px2rem(65px);
-      font-weight: bold;
-      font-size: px2rem(35px);
-      color: $theme_1_color;
-    }
-
-    .alert_content {
-      width:px2rem(460px);
-      padding:px2rem(49px) 0;
-      line-height:px2rem(32px);
-      font-weight: lighter;
-      font-size: px2rem(26px);
-      color: $theme_1_color;
-    }
-
-    .btn_group {
-      width:px2rem(460px);
-      height:px2rem(80px);
-      a {
-        width:px2rem(220px);
-        height:100%;
-        background-color:$theme_1_color;
-        p {
-          font-weight: lighter;
-          font-size: px2rem(24px);
-          color: $theme_1_line;
-        }
-        &.btn_one {
-          width:100%;
-        }
-      }
-      .btn_left {
-        background-color: #fff;
-        box-sizing: border-box;
-        border: 2px solid $theme_1_color;
-        p {
-          color: $theme_1_color;
-        }
-      }
-    }
-
-  }
+.inventory {
+  position: absolute;
+  left:px2rem(25px);
+  bottom: px2rem(110px);
+  font-weight: lighter;
+  font-size: px2rem(26px);
+  color: $theme_1_line;
 }
+

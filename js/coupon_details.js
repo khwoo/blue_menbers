@@ -20,6 +20,7 @@ var vm = new Vue ({
         coupon_details_move : 'javascript:void(0);',
         loading_type : false,
         ticketUseCd : "1" ,
+        stampUse : true ,
         coupon_box_url : ''
         ,popdata : {
 
@@ -59,11 +60,15 @@ var vm = new Vue ({
                             //쿠폰 사용
                             that.coupon_use(res);
                         },function(code , msg ){
-                            that.$utils_echoss_onStamp( code , msg );
+                            that.$utils_popup(that,true,'',msg);
                         });
                     },function( code , msg  ){
                         that.$utils_popup( that, true , '' , msg );
                     });
+
+                }else{
+
+                    //사용 완료 .
 
                 }
 
@@ -170,14 +175,30 @@ var vm = new Vue ({
                 that.couponDisable   = false;
                 that.couponUsed          = false;
 
-                console.log(res.stCd);
-
                 if( res.stCd === '2' || res.stCd === '8' ){
                     if( res.stCd === '2' ){
+
                         that.couponUsed  = true;
+
+                        that.usedDate = [
+                            res.useDt.substr(0,4)
+                            ,'-'
+                            ,res.useDt.substr( 4 , 2 )
+                            ,'-'
+                            ,res.useDt.substr( 6 , 2 )
+                            ,' '
+                            ,res.useTm.substr( 0 , 2 )
+                            ,':'
+                            ,res.useTm.substr( 2 , 2 )
+                        ].join('');
+
+                        that.usedPlace = res.brdNm;
                     }
                     if( res.stCd === '8' ){
+
                         that.couponUsed  = false;
+                        that.expiryDate = that.useDate;
+
                     }
                     that.couponDisable = true;
                 }
@@ -196,19 +217,6 @@ var vm = new Vue ({
                     that.ticketUseCd = '9';
                 }
 
-                // {
-                //     noticeTitle: '상품안내',
-                //         productNotice: '결이 살아있는 패스트리를 프레즐 모양으로 만든 후, 파마산 가루를 뿌려 만든 패스트리로 짭쪼름한 맛이 특징입니다.'
-                // },
-                // {
-                //     noticeTitle: '사용안내',
-                //         productNotice: '매장에서 줄을 서지 않고 주문하는 쉽고 간편한 O2O (Online to Offline) 서비스로서 앱을 통해 스타벅스 음료, 푸드 및 원두의 결제 및 주문을 완료하면 매장에서 즉시 메뉴를 받을 수 있는 스타벅스 만의 신개념 서비스 입니다.'
-                // },
-                // {
-                //     noticeTitle: '가맹점 점주',
-                //         productNotice: '주소 : 서울특별시 중구 소공로 112 (소공동)(04533) <br/>' +
-                // '연락처 : +82-2-3015-1100'
-                // },
 
             return callbackSuccess(res);
 

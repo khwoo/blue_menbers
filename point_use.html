@@ -17,7 +17,8 @@
     <div v-cloak class="container_box">
 
         <div class="nav flex_center">
-            <a class="btn_back flex_center" :href="wallet_url">
+            <!--<a class="btn_back flex_center" :href="wallet_url">-->
+                <a class="btn_back flex_center" href="javascript:history.back();">
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title">{{navTitle}}</p>
@@ -65,7 +66,7 @@
                 </div>
                 <div class="modal_box flex_column_center">
                     <div class="box_header bg_cover">
-                        <a class="flex_center" href="javascript:void(0)" @click="tap_buyConfirm">{{headerPoint | formatMoney}} 사용 ></a>
+                        <a class="flex_center" href="javascript:void(0)" >{{headerPoint | formatMoney}} 사용 ></a>
                     </div>
                     <p class="header_notice">
                         결제 시 해당 화면을 카운터에 제시해주세요.<br/>

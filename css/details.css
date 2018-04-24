@@ -40,23 +40,40 @@ body {
         font-weight: bold;
         font-size: 0.5625rem; }
 
-.article_bottom .content li {
-  padding: 0.59375rem 0.46875rem; }
-  .article_bottom .content li p {
-    line-height: 0.453125rem;
-    font-size: 0.375rem;
-    color: rgba(0, 0, 0, 0.5); }
+.article_bottom .content {
+  padding-bottom: 1.5625rem; }
+  .article_bottom .content li {
+    padding: 0.59375rem 0.46875rem; }
+    .article_bottom .content li p {
+      line-height: 0.453125rem;
+      font-size: 0.375rem;
+      color: rgba(0, 0, 0, 0.5); }
 
 /* btn_container */
-.btn_container .btn_box {
-  padding-top: 0.4375rem; }
+.btn_container {
+  border-top-left-radius: 0.3125rem;
+  border-top-right-radius: 0.3125rem; }
+  .btn_container .btn_box {
+    padding-top: 0.4375rem; }
 
-.icon_btn_slide {
+.slide_btn_box {
   position: absolute;
+  width: 1.40625rem;
   top: -0.1171875rem;
   left: 50%;
-  margin-left: -0.703125rem;
-  width: 1.40625rem; }
+  margin-left: -0.703125rem; }
+  .slide_btn_box .icon_btn_slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.40625rem; }
+  .slide_btn_box .icon_up {
+    position: absolute;
+    top: 0.1875rem;
+    width: 0.28125rem;
+    transition: transform .2s; }
+    .slide_btn_box .icon_up.icon_down {
+      transform: rotate(180deg); }
 
 .btn_option {
   padding: 0.5rem 0.390625rem 0;
@@ -86,47 +103,10 @@ body {
   font-size: 0.578125rem;
   color: #fff; }
 
-/* alert */
-.alert .bg_shadow {
-  padding-top: 3.125rem; }
-.alert .modal_box {
-  padding-bottom: 0.625rem; }
-  .alert .modal_box .title {
-    padding-top: 1.015625rem;
-    font-weight: bold;
-    font-size: 0.546875rem;
-    color: #00498C; }
-  .alert .modal_box .alert_content {
-    width: 7.1875rem;
-    padding: 0.765625rem 0;
-    line-height: 0.5rem;
-    font-weight: lighter;
-    font-size: 0.40625rem;
-    color: #00498C; }
-  .alert .modal_box .btn_group {
-    width: 7.1875rem;
-    height: 1.25rem; }
-    .alert .modal_box .btn_group a {
-      width: 3.4375rem;
-      height: 100%;
-      background-color: #00498C; }
-      .alert .modal_box .btn_group a p {
-        font-weight: lighter;
-        font-size: 0.375rem;
-        color: #fff; }
-      .alert .modal_box .btn_group a.btn_one {
-        width: 100%; }
-    .alert .modal_box .btn_group .btn_left {
-      background-color: #fff;
-      box-sizing: border-box;
-      border: 2px solid #00498C; }
-      .alert .modal_box .btn_group .btn_left p {
-        color: #00498C; }
 .inventory {
   position: absolute;
   left: 0.390625rem;
   bottom: 1.71875rem;
   font-weight: lighter;
   font-size: 0.40625rem;
-  color: #fff;
-}
+  color: #fff; }

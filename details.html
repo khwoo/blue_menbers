@@ -16,7 +16,8 @@
     <div v-cloak class="container_box">
 
         <div class="nav flex_center">
-            <a class="btn_back flex_center" :href="main_url">
+            <!--<a class="btn_back flex_center" :href="main_url">-->
+            <a class="btn_back flex_center" href="javascript:history.back();">
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title" v-text="navTitle">
@@ -57,8 +58,11 @@
 
         <!-- 구매 선물 -->
         <div class="btn_container">
+            <a class="slide_btn_box flex_center" href="javascript:void(0);" @click="btnOptionShow=!btnOptionShow">
             <img class="icon_btn_slide" src="images/icon_ap_top.png"/>
+            <img class="icon_up" src="images/icon_up.png" :class="{icon_down:btnOptionShow}"/>
 
+            </a>
             <!-- 상품 개수 선택 -->
             <div v-if="btnOptionShow" class="btn_option">
                 <div class="quantity_box flex_row_center">

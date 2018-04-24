@@ -50,6 +50,7 @@ var vm = new Vue({
         }
         ,loading_type : false
         ,echoss_onStamp_type : false
+        ,stampUse : true ,
     },
     filters:{
         formatMoney:function(value,unit){
@@ -74,6 +75,36 @@ var vm = new Vue({
                 var _cust_point = res;
 
             that.$utils_echoss_init( that ,function( res ){
+
+                echoss.Icon.enableStampingErrorMsg(false);
+
+                // that.$utils_setOtp( that,  function(){
+                //
+                //     //otp 사용 처리
+                //     var _message = '블루멤버스 포인트 '+ that.headerPoint +'점 사용처리가 완료되었습니다.';
+                //
+                //     that.$utils_popupForm(that, true , '' , _message , true , function(){
+                //
+                //         that.cust_point_info(function( res ){
+                //
+                //             that.myPoint = res.custPoint;
+                //             that.loading_type = false;
+                //
+                //         },function( code , msg ){
+                //
+                //             that.$utils_popup(that,true,'', msg );
+                //
+                //         });
+                //
+                //         that.point_use_close();
+                //
+                //     },function(){
+                //
+                //     });
+                //
+                // },function( code , msg ){
+                //     that.$utils_popup(that,true,'', msg );
+                // });
 
                 console.log(_cust_point);
 
@@ -197,7 +228,9 @@ var vm = new Vue({
                 that.usePage = true;
                 that.headerPoint = that.pointList[index].usePoint;
 
-                if(!that.echoss_onStamp_type){
+               // if(!that.echoss_onStamp_type){
+
+                    echoss.Icon.enableStampingErrorMsg(true);
 
                     that.$utils_echoss_onStamp( function( res ){
                         //포인트 사용
@@ -205,16 +238,17 @@ var vm = new Vue({
 
                     },function(code , msg ){
 
-                        that.$utils_echoss_onStamp( code , msg );
+                        that.$utils_popup(that,true,'',msg);
 
                     });
 
                     that.echoss_onStamp_type = true;
 
-                }
+               // }
 
                 echoss.Icon.showIcon();
 
+                that.stampUse = true;
 
             }
 
@@ -232,6 +266,10 @@ var vm = new Vue({
             that.usePage = false;
 
             echoss.Icon.hideIcon();
+
+            that.$utils_echoss_onStampRemove();
+
+            echoss.Icon.enableStampingErrorMsg(false);
 
         }
         ,tap_buyConfirm: function() {

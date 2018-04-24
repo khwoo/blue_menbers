@@ -16,7 +16,8 @@
     <div v-cloak class="container_box">
 
         <div class="nav flex_center">
-            <a class="btn_back flex_center" :href="coupon_box_url">
+            <!--<a class="btn_back flex_center" :href="coupon_box_url">-->
+            <a class="btn_back flex_center" href="javascript:history.back();">
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title" v-text="navTitle"></p>
@@ -33,7 +34,7 @@
                     </li>
                     <li class="flex_column_center">
                         <p class="title">사용처</p>
-                        <p class="content">{{usedPlace}}</p>
+                        <p class="content" v-text="usedPlace"></p>
                     </li>
                 </ul>
                 <ul v-if="!couponUsed" class="coupon_past_info flex_center">
@@ -85,7 +86,8 @@
             </div>
         </div>
         <div class="btn_box flex_center">
-            <a class="flex_center" :href="coupon_box_url">
+            <!--<a class="flex_center" :href="coupon_box_url">-->
+            <a class="flex_center" href="javascript:history.back();">
                 <p>닫기</p>
             </a>
         </div>

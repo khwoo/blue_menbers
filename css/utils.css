@@ -35,3 +35,40 @@
      animation: loading_circle_spin 1s linear infinite;
 
  }
+
+
+
+
+.disable_box {
+    position: absolute;
+    top: 4.171875rem;
+    width: 100%;
+    z-index: 15;
+}
+.disable_box .disable_mark {
+    position: absolute;
+    top: 0;
+    width: 4.96875rem; }
+.disable_box ul {
+    position: relative;
+    flex-direction: column;
+    width: 4.96875rem;
+    height: 4.21875rem;
+    padding-top: 0.75rem; }
+.disable_box ul li:last-child {
+    margin-top: 0.34375rem; }
+.disable_box ul li p {
+    line-height: 0.46875rem;
+    font-size: 0.34375rem;
+    color: #fff; }
+.disable_box .content {
+    font-weight: lighter;
+    background-color: #fff0;
+    border: none;
+}
+
+
+
+
+
+

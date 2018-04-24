@@ -37,7 +37,7 @@ var vm = new Vue ({
         formatPoint:function(value,unit){
             unit = 'P';
             if(value>0) {
-                return '+' + parseInt(value).toLocaleString() + unit;
+                return parseInt(value).toLocaleString() + unit;
             }else {
                 return parseInt(value).toLocaleString() + unit;
             }

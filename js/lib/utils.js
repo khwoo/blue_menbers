@@ -5,6 +5,7 @@ utils.install = function( Vue ){
     Vue.prototype.$utils_location_params = function( that ){
         var href = location.href;
         var _paramStr = href.split('?')[1];
+
         if(_paramStr == null || _paramStr == "undefined"){
 
             _paramStr = "_";
@@ -55,6 +56,22 @@ utils.install = function( Vue ){
 
     }
 
+    Vue.prototype.$utils_history_replaceState = function( that , param ){
+
+        var param = {};
+        url = location.href.substring( 0 , location.href.indexOf('?') ) ;
+        var paramStr = '';
+        for( var key in param ){
+            paramStr += key + "=" + param[key] + "&";
+        }
+        paramStr = paramStr.substring( 0 , paramStr.length - 1 );
+
+        url = url + '?' + paramStr;
+
+        history.replaceState( null , null , url );
+
+    }
+
     Vue.prototype.$utils_popupForm = function( that , show , title , content  , cancelShow ,  callbackSuccess , callbackFail ){
 
         if(that.popformdata == null || that.popformdata == 'undefined'){
@@ -98,6 +115,46 @@ utils.install = function( Vue ){
 
     }
 
+    Vue.prototype.$utils_setOtp = function( that , callbackSuccess , callFail ){
+
+        var _data = [
+            '1'
+            ,CHANNEL_CODE
+            ,that.key_ticketNo
+        ].join(',');
+
+        if( location.href.indexOf('point_use') != -1 ){
+
+            _data = [
+                '2'
+                ,CHANNEL_CODE
+                ,that.key_custNo
+                ,that.key_brandCd
+                ,that.myPoint
+            ].join(',');
+
+        }
+
+        echoss.Icon.setEchossIconData({
+            aprvData    : _data,
+            //otpGbn,chCd,custNo,brdId,usePoint
+            funcCd      : "SBLPT",
+            isuDivCd    : echoss.Icon.OTP_ISSUE_TYPE.COMMON_ETC,
+            cntYn       : "N"
+        }, function(res) {
+
+            console.log(res);
+
+            echoss.Icon.hideIcon();
+
+            return callbackSuccess();
+
+        }, function(errorCode, errorMessage) {
+            return callFail();
+        });
+
+    }
+
     //초기화
     Vue.prototype.$utils_echoss_init = function( that, callbackSuccess , callbackFail ){
         var API_KEY = 'd608b72f661734755a401db13973b26c0';
@@ -108,36 +165,35 @@ utils.install = function( Vue ){
             echoss.Stamp.init( function(locUseTyp) {
                 echoss.Icon.init();
                 echoss.Icon.enableStampingErrorMsg(true);
-                echoss.Icon.setEchossIconData({
-
-                    aprvData    : "1,"+CHANNEL_CODE+","+that.key_ticketNo,
-                    funcCd      : "SBLPT",
-                    isuDivCd    : echoss.Icon.OTP_ISSUE_TYPE.COMMON_ETC,
-                    cntYn       : "N"
-
-                }, function(res) {
-                    console.log(res);
-                    echoss.Icon.hideIcon();
-                }, function(errorCode, errorMessage) {
-                    showAlert(errorMessage, "확인");
-                });
 
                 echoss.Icon.showIcon();
 
                 return callbackSuccess(true);
+
             }, function(errorCode, errorMsg) {
                 return callbackFail( errorCode , errorMsg );
             });
         }
     }
 
+    Vue.prototype.$utils_echoss_onStampRemove = function(){
+
+        echoss.Stamp.onStamp = function(stampParams) {
+            return;
+        }
+        echoss.Stamp.onError = function(errorCode, errorMsg) {
+            return;
+        };
+
+    }
+
     Vue.prototype.$utils_echoss_onStamp = function( callbackSuccess , callbackFail ){
         echoss.Stamp.onStamp = function(stampParams) {
+
             startStampAnimation();
             return callbackSuccess(stampParams);
         }
         echoss.Stamp.onError = function(errorCode, errorMsg) {
-            alert(errorMsg);
             return callbackFail(errorCode , errorMsg);
         };
     }

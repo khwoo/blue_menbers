@@ -94,24 +94,24 @@ body {
 
 /* animate */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .4s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 
 .bounce_a-enter-active {
-  animation: bounce-in .5s;
+  animation: bounce-in .3s;
 }
 .bounce_a-leave-active {
-  animation: bounce-in .5s reverse;
+  animation: bounce-in .3s reverse;
 }
 @keyframes bounce-in {
   0% {
     transform: translate(100%,0);
   }
   50% {
-    transform: translate(-30%,0);
+    transform: translate(-13%,0);
   }
   100% {
     transform: translate(0,0);
@@ -220,14 +220,13 @@ body {
     overflow-x: auto;
     box-shadow: px2rem(2px) 0 px2rem(5px) rgba(255,255,255,.1);
     li {
-      //display: inline-block;
       height:100%;
       margin-right: px2rem(36px);
       a {
         width:100%;
         justify-content: center;
         height:100%;
-        padding:0 px2rem(32px);
+        padding:0 px2rem(22px);
       }
       .menu_name {
         font-size: px2rem(22px);
@@ -360,6 +359,7 @@ body {
 
   .category_list {
     padding:0 px2rem(36px);
+    width: px2rem(518px);
     white-space: normal;
     li {
       width: px2rem(98px);
@@ -567,8 +567,8 @@ body {
   }
 
   .product_info {
+    position: relative;
     width: px2rem(330px);
-    margin-top: px2rem(9px);
     p {
       width:100%;
       overflow: hidden;
@@ -577,22 +577,34 @@ body {
     }
 
     .name {
-      line-height: px2rem(22px);
-      font-size: px2rem(18px);
+      margin-bottom:px2rem(10px);
+      line-height: px2rem(29px);
+      font-size: px2rem(24px);
     }
+
     .product_name {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
       white-space: normal;
       height:px2rem(62px);
-      margin-bottom:px2rem(30px);
+      margin-bottom:px2rem(8px);
       line-height:px2rem(30px);
       font-size: px2rem(26px);
     }
     .after_price {
       font-weight: bold;
       font-size: px2rem(30px);
+    }
+
+    .inventory {
+      width: auto;
+      position:absolute;
+      bottom: px2rem(10px);
+      right:0;
+      font-weight: bold;
+      font-size: px2rem(20px);
+      color: $theme_1_color;
     }
   }
 }

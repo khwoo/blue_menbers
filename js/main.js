@@ -4,14 +4,14 @@ Vue.use(scroll);
 var vm = new Vue ({
     el:".container",
     data: {
-        menuIdx: 0,
+        menuIdx: 0 ,
         pageNo : 1,	//페이지
         loadValue : 100, //로드 위치
         loadStatus :true,  //로드 상태
         menuList: [], //menu data
         menuShow: false,
         perLineFive: false, // category_box 에 한줄에 매뉴 노출 수량 4개 or 5개
-        categoryIdx: 0,
+        categoryIdx: 0 ,
         categoryList: [], // 카테고리
 
         mainSwiper: [], //배너

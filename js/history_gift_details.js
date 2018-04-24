@@ -27,6 +27,7 @@ var vm = new Vue ({
         ordGbn : '3' , // 상테
         btnType : '9' , // 1 [ 구매취소 쿠폰보기 ] 2 [ 선물취소 , 재전송 ] 9  [ 노출 않함. ]
         ordCanPsbYn : 'Y' , //구매 선물 취소 여부 Y 취소 가능
+        retryYn : 'Y' ,
         popdata : {
 
              alertOption : false
@@ -199,6 +200,8 @@ var vm = new Vue ({
 
                 that.ordCanPsbYn = data.ordCanPsbYn;
 
+                that.retryYn = data.retryYn;
+
                 return callbackSuccess(data);
 
             },function( code , msg ){
@@ -315,9 +318,39 @@ var vm = new Vue ({
             this.alertShow = true
         },
         tap_giftAgain: function() {
-            this.alertOption = true
-            this.alertTitle = '재전송'
-            this.alertContent = '재전송 되었습니다.'
+
+            var that = this;
+
+            if(that.retryYn == 'N'){
+                that.$utils_popup(that, true , '' , '');
+                //처리중 재전송 불가
+                return;
+            }
+
+            var param = {};
+
+            // params.trxNo			= request.trxNo;   // 거레번호
+            // params.custNo			= request.custNo;   // 거레번호
+
+            param.custNo = that.key_custNo;
+            param.trxNo = that.key_trxNo;
+
+            that.loading_type = true;
+
+            BM.SEND_RETRY( param , function( res ){
+
+                console.log( res );
+                that.loading_type = false;
+                that.$utils_popup( that , true , '' , '재전송 되었습니다.');
+
+                that.retryYn = 'N';
+
+            },function( code , msg ){
+                that.loading_type = false;
+                that.$utils_popup( that , true , '' , msg );
+
+            });
+
         },
         tap_cancel: function() {
             this.alertShow = false
@@ -335,6 +368,19 @@ var vm = new Vue ({
         },
         tap_buyOptionConfirm: function() {
             this.alertOption = false
+        }
+        ,history_replaceState : function(){
+
+            var that = this;
+
+            history.back( history.back() );
+            //history.go(0);
+            // that.coupon_box_url = [
+            //     'coupon_box.html'
+            //     ,'?'
+            //     ,'custNo=' + that.key_custNo
+            // ].join('');
+
         }
 
     }
