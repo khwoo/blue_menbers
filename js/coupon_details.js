@@ -62,6 +62,21 @@ var vm = new Vue ({
                         },function(code , msg ){
                             that.$utils_popup(that,true,'',msg);
                         });
+
+                        //otp
+                        that.$utils_setOtp( that,  function(){
+
+                            that.couponDisable = true;
+                            that.couponUsed = true;
+
+                        },function( code , msg ){
+                            //otp error
+                            that.$utils_popup(that,true,'', msg );
+
+                        });
+
+                        ///////////// OTP /////////////
+
                     },function( code , msg  ){
                         that.$utils_popup( that, true , '' , msg );
                     });
@@ -167,10 +182,19 @@ var vm = new Vue ({
                 });
 
                 that.noticeList.push({
-                    noticeTitle : '가맹점 점주'
-                    ,productNotice : "주소 :" + res.brdAddr
+                    noticeTitle : '가맹점 정보'
+                    ,productNotice : [
+                        '주소 : ' + res.brdAddr
+                        ,'</br>'
+                        ,'전화번호 : ' + res.brdTelNo
+                        ,'</br>'
+                        ,'</br>'
+                        ,'가맹점 설명 : </br>' + res.brdDesc.replace(/\r\n/gi, "<br/>")
+                    ].join('')
+                    //"주소 :" + res.brdAddr
                 });
 
+                console.log(res.brdDesc);
                 //쿠폰 상테
                 that.couponDisable   = false;
                 that.couponUsed          = false;

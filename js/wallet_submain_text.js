@@ -67,6 +67,13 @@ var vm = new Vue({
             location.href = _url;
 
         }
+        ,map_url : function(){
+
+            var that = this;
+
+            location.href = 'map.html';
+
+        }
     }
 
 });

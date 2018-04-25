@@ -3,6 +3,7 @@ var vm = new Vue({
     el: '.container',
     data: {
         onReady:false,
+        wallet_url : 'javascript:void(0)' ,
         bizlist : [
                 {
                     "categoryCd": "CTG0001CT0001",
@@ -61,7 +62,8 @@ var vm = new Vue({
             ,'custNo=' + that.key_custNo
         ].join('');
 
-        that.userInfo();
+
+        that.echoss_link();
 
         this.$nextTick(function() {
             this.onReady = !this.onReady;
@@ -69,7 +71,35 @@ var vm = new Vue({
     },
     methods: {
 
-        userInfo : function(){
+        echoss_link : function(){
+
+            var that = this;
+
+            that.$utils_echossHttpSend(PF_URL + "/fcm/gateway/link", {
+
+                uid     : that.key_uid,
+                sid     : that.key_uid,
+                sto     : 0
+
+            }, "POST", function(result) {
+
+                that.key_custNo = result.user;
+                var scheme = result.scheme;
+
+                that.userInfo();
+
+                that.wallet_url = scheme + "://echoss/close";
+
+            }, function(errorCode, errorMessage, result) {
+                if(result != undefined) {
+                   var scheme = result.scheme;
+
+                    that.wallet_url = scheme + "://echoss/close";
+                }
+            });
+
+        }
+        ,userInfo : function(){
 
             var that = this;
 

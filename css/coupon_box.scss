@@ -16,6 +16,7 @@ $details_select_option_fc: #FFB4B4; /* 상품 상세 하단 셀렉 박스 선택
 .section .header_menu {
   width:100%;
   box-shadow: none;
+  overflow: hidden;
    li {
      width:50%;
      margin: 0;
@@ -69,7 +70,7 @@ $details_select_option_fc: #FFB4B4; /* 상품 상세 하단 셀렉 박스 선택
     .left {
       width:px2rem(322px);
       .product_name {
-        height:px2rem(62px);
+        //height:px2rem(62px);
         margin-bottom: px2rem(30px);
         overflow : hidden;
         text-overflow: ellipsis;
@@ -80,7 +81,6 @@ $details_select_option_fc: #FFB4B4; /* 상품 상세 하단 셀렉 박스 선택
         font-size: px2rem(24px);
       }
       .use_date {
-        font-weight: lighter;
         font-size: px2rem(22px);
         color: #666666;
       }

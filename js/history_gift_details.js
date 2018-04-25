@@ -196,7 +196,7 @@ var vm = new Vue ({
 
                 that.boughtQuantity = data.ordQtt +" 개";
 
-                that.usedPoint = data.payAmt +"P";
+                that.usedPoint = parseInt(data.payAmt).toLocaleString() +"P";
 
                 that.ordCanPsbYn = data.ordCanPsbYn;
 

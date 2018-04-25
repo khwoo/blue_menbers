@@ -78,34 +78,6 @@ var vm = new Vue({
 
                 echoss.Icon.enableStampingErrorMsg(false);
 
-                // that.$utils_setOtp( that,  function(){
-                //
-                //     //otp 사용 처리
-                //     var _message = '블루멤버스 포인트 '+ that.headerPoint +'점 사용처리가 완료되었습니다.';
-                //
-                //     that.$utils_popupForm(that, true , '' , _message , true , function(){
-                //
-                //         that.cust_point_info(function( res ){
-                //
-                //             that.myPoint = res.custPoint;
-                //             that.loading_type = false;
-                //
-                //         },function( code , msg ){
-                //
-                //             that.$utils_popup(that,true,'', msg );
-                //
-                //         });
-                //
-                //         that.point_use_close();
-                //
-                //     },function(){
-                //
-                //     });
-                //
-                // },function( code , msg ){
-                //     that.$utils_popup(that,true,'', msg );
-                // });
-
                 console.log(_cust_point);
 
                 that.myPoint = _cust_point.custPoint;
@@ -249,6 +221,39 @@ var vm = new Vue({
                 echoss.Icon.showIcon();
 
                 that.stampUse = true;
+
+
+                //otp
+
+                that.$utils_setOtp( that,  function(){
+
+                    //otp 사용 처리
+                    var _message = '블루멤버스 포인트 '+ that.headerPoint +'점 사용처리가 완료되었습니다.';
+
+                    that.$utils_popupForm(that, true , '' , _message , true , function(){
+
+                        that.cust_point_info(function( res ){
+
+                            that.myPoint = res.custPoint;
+                            that.loading_type = false;
+
+                        },function( code , msg ){
+
+                            that.$utils_popup(that,true,'', msg );
+
+                        });
+
+                        that.point_use_close();
+
+                    },function(){
+
+                    });
+
+                },function( code , msg ){
+                    //otp error
+                    that.$utils_popup(that,true,'', msg );
+
+                });
 
             }
 

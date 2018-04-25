@@ -342,7 +342,6 @@ body {
       width: px2rem(78px);
       height:px2rem(78px);
       font-size: px2rem(56px);
-      font-weight: lighter;
       color: $light;
     }
   }
@@ -512,7 +511,6 @@ body {
       width:px2rem(460px);
       padding:px2rem(49px) 0;
       line-height:px2rem(32px);
-      font-weight: lighter;
       font-size: px2rem(26px);
       color: $theme_1_color;
     }
@@ -525,7 +523,6 @@ body {
         height:100%;
         background-color:$theme_1_color;
         p {
-          font-weight: lighter;
           font-size: px2rem(24px);
           color: $theme_1_line;
         }

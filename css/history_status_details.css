@@ -34,7 +34,6 @@ th {
   font-size: 0.3125rem; }
 
 td {
-  font-weight: lighter;
   font-size: 0.375rem; }
 
 .btn_box {
@@ -75,7 +74,6 @@ td {
       .btn_group > div a.btn_left {
         background-color: #fff; }
     .btn_group > div p {
-      font-weight: lighter;
       font-size: 0.34375rem;
       color: #00498C; }
 

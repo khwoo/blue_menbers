@@ -46,7 +46,6 @@
     font-size: 0.40625rem;
     margin-bottom: 0.5rem; }
   .coupon_info .use_date {
-    font-weight: lighter;
     font-size: 0.34375rem;
     margin-bottom: 0.421875rem; }
   .coupon_info .coupon_number {
@@ -86,7 +85,6 @@
       margin-top: -0.375rem;
       padding-top: 0.53125rem;
       line-height: 0.421875rem;
-      font-weight: lighter;
       font-size: 0.34375rem;
       border-top: 0.015625rem solid #C8D8DB; }
 
@@ -110,5 +108,3 @@
       line-height: 0.46875rem;
       font-size: 0.34375rem;
       color: #fff; }
-  .disable_box .content {
-    font-weight: lighter; }

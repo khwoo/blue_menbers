@@ -71,6 +71,18 @@ var vm = new Vue({
                             that.$utils_popup(that, true, '' , msg );
 
                         });
+
+                        //otp
+                        that.$utils_setOtp( that,  function(){
+
+                            that.ticket_info( function(){ });
+
+                        },function( code , msg ){
+                            //otp error
+                            that.$utils_popup(that,true,'', msg );
+
+                        });
+
                     },function( code , msg  ){
                         that.$utils_popup( that, true , '' , msg );
                     });

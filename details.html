@@ -50,7 +50,8 @@
                 </ul>
                 <ul class="content">
                     <li v-if="subMenuIdx==index" v-for="(item,index) in subContentList">
-                        <p v-html="item.contentText">{{item.contentText}}</p>
+                        <!--<p >{{ item.contentText | replace_br  }}</p>-->
+                        <p v-html="item.contentText"></p>
                     </li>
                 </ul>
             </div>
@@ -70,7 +71,7 @@
                     <p class="border_right flex_center">{{productQuantity}}</p>
                     <a class="flex_center" href="javascript:void(0)" @click="tap_plus">﹢</a>
                 </div>
-                <p v-if="goodsQttGbn == '2' " class="inventory">(잔여수량 : {{goodsCnt}})</p>
+                <p v-if="goodsQttGbn == '2' " class="inventory">(잔여수량 : {{goodsCnt | formatCount }})</p>
                 <p class="total_price">총 {{totalPrice | formatMoney}}</p>
             </div>
 

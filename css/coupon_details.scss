@@ -61,7 +61,7 @@ $details_select_option_fc: #FFB4B4; /* 상품 상세 하단 셀렉 박스 선택
     margin-bottom: px2rem(32px);
   }
   .use_date {
-    font-weight: lighter;
+    //font-weight: lighter;
     font-size: px2rem(22px);
     margin-bottom: px2rem(27px);
   }
@@ -113,7 +113,7 @@ $details_select_option_fc: #FFB4B4; /* 상품 상세 하단 셀렉 박스 선택
        margin-top: px2rem(-24px);
        padding-top: px2rem(34px);
        line-height:px2rem(27px);
-       font-weight: lighter;
+       //font-weight: lighter;
        font-size: px2rem(22px);
        border-top: px2rem(1px) solid #C8D8DB;
      }
@@ -149,6 +149,6 @@ $details_select_option_fc: #FFB4B4; /* 상품 상세 하단 셀렉 박스 선택
     }
   }
   .content {
-    font-weight: lighter;
+    //font-weight: lighter;
   }
 }

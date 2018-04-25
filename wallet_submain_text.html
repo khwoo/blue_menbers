@@ -59,7 +59,7 @@
                 </a>
             </div>
         </div>
-        <a v-if="hasMap" class="btn_map flex_center" href="javascript:void(0)">
+        <a v-if="hasMap" class="btn_map flex_center" v-on:click="map_url" href="javascript:void(0);">
             <img class="icon_map" src="images/icon_map.png"/>
             <p>지도 > </p>
         </a>

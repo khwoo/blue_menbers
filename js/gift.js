@@ -139,6 +139,14 @@ var vm = new Vue({
             that.alertOption = false
             if(that.buySuccess){
 
+                var historyParam = {};
+
+                historyParam.custNo = that.key_custNo;
+
+                var url = location.href.substring( 0 , location.href.indexOf('?')).replace('gift' , 'main');
+
+                that.$utils_history_replaceState( historyParam , url );
+
                 location.href =[
                     'coupon_box.html'
                     ,'?custNo=' + that.key_custNo

@@ -19,7 +19,7 @@ utils.install = function( Vue ){
             if( _item[0] ==='uid' ){
 
                 that['key_custNo'] = _item[1];
-
+                that['key_uid']  =_item[1];
             }else{
 
                 that['key_' + _item[0] ] = _item[1];
@@ -56,9 +56,65 @@ utils.install = function( Vue ){
 
     }
 
-    Vue.prototype.$utils_history_replaceState = function( param ){
 
-        url = location.href.substring( 0 , location.href.indexOf('?') ) ;
+    Vue.prototype.$utils_echossHttpSend = function(url, params, method, success, failed) {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (params === undefined)
+            params = {};
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState === 4 ) {
+                if(xmlhttp.status === 200){
+                    var request = JSON.parse(xmlhttp.response);
+                    if (request.resCd === "0000") {
+                        success(request.result);
+                    }
+                    else {
+                        failed(request.resCd, request.resMsg, request.result);
+                    }
+                }
+                else {
+                    var errorCode = "ES99";
+                    var errorMsg = "Please try again.";
+                    if (xmlhttp.response !== "" && xmlhttp.response !== undefined && xmlhttp.status !== 404) {
+                        var request = JSON.parse(xmlhttp.response);
+                        errorCode = request.resCd;
+                        errorMsg = request.resMsg;
+                    }
+
+                    failed(errorCode, errorMsg);
+                }
+            }
+        }
+
+        xmlhttp.open(method, url, true);
+
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+        xmlhttp.setRequestHeader("Accept", "application/json");
+        // xmlhttp.setRequestHeader("Accept-Language", esp.LANGUAGE_CODE);
+        xmlhttp.setRequestHeader("Accept-Language", "ko");
+
+        xmlhttp.setRequestHeader("Authorization", 'Basic ' + btoa('22cd9435-c1ef-4a1c-a511-791303a5a20f' + ':' + '33663161393164662D303534302D343739332D383562612D356637666264636135643934'));
+
+        xmlhttp.send(JSON.stringify(params));
+    }
+
+
+    Vue.prototype.$utils_history_replaceState = function( param , url  ){
+
+        if(url == null || url == 'undefined' ){
+
+            url = location.href.substring( 0 , location.href.indexOf('?') ) ;
+
+        }
+
         var paramStr = '';
         for( var key in param ){
             paramStr += key + "=" + param[key] + "&";
@@ -129,7 +185,7 @@ utils.install = function( Vue ){
                 ,CHANNEL_CODE
                 ,that.key_custNo
                 ,that.key_brandCd
-                ,that.myPoint
+                ,that.headerPoint
             ].join(',');
 
         }
@@ -149,14 +205,14 @@ utils.install = function( Vue ){
             return callbackSuccess();
 
         }, function(errorCode, errorMessage) {
-            return callFail();
+            return callFail( errorCode , errorMessage );
         });
 
     }
 
     //초기화
     Vue.prototype.$utils_echoss_init = function( that, callbackSuccess , callbackFail ){
-        var API_KEY = 'd608b72f661734755a401db13973b26c0';
+        var API_KEY = SVC_KEY;
         echoss.initialize(API_KEY, echoss.REGION_CODE_TYPE.KOREA);
         echoss.initializeSuccess = function() {
 

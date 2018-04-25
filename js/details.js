@@ -42,6 +42,16 @@ var vm = new Vue({
         formatMoney:function(value,unit){
             unit = 'P';
             return parseInt(value).toLocaleString() + unit;
+        },
+        formatCount:function(value){
+
+            return parseInt(value).toLocaleString();
+        }
+        ,replace_br : function( value ){
+
+            //replace(/\r\n/gi, "<br/>")
+            return value.replace(/\r\n/gi, "<br/>");
+
         }
     },
     created : function(){
@@ -102,16 +112,27 @@ var vm = new Vue({
                that.goodsQttGbn = res.goodsQttGbn;
                that.goodsCnt = res.goodsCnt;
 
+
+               //value.replace(/\r\n/gi, "<br/>")
                that.subContentList.push({
-                   contentText : res.goodsDesc1
+                   contentText : res.goodsDesc1.replace(/\r\n/gi, "<br/>")
                });
 
                that.subContentList.push({
-                   contentText : res.useDesc
+                   contentText : res.useDesc.replace(/\r\n/gi, "<br/>")
                });
 
+
+
                that.subContentList.push({
-                   contentText : res.brdDesc
+                   contentText : [
+                       '주소 : ' + res.brdAddr
+                       ,'</br>'
+                       ,'전화번호 : ' + res.brdTelNo
+                       ,'</br>'
+                       ,'</br>'
+                       ,'가맹점 설명 : </br>' + res.brdDesc.replace(/\r\n/gi, "<br/>")
+                   ].join('')
                });
 
                that.loading_type = false;
@@ -248,6 +269,15 @@ var vm = new Vue({
            //보관함 이동.
             var that = this;
             if( that.buySuccess ){
+
+                var historyParam = {};
+
+                historyParam.custNo = that.key_custNo;
+
+                var url = location.href.substring( 0 , location.href.indexOf('?')).replace('details' , 'main');
+
+                that.$utils_history_replaceState( historyParam , url );
+
                 location.href=[
                     'coupon_box.html'
                     ,'?custNo=' + that.key_custNo

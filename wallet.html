@@ -15,7 +15,7 @@
 <div class="container">
     <div v-cloak class="container_box">
         <div class="nav flex_center">
-            <a class="btn_back flex_center" href="javascript:void(0)">
+            <a class="btn_back flex_center" :href="wallet_url">
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title">이달의 혜택</p>
@@ -112,6 +112,7 @@
 
     </div><!-- end of .container_box -->
 </div>
+<script type="text/javascript" src="https://developer.echoss.co.kr/sdk/echoss-lite-min.js"></script>
 <script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
 <script type="text/javascript" src="js/lib/utils.js"></script>
 <script type="text/javascript" src="js/wallet.js"></script>
