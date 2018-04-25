@@ -56,15 +56,16 @@ utils.install = function( Vue ){
 
     }
 
-    Vue.prototype.$utils_history_replaceState = function( that , param ){
+    Vue.prototype.$utils_history_replaceState = function( param ){
 
-        var param = {};
         url = location.href.substring( 0 , location.href.indexOf('?') ) ;
         var paramStr = '';
         for( var key in param ){
             paramStr += key + "=" + param[key] + "&";
         }
         paramStr = paramStr.substring( 0 , paramStr.length - 1 );
+
+        console.log(paramStr);
 
         url = url + '?' + paramStr;
 
@@ -110,8 +111,6 @@ utils.install = function( Vue ){
         that.popdata.alertOption = true;
         that.popdata.alertTitle = title;
         that.popdata.alertContent = content;
-
-
 
     }
 

@@ -126,7 +126,7 @@ var vm = new Vue ({
                     if(that.categoryIdx !== 0){
                         param.ctgrGrpCd = that.menuIdx;
                         param.ctgrCd = that.categoryIdx;
-                        if(param.ctgrCd === '-1'){
+                        if(param.ctgrCd === ''){
 
                             param.ctgrCd = '';
 
@@ -230,7 +230,7 @@ var vm = new Vue ({
                 _category_param.categoryType = _item.ctgrGrpCd;
                 _category_param.categoryNm = _item.ctgrGrpNm;
                 _item.ctgrList.unshift({
-                    ctgrCd : -1
+                    ctgrCd : ''
                     ,ctgrImg : 'images/icon_all_category.png'
                     ,ctgrNm :'전체'
                 });
@@ -259,7 +259,17 @@ var vm = new Vue ({
 
             var id = parent.dataset.id;
             that.categoryIdx = id;
-            console.log(that.menuIdx);
+
+            if( that.menuIdx == '0' ){
+
+                var historyParam = {};
+
+                historyParam.custNo = that.key_custNo;
+
+                that.$utils_history_replaceState( historyParam );
+
+            }
+
             if( that.menuIdx == 0 ){
 
                 var param = new Array();
@@ -283,7 +293,8 @@ var vm = new Vue ({
             var parent = e.target;
             var p = true;
             while( p ){
-                if( parent.getAttribute('data-id') != null && parent.getAttribute('data-id') != '' ){
+                console.log(parent.getAttribute('data-id'));
+                if( parent.getAttribute('data-id') != null){
                     p = false;
                 }else{
                     parent = parent.parentNode;
@@ -301,7 +312,7 @@ var vm = new Vue ({
 
             param.custNo = that.key_custNo;
             param.ctgrGrpCd = that.menuIdx;
-            if( that.categoryIdx === '-1' ){
+            if( that.categoryIdx === '' ){
 
                 param.ctgrCd = '';
 
@@ -311,6 +322,18 @@ var vm = new Vue ({
 
             }
             console.log(param);
+
+
+            //$utils_history_replaceState
+
+            var historyParam = {};
+
+            historyParam.custNo = that.key_custNo;
+            historyParam.menuIdx = that.menuIdx;
+            historyParam.categoryIdx = that.categoryIdx;
+
+            that.$utils_history_replaceState( historyParam );
+
             BM.MAIN( param ,function( res ){
                 if( res.bnrList.length > 0 ){
 

@@ -98,7 +98,7 @@
                         <a v-if="!canceled && ordCanPsbYn == 'Y' " class="btn_left flex_center" data-type="coupon" href="javascript:void(0)" @click="coupon_cancel">
                             <p>구매취소</p>
                         </a>
-                        <a class="flex_center" href="javascript:void(0)" @click="coupon_details_url">
+                        <a v-if="ticketList.length > 0 " class="flex_center" href="javascript:void(0)" @click="coupon_details_url">
                             <p>쿠폰보기</p>
                         </a>
                     </div>

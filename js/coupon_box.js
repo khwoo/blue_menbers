@@ -48,7 +48,15 @@ var vm = new Vue ({
 
         var that = this;
 
+
+
         that.$utils_location_params(that);
+
+        if( that.key_menuIdx != undefined ){
+
+            that.menuIdx = that.key_menuIdx;
+
+        }
 
         that.$ScrollStart(that, function(){
             //my_coupon
@@ -78,8 +86,33 @@ var vm = new Vue ({
     },
     methods: {
 
+        //보관함 메뉴 설정
+        box_menu : function( e ){
+
+            var that = this;
+
+            var parent = e.target;
+            var p = true;
+            while( p ){
+                if( parent.getAttribute('data-id') != null && parent.getAttribute('data-id') != '' ){
+                    p = false;
+                }else{
+                    parent = parent.parentNode;
+                }
+            }
+
+            var historyParam = {};
+
+            historyParam.custNo = that.key_custNo;
+            historyParam.menuIdx = parent.dataset.id;
+
+            that.menuIdx = parent.dataset.id;
+            that.$utils_history_replaceState( historyParam );
+
+        }
+
         //데이터 처리
-        coupon_box_data : function(){
+        ,coupon_box_data : function(){
 
             var that = this;
 

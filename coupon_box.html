@@ -27,7 +27,7 @@
                 <div class="header_top">
                     <ul class="header_menu flex_row_center">
                         <li class="flex_center" v-for="(item,index) in menuList" :class="{'on':index == menuIdx}">
-                            <a class="flex_column_center" href="javascript:void(0)" @click="menuIdx=index">
+                            <a class="flex_column_center" :data-id="index" href="javascript:void(0)" @click="box_menu">
                                 <p class="menu_name">{{item.name}}</p>
                                 <p class="icon_down" :class="{'on':index == menuIdx}">〉</p>
                             </a>
