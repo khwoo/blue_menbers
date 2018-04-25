@@ -61,13 +61,35 @@ var vm = new Vue({
             ,'custNo=' + that.key_custNo
         ].join('');
 
+        that.userInfo();
+
         this.$nextTick(function() {
             this.onReady = !this.onReady;
         })
     },
     methods: {
 
-        brand_url : function(){
+        userInfo : function(){
+
+            var that = this;
+
+            var param = {};
+            param.custNo = that.key_custNo;
+            try {
+                BM.REGIST(param, function (res) {
+
+                }, function (code, msg) {
+
+                });
+            }catch( e ){
+
+                //error
+
+            }
+
+        }
+
+        ,brand_url : function(){
 
             var that = this;
 

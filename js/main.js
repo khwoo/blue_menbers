@@ -21,6 +21,7 @@ var vm = new Vue ({
         ,loading_show : true
         ,coupon_box : ''
         ,wallet_url : ''
+        ,loading_type : false
         ,popdata : {
 
             alertOption : false
@@ -76,6 +77,8 @@ var vm = new Vue ({
 
         }
 
+        that.loading_type = true;
+
         BM.MAIN( param ,function( res ){
             console.log(res);
             that.mainData( res );
@@ -86,8 +89,10 @@ var vm = new Vue ({
 
             that.productData(  true , res );
 
-        },function( code , msg ){
+            that.loading_type = false;
 
+        },function( code , msg ){
+            that.loading_type = false;
             that.$utils_popup( that , true , '' , msg );
 
         });
@@ -274,14 +279,22 @@ var vm = new Vue ({
 
                 var param = new Array();
                 param.custNo = that.key_custNo;
+
+                that.loading_type = true;
+
                 BM.MAIN( param ,function( res ){
                     if( res.bnrList.length > 0 ){
                         that.banrData( res );
                     }
                     that.productData(  true , res );
 
+                    that.loading_type = false;
+
                 },function( code , msg ){
+
+                    that.loading_type = false;
                     that.$utils_popup( that , true , '' , msg );
+
                 });
 
             }
@@ -334,6 +347,8 @@ var vm = new Vue ({
 
             that.$utils_history_replaceState( historyParam );
 
+            that.loading_type = true;
+
             BM.MAIN( param ,function( res ){
                 if( res.bnrList.length > 0 ){
 
@@ -344,7 +359,10 @@ var vm = new Vue ({
                 console.log(that.menuShow);
                 that.productData(  true , res );
 
+                that.loading_type = false;
+
             },function( code , msg ){
+                that.loading_type = false;
                 that.$utils_popup( that , true , '' , msg );
             });
 
