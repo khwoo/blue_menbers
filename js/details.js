@@ -87,6 +87,9 @@ var vm = new Vue({
 
            var param = {};
            param.goodsCd = that.key_productId;
+
+           that.loading_type = true;
+
            BM.SAL_GOODS_DTL_INFO( param , function(res){
                 console.log(res);
                that.productImg = res.goodsDtlImgs[0].goodsDtlImg;
@@ -111,8 +114,11 @@ var vm = new Vue({
                    contentText : res.brdDesc
                });
 
+               that.loading_type = false;
 
            },function( code , msg ){
+
+               that.loading_type = false;
 
                that.$utils_popup( that , true , '' , msg );
 

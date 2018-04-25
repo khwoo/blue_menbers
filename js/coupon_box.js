@@ -23,6 +23,7 @@ var vm = new Vue ({
         historyList: [],        //이용 내역
         myCouponType : 1 , //
         historyType : 1,
+        loading_type : false ,
         wallet_url : ''
         ,popdata : {
 
@@ -120,6 +121,8 @@ var vm = new Vue ({
 
             param.custNo = that.key_custNo;
 
+            that.loading_type = true;
+
             BM.COUPON_LOCKER( param , function(res){
 
                 console.log(res);
@@ -130,7 +133,11 @@ var vm = new Vue ({
                 //ordHisList        //이용내역
                 that.history(false , res.ordHisList);
 
+                that.loading_type = false;
+
             },function( code , msg ){
+
+                that.loading_type = false;
 
                 that.$utils_popup( that, true , '' , msg );
 
