@@ -15,6 +15,8 @@ new Vue({
             ,'custNo=' + that.key_cid
             ,'&'
             ,'ticketNo=' + that.key_tid
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
     }

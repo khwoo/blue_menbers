@@ -69,6 +69,8 @@ var vm = new Vue ({
             'coupon_box.html'
             ,'?'
             ,'custNo=' + that.key_custNo
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         that.history_details(function(){
@@ -225,6 +227,8 @@ var vm = new Vue ({
                 ,'custNo=' + that.key_custNo
                 ,'&'
                 ,'ticketNo=' + ticket_info.ticketNo
+                ,'&'
+                ,'uid=' + that.key_uid
             ].join('');
 
             location.href = _url;

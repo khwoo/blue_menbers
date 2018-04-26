@@ -24,6 +24,8 @@ new Vue ({
                 'wallet.html'
                 ,'?'
                 ,'custNo=' + that.key_custNo
+                ,'&'
+                ,'uid=' + that.key_uid
             ].join('');
 
             location.href = _url;

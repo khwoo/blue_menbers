@@ -35,6 +35,8 @@ var vm = new Vue ({
             'wallet.html'
             ,'?'
             ,'custNo=' + that.key_custNo
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         that.brandProductList();
@@ -108,6 +110,7 @@ var vm = new Vue ({
                         '?custNo='+ that.key_custNo +''+
                         '&productId='+ _item.goodsCd +'' +
                         '&brandCd='+ that.key_brandCd +'' +
+                        '&uid=' + that.key_uid + '' +
                         '&link=brand_gift';
 
                     list.push( _info );

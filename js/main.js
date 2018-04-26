@@ -51,11 +51,15 @@ var vm = new Vue ({
             'coupon_box.html'
             ,'?'
             ,'custNo=' + that.key_custNo
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         that.wallet_url =[
             'wallet.html'
             ,'?custNo=' + that.key_custNo
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         var param = {};
@@ -175,6 +179,7 @@ var vm = new Vue ({
                 var _item = data.salGoodsList[i];
                 _item.url = 'details.html'+
                     '?custNo='+ that.key_custNo +''+
+                    '&uid=' + that.key_uid + '' +
                     '&productId='+ _item.goodsCd +' ';
                 productList.push( _item );
             }
@@ -270,6 +275,7 @@ var vm = new Vue ({
                 var historyParam = {};
 
                 historyParam.custNo = that.key_custNo;
+                historyParam.uid = that.key_uid;
 
                 that.$utils_history_replaceState( historyParam );
 
@@ -344,6 +350,7 @@ var vm = new Vue ({
             historyParam.custNo = that.key_custNo;
             historyParam.menuIdx = that.menuIdx;
             historyParam.categoryIdx = that.categoryIdx;
+            historyParam.uid = that.key_uid;
 
             that.$utils_history_replaceState( historyParam );
 

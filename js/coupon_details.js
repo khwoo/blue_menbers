@@ -41,6 +41,8 @@ var vm = new Vue ({
             'coupon_box.html'
             ,'?'
             ,'custNo=' + that.key_custNo
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         //

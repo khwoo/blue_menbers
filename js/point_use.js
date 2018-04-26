@@ -68,6 +68,8 @@ var vm = new Vue({
             'wallet.html'
             ,'?'
             ,'custNo=' + that.key_custNo
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         that.cust_point_info( function( res ){

@@ -66,6 +66,8 @@ var vm = new Vue({
             'main.html'
             ,'?'
             ,'custNo=' + that.key_custNo
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         if(that.key_link == 'brand_gift'){
@@ -75,6 +77,8 @@ var vm = new Vue({
                 ,'?'
                 ,'custNo=' + that.key_custNo
                 ,'&brandCd=' + that.key_brandCd
+                ,'&'
+                ,'uid=' + that.key_uid
             ].join('');
 
         }
@@ -225,6 +229,8 @@ var vm = new Vue({
                 ,'count=' + that.productQuantity
                 ,'&'
                 ,'totalprice=' + that.totalPrice
+                ,'&'
+                ,'uid=' + that.key_uid
             ].join('');
 
            return _url;
@@ -273,6 +279,7 @@ var vm = new Vue({
                 var historyParam = {};
 
                 historyParam.custNo = that.key_custNo;
+                historyParam.uid = that.key_uid;
 
                 var url = location.href.substring( 0 , location.href.indexOf('?')).replace('details' , 'main');
 
@@ -281,6 +288,8 @@ var vm = new Vue({
                 location.href=[
                     'coupon_box.html'
                     ,'?custNo=' + that.key_custNo
+                    ,'&'
+                    ,'uid=' + that.key_uid
                 ].join('');
             }
         }

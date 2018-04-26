@@ -21,18 +21,24 @@ var vm = new Vue({
             'coupon_box.html'
             ,'?'
             ,'custNo=' + that.key_custNo
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         that.point_use_url = [
             'point_use.html'
             ,'?custNo=' + that.key_custNo
             ,'&brandCd=' + that.key_brandCd
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         that.brand_gift_url = [
             'brand_gift.html'
             ,'?custNo=' + that.key_custNo
             ,'&brandCd=' + that.key_brandCd
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         this.$nextTick(function() {
@@ -48,6 +54,8 @@ var vm = new Vue({
                 'wallet.html'
                 ,'?'
                 ,'custNo=' + that.key_custNo
+                ,'&'
+                ,'uid=' + that.key_uid
             ].join('');
 
             location.href = _url;

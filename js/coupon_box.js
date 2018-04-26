@@ -79,6 +79,8 @@ var vm = new Vue ({
             'wallet.html'
             ,'?'
             ,'custNo=' + that.key_custNo
+            ,'&'
+            ,'uid=' + that.key_uid
         ].join('');
 
         //데이터 조회
@@ -106,7 +108,7 @@ var vm = new Vue ({
 
             historyParam.custNo = that.key_custNo;
             historyParam.menuIdx = parent.dataset.id;
-
+            historyParam.uid = that.key_uid;
             that.menuIdx = parent.dataset.id;
             that.$utils_history_replaceState( historyParam );
 
@@ -295,6 +297,8 @@ var vm = new Vue ({
                     ,'custNo=' + that.key_custNo
                     ,'&'
                     ,'trxNo=' + _item.trxNo
+                    ,'&'
+                    ,'uid=' + that.key_uid
                 ].join('');
 
                 if( _item.ordStCd === '2' ){
@@ -364,6 +368,8 @@ var vm = new Vue ({
                     ,'custNo=' + that.key_custNo
                     ,'&'
                     ,'ticketNo=' + _item.ticketNo
+                    ,'&'
+                    ,'uid=' + that.key_uid
                 ].join('');
 
                 _coupon.productImg      = _item.goodsImg;
