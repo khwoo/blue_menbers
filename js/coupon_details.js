@@ -21,6 +21,11 @@ var vm = new Vue ({
         loading_type : false,
         ticketUseCd : "1" ,
         stampUse : true ,
+        coupon_type : false , // 쿠폰 구분  true 포인트 false 할인
+        coupon_use_type_stamp   : false ,
+        coupon_use_type_barcode : false ,
+        coupon_use_type_pinNo   : false ,
+        coupon_use_type_pinNo_text : '' ,
         coupon_box_url : ''
         ,popdata : {
 
@@ -50,11 +55,19 @@ var vm = new Vue ({
         that.couponInfo(function( res){
 
 
+            console.log(res.stCd);
+
+            console.log([
+                '사용 구분 : ' + res.ticketUseCd
+                ,' [1] 스탬프 : ' + that.coupon_use_type_stamp
+                ,' [2] 바코드 : ' + that.coupon_use_type_barcode
+                ,' [3] 핀번호 : ' + that.coupon_use_type_pinNo
+            ].join('\n'));
+
             //사용 방식
-            if( that.ticketUseCd == '1' || that.ticketUseCd == '9' ){
+            if( that.coupon_use_type_stamp ){
 
-                console.log(res.stCd);
-
+                //발급 상태
                 if( res.stCd == '1' ){
 
                     that.$utils_echoss_init( that ,function( res ){
@@ -89,8 +102,6 @@ var vm = new Vue ({
 
                 }
 
-
-
             }
 
 
@@ -105,6 +116,11 @@ var vm = new Vue ({
 
     methods: {
 
+        /*
+        *
+        * 스탬프 쿠폰 사용
+        *
+        * */
         coupon_use : function( data ){
 
             var that = this;
@@ -119,6 +135,7 @@ var vm = new Vue ({
             param.c = data.c;
             param.version = data.version;
             param.brand = that.brdId;
+            param.useGbnCd = '1';
 
             BM.TICKET_USE( param , function( res ){
 
@@ -136,6 +153,89 @@ var vm = new Vue ({
             });
 
         }
+
+        /*
+        *
+        * 핀번호 쿠폰 사용
+        *
+        *
+        * */
+        ,coupon_pinNo_use : function( data ){
+
+            var that = this;
+
+            if(that.couponDisable){
+
+                return;
+
+            }
+
+            var param = {};
+
+            param.custNo = that.key_custNo;
+            param.ticketNo = that.key_ticketNo;
+            param.brand = that.brdId;
+            param.useGbnCd = '4';
+            that.loading_type = true;
+
+            BM.TICKET_USE( param , function( res ){
+
+                that.couponDisable = true;
+                that.couponUsed = true;
+                that.loading_type = false;
+
+                that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
+
+            },function( code , msg ){
+
+                that.loading_type = false;
+                that.$utils_popup(that,true,'' , msg);
+
+            });
+
+        }
+
+        /*
+        *
+        * 할인 쿠폰 사용
+        *
+        *
+        * */
+        ,discount_coupon_use : function( data ){
+
+            var that = this;
+
+            if(that.couponDisable){
+
+                return;
+
+            }
+
+            var param = {};
+
+            param.custNo = that.key_custNo;
+            param.ticketNo = that.key_ticketNo;
+            param.brand = that.brdId;
+            param.useGbnCd = '5';
+
+            that.loading_type = true;
+
+            BM.TICKET_USE( param , function( res ){
+
+                that.couponDisable = true;
+                that.couponUsed = true;
+                that.loading_type = false;
+                that.coupon_type = true; // 할인 쿠폰
+
+            },function( code , msg ){
+
+                that.loading_type = false;
+                that.$utils_popup(that,true,'' , msg);
+
+            });
+
+        }
+
         ,couponInfo: function( callbackSuccess , callbackFail ){
 
             var that = this;
@@ -201,6 +301,44 @@ var vm = new Vue ({
                 that.couponDisable   = false;
                 that.couponUsed          = false;
 
+                //
+                if( res.goodsSalGbn == '1' ) { //포인트
+
+                    var _useCd = res.ticketUseCd.split(',');
+
+                    for (var i = 0; i < _useCd.length; i++) {
+
+                        switch (_useCd[i]) {
+
+                            case "1":
+
+                                that.coupon_use_type_stamp = true;
+
+                                break;
+                            case "2":
+
+                                that.coupon_use_type_barcode = true;
+
+                                break;
+                            case "3":
+
+                                that.coupon_use_type_pinNo = true;
+                                that.coupon_use_type_pinNo_text = '쿠폰번호 확인을 위해 본 버튼을 클릭해 주세요.';
+                                break;
+
+                        }
+
+                    }
+
+                    that.coupon_type = true;
+
+                }else{ // 할인
+
+                    that.coupon_type = false;
+
+                }
+
+
                 if( res.stCd === '2' || res.stCd === '8' ){
                     if( res.stCd === '2' ){
 
@@ -219,6 +357,7 @@ var vm = new Vue ({
                         ].join('');
 
                         that.usedPlace = res.brdNm;
+
                     }
                     if( res.stCd === '8' ){
 
@@ -227,21 +366,32 @@ var vm = new Vue ({
 
                     }
                     that.couponDisable = true;
+
+
+                    that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
+                    that.coupon_type = true;
                 }
 
                 //스탬프 , 박코드
                 //ticketUseCd
-                var _useCd = res.ticketUseCd.split(',');
-                var _val = 0;
-                for(var i = 0 ; i< _useCd.length;i++){
-                    if(_useCd[i] == '1' || _useCd[i] =='2' ){
-                        _val += 1;
-                        that.ticketUseCd = _useCd[i];
-                    }
-                }
-                if(_val >= 2){
-                    that.ticketUseCd = '9';
-                }
+
+                // coupon_use_type_stamp   : false
+                // coupon_use_type_barcode : false
+                // coupon_use_type_pinNo   : false
+
+                //res.ticketUseCd = '4,1,2';
+
+                // var _useCd = res.ticketUseCd.split(',');
+                // var _val = 0;
+                // for(var i = 0 ; i< _useCd.length;i++){
+                //     if(_useCd[i] == '1' || _useCd[i] =='2' ){
+                //         _val += 1;
+                //         that.ticketUseCd = _useCd[i];
+                //     }
+                // }
+                // if(_val >= 2){
+                //     that.ticketUseCd = '9';
+                // }
 
 
             return callbackSuccess(res);

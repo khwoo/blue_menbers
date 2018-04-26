@@ -281,16 +281,18 @@ var vm = new Vue({
                 historyParam.custNo = that.key_custNo;
                 historyParam.uid = that.key_uid;
 
-                var url = location.href.substring( 0 , location.href.indexOf('?')).replace('details' , 'main');
+                var url = location.href.substring( 0 , location.href.indexOf('?')).replace('details' , 'coupon_box');
 
                 that.$utils_history_replaceState( historyParam , url );
 
-                location.href=[
-                    'coupon_box.html'
-                    ,'?custNo=' + that.key_custNo
-                    ,'&'
-                    ,'uid=' + that.key_uid
-                ].join('');
+                history.go(0);
+
+                // location.href=[
+                //     'coupon_box.html'
+                //     ,'?custNo=' + that.key_custNo
+                //     ,'&'
+                //     ,'uid=' + that.key_uid
+                // ].join('');
             }
         }
     }

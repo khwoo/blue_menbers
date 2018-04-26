@@ -8,6 +8,7 @@ var vm = new Vue ({
         history_pageNo:10,
         loadValue : 100, //로드 위치
         loadStatus :true,  //로드 상태
+        coupon_box_link : 'javascript:history.back();',
         loading_show : true,
         menuList: [
             {
@@ -53,6 +54,9 @@ var vm = new Vue ({
 
         that.$utils_location_params(that);
 
+        //링크 설정
+        that.history_link();
+
         if( that.key_menuIdx != undefined ){
 
             that.menuIdx = that.key_menuIdx;
@@ -89,8 +93,28 @@ var vm = new Vue ({
     },
     methods: {
 
+        history_link : function(){
+
+            var that = this;
+
+            if(that.key_link != undefined && that.key_link != 'undefined' ){
+
+                switch( that.key_link ){
+
+                    case "gift":
+
+                        that.coupon_box_link = 'javascript:history.go(-2);';
+
+                        break;
+
+                }
+
+            }
+
+        }
+
         //보관함 메뉴 설정
-        box_menu : function( e ){
+        ,box_menu : function( e ){
 
             var that = this;
 

@@ -315,22 +315,25 @@ var vm = new Vue({
         tap_buyOptionConfirm: function() {
             //보관함 이동.
             var that = this;
-
+            //
             var historyParam = {};
 
             historyParam.custNo = that.key_custNo;
             historyParam.uid = that.key_uid;
 
-            var url = location.href.substring( 0 , location.href.indexOf('?')).replace('discount_details' , 'main');
+            var url = location.href.substring( 0 , location.href.indexOf('?')).replace('discount_details' , 'coupon_box');
 
             that.$utils_history_replaceState( historyParam , url );
 
-            location.href=[
-                'coupon_box.html'
-                ,'?custNo=' + that.key_custNo
-                ,'&'
-                ,'uid=' + that.key_uid
-            ].join('');
+            history.go(0);
+
+            // location.href=[
+            //     'coupon_box.html'
+            //     ,'?custNo=' + that.key_custNo
+            //     ,'&'
+            //     ,'uid=' + that.key_uid
+            // ].join('');
+
         }
     }
 

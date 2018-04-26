@@ -259,7 +259,7 @@ utils.install = function( Vue ){
         '                <div class="bg_shadow flex_column_center">' +
         '                    <div class="modal_box flex_column_center">' +
         '                        <p class="title" v-text="popformdata.alertTitle"></p>' +
-        '                        <p style="text-align:center;" class="alert_content" v-text="popformdata.alertContent"></p>' +
+        '                        <p style="text-align:center;" class="alert_content" v-html="popformdata.alertContent"></p>' +
         '                        <div class="btn_group flex_between">' +
         '                            <a v-if="!popformdata.cancelShow" class="btn_one flex_center" href="javascript:void(0)" @click="fail" style="margin: 0 5px 0 0;">' +
         '                                <p>취소</p>' +
