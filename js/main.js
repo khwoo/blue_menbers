@@ -177,10 +177,29 @@ var vm = new Vue ({
             var productList = new Array();
             for(var i = 0 ; i < data.salGoodsList.length ; i++ ){
                 var _item = data.salGoodsList[i];
-                _item.url = 'details.html'+
-                    '?custNo='+ that.key_custNo +''+
-                    '&uid=' + that.key_uid + '' +
-                    '&productId='+ _item.goodsCd +' ';
+
+                //goodsSalGbn 1 포인트 쿠폰
+                //goodsSalGbn 2 할인 쿠폰
+
+                if(_item.goodsSalGbn == '1' ){
+
+                    _item.url = 'details.html'+
+                        '?custNo='+ that.key_custNo +''+
+                        '&uid=' + that.key_uid + '' +
+                        '&productId='+ _item.goodsCd +' ';
+
+                }
+
+                if(_item.goodsSalGbn == '2' ){
+
+                    _item.url = 'discount_details.html'+
+                        '?custNo='+ that.key_custNo +''+
+                        '&uid=' + that.key_uid + '' +
+                        '&productId='+ _item.goodsCd +' ';
+
+                }
+
+
                 productList.push( _item );
             }
 

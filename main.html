@@ -93,15 +93,17 @@
                                 <div class="product_info">
                                     <p class="name">{{item.brdNm}}</p>
                                     <p class="product_name">{{item.goodsNm}}</p>
-                                    <p class="after_price">{{item.goodsSalPrice | formatPoint}}</p>
+                                    <p v-if="item.goodsSalGbn == '1'" class="after_price">{{item.goodsSalPrice | formatPoint}}</p>
                                     <p v-if="item.goodsQttGbn == '2' " class="inventory">
                                         (잔여수량 : {{item.goodsCnt}})
                                     </p>
                                 </div>
 
                                 <!-- mark -->
-                                <!--<img class="mark" src="images/icon_mark_type01.png" />-->
-                                <!--<img class="mark" src="images/icon_mark_type02.png" />-->
+                                <img v-if="item.goodsSalGbn == '1' " class="mark" src="images/icon_mark_type02.png" />
+
+                                <img v-if="item.goodsSalGbn == '2' " class="mark" src="images/icon_mark_type01.png" />
+
                             </a>
                     </li>
                     <div class="loading_more flex_center" :style="loading_show ? 'display:none;' : '' ">

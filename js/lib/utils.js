@@ -295,7 +295,7 @@ utils.install = function( Vue ){
         '                <div class="bg_shadow flex_column_center">' +
         '                    <div class="modal_box flex_column_center">' +
         '                        <p class="title" v-text="popdata.alertTitle"></p>' +
-        '                        <p style="text-align:center;" class="alert_content" v-text="popdata.alertContent"></p>' +
+        '                        <p style="text-align:center;" class="alert_content" v-html="popdata.alertContent"></p>' +
         '                        <div class="btn_group flex_between">' +
         '                            <a class="btn_one flex_center" href="javascript:void(0)" @click="popdata.alertOption=!popdata.alertOption">' +
         '                                <p>확인</p>' +
