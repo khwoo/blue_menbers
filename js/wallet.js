@@ -19,58 +19,61 @@ var vm = new Vue({
 
         that.$utils_location_params(that);
 
-        that.echoss_link();
+        that.echoss_link( function(){
 
-        that.brand_url();
+            that.brand_url();
 
-        that.coupon_box = [
-            'coupon_box.html'
-            ,'?'
-            ,'custNo=' + that.key_custNo
-            ,'&'
-            ,'uid=' + that.key_uid
-        ].join('');
+            that.coupon_box = [
+                'coupon_box.html'
+                ,'?'
+                ,'custNo=' + that.key_custNo
+                ,'&'
+                ,'uid=' + that.key_uid
+            ].join('');
 
-        //main.html
-        that.main_url = [
-            'main.html'
-            ,'?'
-            ,'custNo=' + that.key_custNo
-            ,'&'
-            ,'uid=' + that.key_uid
-        ].join('');
+            //main.html
+            that.main_url = [
+                'main.html'
+                ,'?'
+                ,'custNo=' + that.key_custNo
+                ,'&'
+                ,'uid=' + that.key_uid
+            ].join('');
 
-        that.bizlist = [
-            {
-                "categoryCd": "CTG0001CT0001",
-                "groupId" : "CTG0001",
-                "categoryNm": "골프",
-                "bizImg": "http://61.35.35.203:45260/file/icon_category_4.png",
-                "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0001&uid=" + that.key_uid
-            },
-            {
-                "categoryCd": "CTG0001CT0002",
-                "groupId" : "CTG0001",
-                "categoryNm": "생화 편의",
-                "bizImg": "http://61.35.35.203:45260/file/icon_category_3.png",
-                "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0002&uid=" + that.key_uid
-            },
-            {
-                "categoryCd": "CTG0001CT0003",
-                "groupId" : "CTG0001",
-                "categoryNm": "여행",
-                "bizImg": "http://61.35.35.203:45260/file/icon_category_2.png",
-                "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0003&uid=" + that.key_uid
-            },
-            {
-                "categoryCd": "CTG0002CT0001",
-                "groupId" : "CTG0002",
-                "categoryNm": "도서테마",
-                "bizImg": "http://61.35.35.203:45260/file/icon_category_1.png",
-                "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0002&categoryIdx=CTG0002CT0001&uid=" + that.key_uid
-            }
+            that.bizlist = [
+                {
+                    "categoryCd": "CTG0001CT0001",
+                    "groupId" : "CTG0001",
+                    "categoryNm": "골프",
+                    "bizImg": "http://61.35.35.203:45260/file/icon_category_4.png",
+                    "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0001&uid=" + that.key_uid
+                },
+                {
+                    "categoryCd": "CTG0001CT0002",
+                    "groupId" : "CTG0001",
+                    "categoryNm": "생화 편의",
+                    "bizImg": "http://61.35.35.203:45260/file/icon_category_3.png",
+                    "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0002&uid=" + that.key_uid
+                },
+                {
+                    "categoryCd": "CTG0001CT0003",
+                    "groupId" : "CTG0001",
+                    "categoryNm": "여행",
+                    "bizImg": "http://61.35.35.203:45260/file/icon_category_2.png",
+                    "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0003&uid=" + that.key_uid
+                },
+                {
+                    "categoryCd": "CTG0002CT0001",
+                    "groupId" : "CTG0002",
+                    "categoryNm": "도서테마",
+                    "bizImg": "http://61.35.35.203:45260/file/icon_category_1.png",
+                    "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0002&categoryIdx=CTG0002CT0001&uid=" + that.key_uid
+                }
 
-        ];
+            ];
+
+        });
+
 
         this.$nextTick(function() {
             this.onReady = !this.onReady;
@@ -78,7 +81,7 @@ var vm = new Vue({
     },
     methods: {
 
-        echoss_link : function(){
+        echoss_link : function( callback ){
 
             var that = this;
 
@@ -104,12 +107,17 @@ var vm = new Vue({
 
                 that.wallet_url = scheme + "://echoss/close";
 
+                return callback();
+
             }, function(errorCode, errorMessage, result) {
                 if(result != undefined) {
                    var scheme = result.scheme;
 
                     that.wallet_url = scheme + "://echoss/close";
                 }
+
+                return callback();
+
             });
 
         }

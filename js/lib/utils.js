@@ -16,16 +16,16 @@ utils.install = function( Vue ){
             var _str = _paramList[i];
             var _item = _str.split('=');
 
-            if( _item[0] ==='uid' ){
-
-                that['key_custNo'] = _item[1];
-                that['key_uid']  =_item[1];
-            }else{
-
-                that['key_' + _item[0] ] = _item[1];
-
-            }
-
+            // if( _item[0] ==='uid' ){
+            //
+            //     that['key_uid']  =_item[1];
+            //
+            // }else{
+            //
+            //     that['key_' + _item[0] ] = _item[1];
+            //
+            // }
+            that['key_' + _item[0] ] = _item[1];
         }
 
         //uid
