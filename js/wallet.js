@@ -75,6 +75,12 @@ var vm = new Vue({
 
             var that = this;
 
+            if(that.key_uid == undefined){
+
+                return;
+
+            }
+
             that.$utils_echossHttpSend(PF_URL + "/fcm/gateway/link", {
 
                 uid     : that.key_uid,
@@ -87,6 +93,12 @@ var vm = new Vue({
                 var scheme = result.scheme;
 
                 that.userInfo();
+
+                var historyParam = {};
+
+                historyParam.custNo = that.key_custNo;
+
+                that.$utils_history_replaceState( historyParam );
 
                 that.wallet_url = scheme + "://echoss/close";
 

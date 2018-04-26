@@ -172,7 +172,8 @@
         color: #fff; }
       .container .category ul img {
         height: 1.6171875rem;
-        height: 1.6171875rem;
+        background-color: #fff;
+        border-radius: 50%;
         margin-bottom: 0.15625rem; }
     .container .category .category_all {
       padding-bottom: 0.21875rem; }
