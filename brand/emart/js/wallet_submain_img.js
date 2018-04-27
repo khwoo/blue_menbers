@@ -2,11 +2,12 @@ var vm = new Vue({
     el: '.container',
     data: {
         navTitle: '이마트24',
-        shopSrc: 'images/submain_shop01.png',
+        shopSrc: '../../images/submain_shop01.png',
         backgroundColor: '#FBDA33',
         hasMap: false,
         point_use_url : '',
         brand_gift_url : '',
+        oneBtn : false ,
         coupon_box :''
 
     },
@@ -18,7 +19,7 @@ var vm = new Vue({
         that.$utils_location_params(that);
 
         that.coupon_box = [
-            'coupon_box.html'
+            '../../coupon_box.html'
             ,'?'
             ,'custNo=' + that.key_custNo
             ,'&'
@@ -26,7 +27,7 @@ var vm = new Vue({
         ].join('');
 
         that.point_use_url = [
-            'point_use.html'
+            '../../point_use.html'
             ,'?custNo=' + that.key_custNo
             ,'&brandCd=' + that.key_brandCd
             ,'&'
@@ -34,7 +35,7 @@ var vm = new Vue({
         ].join('');
 
         that.brand_gift_url = [
-            'brand_gift.html'
+            '../../brand_gift.html'
             ,'?custNo=' + that.key_custNo
             ,'&brandCd=' + that.key_brandCd
             ,'&'

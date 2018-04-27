@@ -147,9 +147,12 @@ var vm = new Vue({
 
             var _url = new Array();
 
+
+            // 브랜드 1
+
             _url.push({
                 link_url : [
-                    'wallet_submain_img.html'
+                    'brand/emart/wallet_submain_img.html'
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
@@ -158,14 +161,18 @@ var vm = new Vue({
                     ,'uid=' + that.key_uid
                 ].join('')
             });
+
+            // 브랜드 2
 
             _url.push({
                 link_url : ['javascript:void(0);'].join('')
             });
 
+            // 브랜드 3
+
             _url.push({
                 link_url : [
-                    'wallet_submain_text.html'
+                    'brand/choiinabooks/wallet_submain_text.html'
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
@@ -174,6 +181,8 @@ var vm = new Vue({
                     ,'uid=' + that.key_uid
                 ].join('')
             });
+
+            // 브랜드 4
 
             _url.push({
                 link_url : ['javascript:void(0);'].join('')

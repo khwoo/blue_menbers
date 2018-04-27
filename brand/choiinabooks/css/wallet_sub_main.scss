@@ -36,15 +36,15 @@ $light: #fff; /* light 폰트 컬러 */
     position: relative;
     width:px2rem(640px);
     margin-left:px2rem(384px);
-    padding-top:px2rem(320px);
+    padding-top:px2rem(420px);
     transform:rotate(23deg);
   }
   .btn_group {
     z-index: 8;
     width:px2rem(640px);
-    height:px2rem(272px);
+    height:px2rem(278px);
     position:absolute;
-    bottom:px2rem(76px);
+    bottom:px2rem(75px);
     background-color: $theme_1_color;
 
     a {
@@ -66,6 +66,29 @@ $light: #fff; /* light 폰트 컬러 */
 
     .btn_gift {
       height:px2rem(93px);
+    }
+  }
+
+  /* 버튼 하나 일 경우  */
+  &.one_btn {
+
+    .info_box {
+      bottom: px2rem(104px);
+      left:px2rem(-364px);
+      width:px2rem(994px);
+      transform:rotate(-8deg);
+    }
+    .shop_main_img {
+      padding-top:px2rem(150px);
+      transform:rotate(8deg);
+    }
+    .btn_group {
+      height:px2rem(130px);
+      //bottom:px2rem(75px);
+
+      .btn_gift {
+        height:100%;
+      }
     }
   }
 }
@@ -92,12 +115,12 @@ $light: #fff; /* light 폰트 컬러 */
   .text_content {
     width:px2rem(527px);
     margin-left:px2rem(384px);
-    padding-top:px2rem(320px);
+    padding-top:px2rem(420px);
     transform: rotate(23deg);
   }
   .content_top {
-    width:px2rem(527px);
-    height:px2rem(257px);
+    width:px2rem(540px);
+    height:px2rem(213px);
     background-color: rgba(0,0,0,.02);
   }
   .logo_img {
@@ -107,10 +130,10 @@ $light: #fff; /* light 폰트 컬러 */
   .h3 {
     width:100% ;
     margin-top:px2rem(20px);
-    margin-bottom: px2rem(29px);
+    margin-bottom: px2rem(15px);
     font-weight: bold;
     line-height: px2rem(44px);
-    font-size:px2rem(37px);
+    font-size:px2rem(30px);
   }
 
   .shop_info {
@@ -123,12 +146,26 @@ $light: #fff; /* light 폰트 컬러 */
   .shop_intro {
     .h4 {
       display: inline-block;
-      margin-top:px2rem(26px);
-      padding-top:px2rem(25px);
+      padding-top:px2rem(15px);
       border-top:px2rem(1px) solid #707070;
     }
   }
 
+  /* 버튼 하나 일 경우  */
+  &.one_btn {
+
+    .text_content {
+      padding-top:px2rem(150px);
+      transform: rotate(8deg);
+    }
+  }
+
 }
+
+
+
+
+
+
 
 

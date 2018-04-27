@@ -2,7 +2,7 @@ var vm = new Vue({
     el: '.container',
     data: {
         navTitle: '최인아책방',
-        logoSrc: 'images/logo_shop03.png',
+        logoSrc: '../../images/logo_shop03.png',
         backgroundColor: '#fff',
         hasMap: true,
         shopTitle: '블루멤버스 포인트로<br/>혼자만의 시간을 즐겨보세요.',
@@ -19,6 +19,7 @@ var vm = new Vue({
         '책을 쉬이 선택할 수 있습니다. <br/>',
         point_use_url : '',
         brand_gift_url : '',
+        oneBtn : false ,
         coupon_box :''
     },
 
@@ -29,7 +30,7 @@ var vm = new Vue({
         that.$utils_location_params(that);
 
         that.coupon_box = [
-            'coupon_box.html'
+            '../../coupon_box.html'
             ,'?'
             ,'custNo=' + that.key_custNo
             ,'&'
@@ -37,7 +38,7 @@ var vm = new Vue({
         ].join('');
 
         that.point_use_url = [
-            'point_use.html'
+            '../../point_use.html'
             ,'?custNo=' + that.key_custNo
             ,'&brandCd=' + that.key_brandCd
             ,'&'
@@ -45,7 +46,7 @@ var vm = new Vue({
         ].join('');
 
         that.brand_gift_url = [
-            'brand_gift.html'
+            '../../brand_gift.html'
             ,'?custNo=' + that.key_custNo
             ,'&brandCd=' + that.key_brandCd
             ,'&'
