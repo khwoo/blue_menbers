@@ -28,7 +28,12 @@ utils.install = function( Vue ){
             that['key_' + _item[0] ] = _item[1];
         }
 
-        that['key_custNo'] = '00012105';
+        if( that.key_uid == undefined ){
+
+            that['key_custNo'] = '00012105';
+
+        }
+
     }
 
     //일자 설정
