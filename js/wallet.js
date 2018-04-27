@@ -8,6 +8,26 @@ var vm = new Vue({
         ,brandUrllist : []
         ,coupon_box :''
         ,main_url :''
+        ,loading_type : true
+        ,popdata : {
+
+            alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+
+        }
+        ,popformdata : {
+
+            alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+            ,alertCall_1 : null
+            ,alertCall_2 : null
+            ,cancelShow : true
+
+        }
     },
 
     created:function(){
@@ -40,37 +60,7 @@ var vm = new Vue({
                 ,'uid=' + that.key_uid
             ].join('');
 
-            that.bizlist = [
-                {
-                    "categoryCd": "CTG0001CT0001",
-                    "groupId" : "CTG0001",
-                    "categoryNm": "골프",
-                    "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174804432.png",
-                    "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0001&uid=" + that.key_uid
-                },
-                {
-                    "categoryCd": "CTG0001CT0002",
-                    "groupId" : "CTG0001",
-                    "categoryNm": "생화 편의",
-                    "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174820510.png",
-                    "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0002&uid=" + that.key_uid
-                },
-                {
-                    "categoryCd": "CTG0001CT0003",
-                    "groupId" : "CTG0001",
-                    "categoryNm": "여행",
-                    "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174946368.png",
-                    "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0003&uid=" + that.key_uid
-                },
-                {
-                    "categoryCd": "CTG0002CT0001",
-                    "groupId" : "CTG0002",
-                    "categoryNm": "도서테마",
-                    "bizImg": "http://61.35.35.203:45260/file/icon_category_1.png",
-                    "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0002&categoryIdx=CTG0002CT0001&uid=" + that.key_uid
-                }
-
-            ];
+            that.categorylist();
 
         });
 
@@ -138,6 +128,74 @@ var vm = new Vue({
                 //error
 
             }
+
+        }
+
+        ,categorylist : function(){
+
+            var that = this;
+
+            BM.MAIN_CTGR({},function( res ){
+
+                console.log( res);
+
+                var categorylist = new Array();
+
+                for(var i = 0 ; i < res.ctgrList.length ;i++ ){
+
+                    var _item = res.ctgrList[i];
+
+                    var _info = {};
+
+                    _info.categoryCd =  _item.ctgrCd;
+                    _info.groupId = _item.ctgrGrpCd;
+                    _info.categoryNm = _item.ctgrNm;
+                    _info.bizImg = _item.ctgrImg;
+                    _info.url = "main.html?custNo="+ that.key_custNo +"&menuIdx="+ _item.ctgrGrpCd +"&categoryIdx="+ _item.ctgrCd +"&uid=" + that.key_uid;
+
+                    categorylist.push( _info );
+
+                }
+
+                that.bizlist = categorylist;
+                that.loading_type = false;
+                // that.bizlist = [
+                //     {
+                //         "categoryCd": "CTG0001CT0001",
+                //         "groupId" : "CTG0001",
+                //         "categoryNm": "골프",
+                //         "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174804432.png",
+                //         "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0001&uid=" + that.key_uid
+                //     },
+                //     {
+                //         "categoryCd": "CTG0001CT0002",
+                //         "groupId" : "CTG0001",
+                //         "categoryNm": "생화 편의",
+                //         "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174820510.png",
+                //         "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0002&uid=" + that.key_uid
+                //     },
+                //     {
+                //         "categoryCd": "CTG0001CT0003",
+                //         "groupId" : "CTG0001",
+                //         "categoryNm": "여행",
+                //         "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174946368.png",
+                //         "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0003&uid=" + that.key_uid
+                //     },
+                //     {
+                //         "categoryCd": "CTG0002CT0001",
+                //         "groupId" : "CTG0002",
+                //         "categoryNm": "도서테마",
+                //         "bizImg": "http://61.35.35.203:45260/file/icon_category_1.png",
+                //         "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0002&categoryIdx=CTG0002CT0001&uid=" + that.key_uid
+                //     }
+                //
+                // ];
+
+            },function( code , msg ){
+                that.loading_type = false;
+                that.$utils_popup(  that    ,   true    ,   '' ,    msg );
+
+            });
 
         }
 
