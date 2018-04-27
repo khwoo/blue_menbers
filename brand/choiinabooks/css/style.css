@@ -1,4 +1,7 @@
 @charset "UTF-8";
+@font-face {
+  font-family: 'HyundaiSansTextKRRegular';
+  src: url("../../../HyundaiSans/HyundaiSansTextKRRegular.ttf"); }
 ol, ul, li {
   list-style: none; }
 
@@ -63,7 +66,7 @@ body {
   background: transparent;
   line-height: 1.15;
   letter-spacing: -0.3px;
-  font-family: Helvetica,AppleSDGothicNeo,Arial,sans-serif;
+  font-family: HyundaiSansTextKRRegular,Helvetica,AppleSDGothicNeo,Arial,sans-serif;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   word-break: break-all;

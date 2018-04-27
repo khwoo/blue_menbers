@@ -19,7 +19,7 @@ var vm = new Vue({
         '책을 쉬이 선택할 수 있습니다. <br/>',
         point_use_url : '',
         brand_gift_url : '',
-        oneBtn : false ,
+        oneBtn : true ,
         coupon_box :''
     },
 

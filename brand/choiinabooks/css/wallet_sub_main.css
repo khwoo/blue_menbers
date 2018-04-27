@@ -3,113 +3,105 @@
 /************************************************************/
 /* 컬러 컨셉 이분분에서 수정 */
 /* 태마 컨셉 컬러 */
-/* 태마 컨셉 라인 & 폰트 컬러 */
-/* 태마 일반 dark 폰트 컬러 */
-/* light 폰트 컬러 */
-/* wallet_ */
-/* emart24 */
-.container {
-  /* 버튼 하나 일 경우  */ }
-  .container .section {
-    position: fixed;
+/*  */
+body {
+  background-color: #fff; }
+
+.container .section {
+  width: 100%;
+  height: 100%; }
+.container .info_box {
+  width: 100%;
+  height: 100%; }
+.container .btn {
+  width: 8.125rem;
+  height: 3.4375rem;
+  position: fixed;
+  bottom: -1.875rem;
+  right: -1.5625rem;
+  transform: rotate(-23deg);
+  overflow: hidden;
+  background-color: #00498C; }
+  .container .btn a {
+    display: block;
     width: 100%;
     height: 100%;
-    background-color: #FBDA33; }
-  .container .info_box {
-    z-index: 10;
-    position: absolute;
-    bottom: 2.90625rem;
-    left: -5.53125rem;
-    width: 15.53125rem;
-    height: 100%;
-    background-color: #FBDA33;
-    transform: rotate(-23deg); }
-  .container .shop_main_img {
-    position: relative;
-    width: 10rem;
-    margin-left: 6rem;
-    padding-top: 6.5625rem;
+    margin-top: -1.875rem;
     transform: rotate(23deg); }
-  .container .btn_group {
-    z-index: 8;
-    width: 10rem;
-    height: 4.34375rem;
-    position: absolute;
-    bottom: 1.171875rem;
-    background-color: #00498C; }
-    .container .btn_group a {
-      with: 100%;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end; }
-      .container .btn_group a p {
-        font-size: 0.390625rem;
-        color: #fff;
-        padding-bottom: 0.390625rem;
-        padding-right: 0.59375rem; }
-    .container .btn_group .btn_point {
-      height: 2.796875rem;
-      background-color: #F79300; }
-    .container .btn_group .btn_gift {
-      height: 1.453125rem; }
-  .container.one_btn .info_box {
-    bottom: 1.625rem;
-    left: -5.6875rem;
-    width: 15.53125rem;
-    transform: rotate(-8deg); }
-  .container.one_btn .shop_main_img {
-    padding-top: 2.34375rem;
-    transform: rotate(8deg); }
-  .container.one_btn .btn_group {
-    height: 2.03125rem; }
-    .container.one_btn .btn_group .btn_gift {
-      height: 100%; }
+    .container .btn a p {
+      text-align: right;
+      margin-right: 2.4375rem;
+      margin-top: 2.59375rem;
+      font-size: 0.390625rem;
+      color: #fff; }
 
-.btn_map {
+.btn_info {
   position: fixed;
   z-index: 16;
-  left: 0.796875rem;
+  left: 0.625rem;
   bottom: 1.125rem;
   height: 1.1875rem; }
-  .btn_map .icon_map {
-    width: 0.578125rem;
+  .btn_info .icon_info {
+    width: 0.625rem;
     margin-right: 0.15625rem; }
-  .btn_map p {
+  .btn_info p {
     font-weight: bold;
     font-size: 0.390625rem;
     color: #00498C; }
 
-/* text */
-.text_container {
-  /* 버튼 하나 일 경우  */ }
-  .text_container .text_content {
-    width: 8.234375rem;
-    margin-left: 6rem;
-    padding-top: 6.5625rem;
-    transform: rotate(23deg); }
-  .text_container .content_top {
-    width: 8.4375rem;
-    height: 3.328125rem;
-    background-color: rgba(0, 0, 0, 0.02); }
-  .text_container .logo_img {
-    max-width: 100%;
-    max-height: 100%; }
-  .text_container .h3 {
-    width: 100%;
-    margin-top: 0.3125rem;
-    margin-bottom: 0.234375rem;
+.text_content {
+  width: 8.4375rem;
+  padding-top: 1.5625rem;
+  padding-bottom: 2.5rem; }
+
+.content_top {
+  width: 8.4375rem;
+  height: 3.328125rem; }
+
+.logo_img {
+  max-width: 100%;
+  max-height: 100%; }
+
+.h3 {
+  width: 100%;
+  margin-top: 0.3125rem;
+  margin-bottom: 0.125rem;
+  font-weight: bold;
+  line-height: 0.5625rem;
+  font-size: 0.46875rem; }
+
+.shop_info {
+  width: 100%; }
+  .shop_info p {
+    line-height: 0.453125rem;
+    font-size: 0.3125rem; }
+
+.shop_intro .h4 {
+  display: inline-block;
+  padding-top: 0.234375rem;
+  border-top: 0.015625rem solid #707070; }
+.shop_intro .h7 {
+  font-weight: bold; }
+
+.alert .modal_box .h6 {
+  font-weight: bold;
+  font-size: 0.375rem;
+  color: #00498C; }
+.alert .modal_box .alert_content {
+  padding-top: 0.09375rem;
+  line-height: 0.375rem;
+  font-size: 0.3125rem; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.03125rem;
+  padding-bottom: 0.40625rem; }
+  table th {
+    text-align: left;
     font-weight: bold;
-    line-height: 0.6875rem;
-    font-size: 0.46875rem; }
-  .text_container .shop_info {
-    width: 100%; }
-    .text_container .shop_info p {
-      line-height: 0.453125rem;
-      font-size: 0.3125rem; }
-  .text_container .shop_intro .h4 {
-    display: inline-block;
-    padding-top: 0.234375rem;
-    border-top: 0.015625rem solid #707070; }
-  .text_container.one_btn .text_content {
-    padding-top: 2.34375rem;
-    transform: rotate(8deg); }
+    font-size: 0.3125rem;
+    padding: 0.15625rem 0; }
+  table td {
+    padding-top: 0.40625rem;
+    font-size: 0.3125rem; }

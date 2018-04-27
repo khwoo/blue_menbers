@@ -159,37 +159,6 @@ var vm = new Vue({
 
                 that.bizlist = categorylist;
                 that.loading_type = false;
-                // that.bizlist = [
-                //     {
-                //         "categoryCd": "CTG0001CT0001",
-                //         "groupId" : "CTG0001",
-                //         "categoryNm": "골프",
-                //         "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174804432.png",
-                //         "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0001&uid=" + that.key_uid
-                //     },
-                //     {
-                //         "categoryCd": "CTG0001CT0002",
-                //         "groupId" : "CTG0001",
-                //         "categoryNm": "생화 편의",
-                //         "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174820510.png",
-                //         "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0002&uid=" + that.key_uid
-                //     },
-                //     {
-                //         "categoryCd": "CTG0001CT0003",
-                //         "groupId" : "CTG0001",
-                //         "categoryNm": "여행",
-                //         "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174946368.png",
-                //         "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0003&uid=" + that.key_uid
-                //     },
-                //     {
-                //         "categoryCd": "CTG0002CT0001",
-                //         "groupId" : "CTG0002",
-                //         "categoryNm": "도서테마",
-                //         "bizImg": "http://61.35.35.203:45260/file/icon_category_1.png",
-                //         "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0002&categoryIdx=CTG0002CT0001&uid=" + that.key_uid
-                //     }
-                //
-                // ];
 
             },function( code , msg ){
                 that.loading_type = false;
@@ -210,27 +179,37 @@ var vm = new Vue({
 
             _url.push({
                 link_url : [
-                    'brand/emart/wallet_submain_img.html'
+                    'brand/jejuair/wallet_submain_1.html'
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A044B001'
+                    ,'brandCd=V00A044B004'
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
+                ,image_url : 'images/shop_img_1.png'
             });
 
             // 브랜드 2
 
             _url.push({
-                link_url : ['javascript:void(0);'].join('')
+                link_url : [
+                    'brand/googleplay/wallet_submain_2.html'
+                    ,'?'
+                    ,'custNo=' + that.key_custNo
+                    ,'&'
+                    ,'brandCd=V00A002B302'
+                    ,'&'
+                    ,'uid=' + that.key_uid
+                ].join('')
+                ,image_url : 'images/shop_img_2.png'
             });
 
             // 브랜드 3
 
             _url.push({
                 link_url : [
-                    'brand/choiinabooks/wallet_submain_text.html'
+                    'brand/choiinabooks/wallet_submain_3.html'
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
@@ -238,12 +217,22 @@ var vm = new Vue({
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
+                ,image_url : 'images/shop_img_3.png'
             });
 
             // 브랜드 4
 
             _url.push({
-                link_url : ['javascript:void(0);'].join('')
+                link_url : [
+                    'brand/plazacc/wallet_submain_4.html'
+                    ,'?'
+                    ,'custNo=' + that.key_custNo
+                    ,'&'
+                    ,'brandCd=V00A044B002'
+                    ,'&'
+                    ,'uid=' + that.key_uid
+                ].join('')
+                ,image_url : 'images/shop_img_4.png'
             });
 
             that.brandUrllist = _url;
