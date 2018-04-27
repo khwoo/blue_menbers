@@ -7,7 +7,7 @@
     <title>Echoss Mall</title>
     <link href="css/utils.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet"/>
-    <link href="css/coupon_details.css" rel="stylesheet"/>
+    <link href="css/discount_coupon_details.css" rel="stylesheet"/>
     <link href="stampEffect/stampEffect.css" rel="stylesheet" />
     <script type="text/javascript" src="js/lib/vue.min.js"></script>
     <script type="text/javascript" src="js/px2rem.js"></script>
@@ -71,6 +71,12 @@
                 <!--<p v-if="" class="coupon_number flex_center">쿠폰번호 : {{couponNumber}}</p>-->
                 <!-- 할인 쿠폰 사용 -->
                 <p v-if="!coupon_type" v-on:click="discount_coupon_use" class="coupon_number flex_center">쿠폰 사용</p>
+                <p style="font-size: 0.34375rem;padding: 10px 0 0 0;">
+                    *쿠폰 사용시에만 사용완료를 눌러주세요.<br/>
+                    *사용완료 후에는 재사용이 불가하오니, 신중하게 사용해주세요.
+                </p>
+
+
 
                 <p v-if="coupon_use_type_pinNo" v-text="coupon_use_type_pinNo_text" class="coupon_number flex_center" v-on:click="coupon_pinNo_use"></p>
 
@@ -103,7 +109,7 @@
 <script type="text/javascript" src="dist/vue-barcode.js"></script>
 <script type="text/javascript" src="js/lib/utils.js"></script>
 <script type="text/javascript" src="stampEffect/stampEffect.js"></script>
-<script type="text/javascript" src="js/coupon_details.js"></script>
+<script type="text/javascript" src="js/discount_coupon_details.js"></script>
 
 </body>
 </html>

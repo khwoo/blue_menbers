@@ -64,47 +64,6 @@ var vm = new Vue ({
                 ,' [3] 핀번호 : ' + that.coupon_use_type_pinNo
             ].join('\n'));
 
-            //사용 방식
-            if( that.coupon_use_type_stamp ){
-
-                //발급 상태
-                if( res.stCd == '1' ){
-
-                    that.$utils_echoss_init( that ,function( res ){
-                        that.$utils_echoss_onStamp( function( res ){
-                            //쿠폰 사용
-                            that.coupon_use(res);
-                        },function(code , msg ){
-                            that.$utils_popup(that,true,'',msg);
-                        });
-
-                        //otp
-                        that.$utils_setOtp( that,  function(){
-
-                            that.couponDisable = true;
-                            that.couponUsed = true;
-
-                        },function( code , msg ){
-                            //otp error
-                            that.$utils_popup(that,true,'', msg );
-
-                        });
-
-                        ///////////// OTP /////////////
-
-                    },function( code , msg  ){
-                        that.$utils_popup( that, true , '' , msg );
-                    });
-
-                }else{
-
-                    //사용 완료 .
-
-                }
-
-            }
-
-
         },function( code, msg ){
 
         });
@@ -116,112 +75,6 @@ var vm = new Vue ({
 
     methods: {
 
-        /*
-        *
-        * 스탬프 쿠폰 사용
-        *
-        * */
-        coupon_use : function( data ){
-
-            var that = this;
-
-            var param = {};
-
-            param.custNo = that.key_custNo;
-            param.ticketNo = that.key_ticketNo;
-            param.eq = data.equipTyp;
-            param.s = data.s;
-            param.p = data.p;
-            param.c = data.c;
-            param.version = data.version;
-            param.brand = that.brdId;
-            param.useGbnCd = '1';
-
-            BM.TICKET_USE( param , function( res ){
-
-                stopStampAnimation();
-
-                that.couponDisable = true;
-                that.couponUsed = true;
-
-                that.usedDate = [
-                    res.useDt.substr(0,4)
-                    ,'-'
-                    ,res.useDt.substr( 4 , 2 )
-                    ,'-'
-                    ,res.useDt.substr( 6 , 2 )
-                    ,' '
-                    ,res.useTm.substr( 0 , 2 )
-                    ,':'
-                    ,res.useTm.substr( 2 , 2 )
-                ].join('');
-
-                that.usedPlace = res.brdNm;
-
-            },function( code , msg ){
-
-                stopStampAnimation();
-
-                that.$utils_popup(that,true,'' , msg);
-
-            });
-
-        }
-
-        /*
-        *
-        * 핀번호 쿠폰 사용
-        *
-        *
-        * */
-        ,coupon_pinNo_use : function( data ){
-
-            var that = this;
-
-            if(that.couponDisable){
-
-                return;
-
-            }
-
-            var param = {};
-
-            param.custNo = that.key_custNo;
-            param.ticketNo = that.key_ticketNo;
-            param.brand = that.brdId;
-            param.useGbnCd = '4';
-            that.loading_type = true;
-
-            BM.TICKET_USE( param , function( res ){
-
-                that.couponDisable = true;
-                that.couponUsed = true;
-                that.loading_type = false;
-
-                that.usedDate = [
-                    res.useDt.substr(0,4)
-                    ,'-'
-                    ,res.useDt.substr( 4 , 2 )
-                    ,'-'
-                    ,res.useDt.substr( 6 , 2 )
-                    ,' '
-                    ,res.useTm.substr( 0 , 2 )
-                    ,':'
-                    ,res.useTm.substr( 2 , 2 )
-                ].join('');
-
-                that.usedPlace = res.brdNm;
-
-                that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
-
-            },function( code , msg ){
-
-                that.loading_type = false;
-                that.$utils_popup(that,true,'' , msg);
-
-            });
-
-        }
 
         /*
         *
@@ -229,7 +82,7 @@ var vm = new Vue ({
         *
         *
         * */
-        ,discount_coupon_use : function( data ){
+        discount_coupon_use : function( data ){
 
             var that = this;
 
@@ -436,7 +289,7 @@ var vm = new Vue ({
                 // }
 
 
-            return callbackSuccess(res);
+                return callbackSuccess(res);
 
             },function( code , msg ){
                 that.$utils_popup(that,true, '' , msg );

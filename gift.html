@@ -42,7 +42,7 @@
             </div>
             <div class="total_count flex_between">
                 <p class="title">총 결제 금액</p>
-                <p class="num" v-text="totalPrice_text"></p>
+                <p class="num">{{ totalPrice_text | formatMoney }}</p>
             </div>
         </div>
         <div class="btn_box flex_between">

@@ -43,7 +43,7 @@
             <img class="bg_shape bg_left" src="images/shap_bg_2.png"/>
             <img class="bg_shape bg_right" src="images/shap_bg_2.png"/>
             <div class="content_box flex_column_center">
-                <p class="h1" v-text="brandName"></p>
+                <!--<p class="h1" v-text="brandName"></p>-->
                 <div class="title_container flex_between">
                     <img class="mark_left" src="images/gift_title_bg.png"/>
                     <img class="mark_right" src="images/gift_title_bg.png"/>
@@ -53,33 +53,23 @@
                     <div class="main_img bg_cover" :style="{backgroundImage:'url('+ imgUrl +')'}"></div>
                     <p class="gift_name" v-text="giftName"></p>
                     <img class="shape_gift" src="images/icon_shap_gift.png"/>
-                    <p class="gift_number" v-text="giftNum"></p>
+
+                    <p class="gift_number" v-if="coupon_use_type_pinNo" v-text="coupon_use_type_pinNo_text" v-on:click="coupon_pinNo_use"></p>
+
                     <p class="validity" v-text="giftValidity"></p>
-                    <!-- 1 -->
-                    <div v-if="ticketUseCd == '1' " class="stamp_type type_use flex_center">
-                        <p class="h4">스탬프를 찍어 사용하세요!</p>
-                        <img src="images/icon_gift_stamp.png"/>
-                        <p class="text">
-                            스탬프 이용매장은<br/>
-                            본 화면에 스탬프를 찍어주세요.
-                        </p>
-                    </div>
+
                     <!-- 2 -->
-                    <div v-if="ticketUseCd == '2' " class="bar_code_type type_use flex_center">
+                    <div v-if="coupon_use_type_barcode" class="bar_code_type type_use flex_center">
                         <barcode height="100px" :value="pinNo" tag="img"></barcode>
                     </div>
                     <!-- 9 -->
-                    <div v-if="ticketUseCd == '9' " class="stamp_type type_use flex_center">
+                    <div v-if="coupon_use_type_stamp" class="stamp_type type_use flex_center">
                         <p class="h4">스탬프를 찍어 사용하세요!</p>
                         <img src="images/icon_gift_stamp.png"/>
                         <p class="text">
                             스탬프 이용매장은<br/>
                             본 화면에 스탬프를 찍어주세요.
                         </p>
-                    </div>
-                    <!-- 9 -->
-                    <div v-if="ticketUseCd == '9' " class="bar_code_type type_use flex_center">
-                        <barcode height="100px" :value="pinNo" tag="img"></barcode>
                     </div>
                 </div>
             </div>

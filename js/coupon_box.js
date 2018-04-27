@@ -386,15 +386,36 @@ var vm = new Vue ({
                 var _item = data[i];
 
                 var _coupon = {};
-                _coupon.productHref = [
-                    'coupon_details.html'
-                    ,'?'
-                    ,'custNo=' + that.key_custNo
-                    ,'&'
-                    ,'ticketNo=' + _item.ticketNo
-                    ,'&'
-                    ,'uid=' + that.key_uid
-                ].join('');
+
+                if(_item.goodsSalGbn == '1' ){
+
+                    _coupon.productHref = [
+                        'coupon_details.html'
+                        ,'?'
+                        ,'custNo=' + that.key_custNo
+                        ,'&'
+                        ,'ticketNo=' + _item.ticketNo
+                        ,'&'
+                        ,'uid=' + that.key_uid
+                    ].join('');
+
+                }
+
+                if(_item.goodsSalGbn == '2' ){
+
+                    _coupon.productHref = [
+                        'discount_coupon_details.html'
+                        ,'?'
+                        ,'custNo=' + that.key_custNo
+                        ,'&'
+                        ,'ticketNo=' + _item.ticketNo
+                        ,'&'
+                        ,'uid=' + that.key_uid
+                    ].join('');
+
+                }
+
+
 
                 _coupon.productImg      = _item.goodsImg;
                 _coupon.couponDisable   = false;
