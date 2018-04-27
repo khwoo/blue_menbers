@@ -45,21 +45,21 @@ var vm = new Vue({
                     "categoryCd": "CTG0001CT0001",
                     "groupId" : "CTG0001",
                     "categoryNm": "골프",
-                    "bizImg": "http://61.35.35.203:45260/file/icon_category_4.png",
+                    "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174804432.png",
                     "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0001&uid=" + that.key_uid
                 },
                 {
                     "categoryCd": "CTG0001CT0002",
                     "groupId" : "CTG0001",
                     "categoryNm": "생화 편의",
-                    "bizImg": "http://61.35.35.203:45260/file/icon_category_3.png",
+                    "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174820510.png",
                     "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0002&uid=" + that.key_uid
                 },
                 {
                     "categoryCd": "CTG0001CT0003",
                     "groupId" : "CTG0001",
                     "categoryNm": "여행",
-                    "bizImg": "http://61.35.35.203:45260/file/icon_category_2.png",
+                    "bizImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/ctgr_20180426174946368.png",
                     "url" : "main.html?custNo="+ that.key_custNo +"&menuIdx=CTG0001&categoryIdx=CTG0001CT0003&uid=" + that.key_uid
                 },
                 {
