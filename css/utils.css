@@ -76,3 +76,9 @@
 }
 
 
+/**/
+.container .category ul li:last-child{
+    margin-right: initial;
+}
+
+/**/

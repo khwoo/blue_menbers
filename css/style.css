@@ -2,7 +2,7 @@
 @font-face {
   font-family: 'HyundaiSansTextKRRegular';
   src: url("../HyundaiSans/HyundaiSansTextKRRegular.ttf"); }
-  /*src: url("file:///assets/Fonts/HyundaiSansTextKRRegular.ttf"); }*/
+  /*src: url("file:///android_asset/Fonts/HyundaiSansTextKRRegular.ttf"); }*/
 
 
 ol, ul, li {
