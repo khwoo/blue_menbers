@@ -129,13 +129,16 @@ var vm = new Vue({
 
 
                that.subContentList.push({
+                   // contentText : [
+                   //     '주소 : ' + res.brdAddr
+                   //     ,'</br>'
+                   //     ,'전화번호 : ' + res.brdTelNo
+                   //     ,'</br>'
+                   //     ,'</br>'
+                   //     ,'가맹점 설명 : </br>' + res.brdDesc.replace(/\r\n/gi, "<br/>")
+                   // ].join('')
                    contentText : [
-                       '주소 : ' + res.brdAddr
-                       ,'</br>'
-                       ,'전화번호 : ' + res.brdTelNo
-                       ,'</br>'
-                       ,'</br>'
-                       ,'가맹점 설명 : </br>' + res.brdDesc.replace(/\r\n/gi, "<br/>")
+                       res.brdDesc.replace(/\r\n/gi, "<br/>")
                    ].join('')
                });
 

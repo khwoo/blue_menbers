@@ -21,7 +21,7 @@ function adapt(designWidth, rem2px){
 };
 
 
-!(function(doc, win, designWidth, rem2px) {
+!(function( doc , win , designWidth , rem2px ) {
     var docEl = doc.documentElement,
         defaultFontSize = adapt(designWidth, rem2px),
 			//16,
@@ -36,10 +36,12 @@ function adapt(designWidth, rem2px){
             if (clientWidth < 750) {
                 docEl.style.fontSize = clientWidth / designWidth * rem2px / defaultFontSize * 100 + '%';
 
-            } else {
-                docEl.style.fontSize = clientWidth / designWidth * rem2px / defaultFontSize * 100 + '%';
-                //docEl.style.fontSize = '625%';
             }
+
+            // else {
+            //     docEl.style.fontSize = clientWidth / designWidth * rem2px / defaultFontSize * 100 + '%';
+            //     //docEl.style.fontSize = '625%';
+            // }
         };
     if (!doc.addEventListener) return;
 
@@ -49,7 +51,8 @@ function adapt(designWidth, rem2px){
 })(		document
 		, window
 		, document.documentElement.clientWidth
-		,  parseInt( document.documentElement.clientWidth / 10 ) );
+		,   document.documentElement.clientWidth / 10
+);
 
 
 

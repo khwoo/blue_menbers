@@ -317,23 +317,26 @@ var vm = new Vue ({
 
                 that.noticeList.push({
                     noticeTitle : '상품안내'
-                    ,productNotice : res.goodsDesc
+                    ,productNotice : res.goodsDesc.replace(/\r\n/gi, "<br/>")
                 });
 
                 that.noticeList.push({
                     noticeTitle : '사용안내'
-                    ,productNotice : res.useDesc
+                    ,productNotice : res.useDesc.replace(/\r\n/gi, "<br/>")
                 });
 
                 that.noticeList.push({
                     noticeTitle : '가맹점 정보'
+                    // ,productNotice : [
+                    //     '주소 : ' + res.brdAddr
+                    //     ,'</br>'
+                    //     ,'전화번호 : ' + res.brdTelNo
+                    //     ,'</br>'
+                    //     ,'</br>'
+                    //     ,'가맹점 설명 : </br>' + res.brdDesc.replace(/\r\n/gi, "<br/>")
+                    // ].join('')
                     ,productNotice : [
-                        '주소 : ' + res.brdAddr
-                        ,'</br>'
-                        ,'전화번호 : ' + res.brdTelNo
-                        ,'</br>'
-                        ,'</br>'
-                        ,'가맹점 설명 : </br>' + res.brdDesc.replace(/\r\n/gi, "<br/>")
+                        res.brdDesc.replace(/\r\n/gi, "<br/>")
                     ].join('')
                     //"주소 :" + res.brdAddr
                 });
