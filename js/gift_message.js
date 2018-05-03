@@ -62,7 +62,7 @@ new Vue({
                 var imglist = res.imgBnrList;
 
                 for( var i = 0 ; i < imglist.length ;i++ ){
-                    var _item = imglist[i].linkUrl;
+                    var _item = imglist[i].imgUrl;
 
                     array.push({
                         url : _item
@@ -105,7 +105,7 @@ new Vue({
             if( videolist.length > 0 ){
 
                 return callback({
-                    url : videolist[0].linkUrl
+                    url : videolist[0].videoUrl
                     , type : 'video'
                 });
 
