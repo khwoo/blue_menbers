@@ -6,6 +6,8 @@ utils.install = function( Vue ){
         var href = location.href;
         var _paramStr = href.split('?')[1];
 
+        console.info( location );
+
         if(_paramStr == null || _paramStr == "undefined"){
 
             _paramStr = "_";
@@ -33,6 +35,45 @@ utils.install = function( Vue ){
             that['key_custNo'] = '00012105';
 
         }
+
+        pageVIewInfo(that);
+
+    }
+
+    Vue.prototype.$utils_pageView = function( that ){
+
+        pageVIewInfo(that);
+
+    }
+
+    //페이지 정보 통계
+    function pageVIewInfo( that ){
+
+        var pageNm = location.pathname.substring( location.pathname.lastIndexOf('/') + 1 , location.pathname.length );
+
+        var linkCode = '';
+
+        if(that.key_categoryIdx != undefined ){
+            linkCode = that.key_categoryIdx;
+        }else if(that.key_productId != undefined ){
+            linkCode = that.key_productId;
+        }else if(that.key_brandCd != undefined ){
+            linkCode = that.key_brandCd;
+        }else if(that.key_trxNo != undefined ){
+            linkCode = that.key_trxNo;
+        }else if(that.key_ticketNo != undefined ){
+            linkCode = that.key_ticketNo;
+        }
+
+        var params = new Object();
+        params.custNo			= that.key_custNo;
+        params.linkCd			= linkCode;
+        params.pageNm			= pageNm;
+
+
+        try {
+            BM.CONN_PAGE_REG(params, function () { }, function () { });
+        }catch(e){}
 
     }
 

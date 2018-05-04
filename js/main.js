@@ -453,6 +453,10 @@ var vm = new Vue ({
 
             that.$utils_history_replaceState( historyParam );
 
+            that.key_categoryIdx = that.categoryIdx;
+
+            that.$utils_pageView( that );
+
             that.loading_type = true;
 
             BM.MAIN( param ,function( res ){
