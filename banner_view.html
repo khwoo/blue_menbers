@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>brand</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/utils.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="js/px2rem.js"></script>
+    <style>
+
+        .nav {
+            position: inherit;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container" style="overflow: hidden;">
+    <div v-cloak class="container_box">
+        <div class="nav flex_center">
+            <!--<a class="btn_back flex_center" :href="wallet_url">-->
+            <a class="btn_back flex_center" href="javascript:history.back();">
+                <img src="images/icon_back.png"/>
+            </a>
+            <p class="title">{{brandName}}</p>
+        </div>
+    </div><!-- end of container_box -->
+
+    <div style="display:flex;">
+
+        <iframe :height="heightStr" :width="widthStr" :src="link_url" frameborder="0" ></iframe>
+
+    </div>
+
+</div>
+<script type="text/javascript" src="js/lib/utils.js" ></script>
+<script type="text/javascript" src="js/banner_view.js"></script>
+
+</body>
+</html>

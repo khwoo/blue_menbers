@@ -221,7 +221,87 @@ var vm = new Vue ({
         //배너 정보
         ,banrData : function( data ){
             var that = this;
-            that.mainSwiper     = data.bnrList;
+
+            /*
+                배너 연결 구분 :
+                0-연결없음
+                1-상품연결
+                2-외부연결
+                3-내부연견
+             */
+
+            var arr = new Array();
+
+            for(var i = 0 ; i < data.bnrList.length ;i++ ){
+
+                var _item = data.bnrList[i];
+
+                var _href = 'javascript:void(0);';
+
+                var _target = '_blank';
+
+                switch(_item.bnrLinkGbn){
+
+                    case "1":
+
+                        //상품연결
+                        //
+                        if(_item.goodsSalGbn == '1' ){
+
+                            _href = 'details.html'+
+                                '?custNo='+ that.key_custNo +''+
+                                '&uid=' + that.key_uid + '' +
+                                '&productId='+ _item.goodsCd +' ';
+
+                        }
+
+                        if(_item.goodsSalGbn == '2' ){
+
+                            _href = 'discount_details.html'+
+                                '?custNo='+ that.key_custNo +''+
+                                '&uid=' + that.key_uid + '' +
+                                '&productId='+ _item.goodsCd +' ';
+
+                        }
+
+                        break;
+                    case "2":
+
+                        //외부연결
+                        _href = _item.linkUrl;
+
+                        _target = '_blank';
+
+                        break;
+                    case "3":
+
+                        //내부연결
+                        _href = [
+                            'banner_view.html'
+                            ,'?'
+                            ,'custNo=' + that.key_custNo
+                            ,'&'
+                            ,'uid=' + that.key_uid
+                            ,'&'
+                            ,'bannerNm=' + _item.bnrNm
+                            ,'&'
+                            ,'linkUrl=' + encodeURIComponent(_item.linkUrl)
+                        ].join('');
+
+                        break;
+
+                }
+
+                _item.href = _href;
+
+                _item.target = _target;
+
+
+                arr.push( _item );
+            }
+
+            that.mainSwiper     = arr;
+
             setTimeout(function(){
                 new Swiper ('.main_swiper',{
                     autoplay: {

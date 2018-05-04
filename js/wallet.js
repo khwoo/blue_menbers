@@ -1,13 +1,15 @@
 
-var vm = new Vue({
+new Vue({
     el: '.container',
     data: {
         onReady:false,
         wallet_url : 'javascript:void(0)' ,
         bizlist : []
         ,brandUrllist : []
+        ,bannerlist : []
         ,coupon_box :''
         ,main_url :''
+        ,bannerView_YN : false
         ,loading_type : true
         ,popdata : {
 
@@ -139,6 +141,13 @@ var vm = new Vue({
 
                 console.log( res);
 
+                var bannerlist = res.bnrList;
+
+                //배너 정보
+                if(bannerlist.length > 0 ){
+                    that.bannerData( bannerlist );
+                }
+
                 var categorylist = new Array();
 
                 for(var i = 0 ; i < res.ctgrList.length ;i++ ){
@@ -158,6 +167,7 @@ var vm = new Vue({
                 }
 
                 that.bizlist = categorylist;
+
                 that.loading_type = false;
 
             },function( code , msg ){
@@ -167,7 +177,134 @@ var vm = new Vue({
             });
 
         }
+        ,bannerData : function( list ){
 
+            var that = this;
+
+
+            that.bannerView_YN = true;
+
+            /*
+                배너 연결 구분 :
+                0-연결없음
+                1-상품연결
+                2-외부연결
+                3-내부연견
+             */
+
+            var arr = new Array();
+
+            for(var i = 0 ; i < list.length ;i++ ){
+
+                var _item = list[i];
+
+                var _href = 'javascript:void(0);';
+
+                var _target = '_blank';
+
+                switch(_item.bnrLinkGbn){
+
+                    case "1":
+
+                        //상품연결
+                        //
+                        if(_item.goodsSalGbn == '1' ){
+
+                            _href = 'details.html'+
+                                '?custNo='+ that.key_custNo +''+
+                                '&uid=' + that.key_uid + '' +
+                                '&productId='+ _item.goodsCd +' ';
+
+                        }
+
+                        if(_item.goodsSalGbn == '2' ){
+
+                            _href = 'discount_details.html'+
+                                '?custNo='+ that.key_custNo +''+
+                                '&uid=' + that.key_uid + '' +
+                                '&productId='+ _item.goodsCd +' ';
+
+                        }
+
+                        break;
+                    case "2":
+
+                        //외부연결
+                        _href = _item.linkUrl;
+
+                        _target = 'view_window';
+
+                        break;
+                    case "3":
+
+                        //내부연결
+                        _href = [
+                            'banner_view.html'
+                            ,'?'
+                            ,'custNo=' + that.key_custNo
+                            ,'&'
+                            ,'uid=' + that.key_uid
+                            ,'&'
+                            ,'bannerNm=' + _item.bnrNm
+                            ,'&'
+                            ,'linkUrl=' + encodeURIComponent(_item.linkUrl)
+                        ].join('');
+
+                        break;
+
+                }
+
+                _item.href = _href;
+                _item.target = _target;
+
+                arr.push( _item );
+            }
+
+            that.bannerlist = arr;
+
+            setTimeout(function(){
+
+                new Swiper ('.main_swiper',{
+                    autoplay: {
+                        delay: 4000
+                    },
+                    loop: true,
+                    pagination: {
+                        el: '.main_pagination'
+                    }
+                });
+
+            },100);
+
+            // "bnrList": [
+            //     {
+            //         "bnrCd": "B00007",
+            //         "bnrLinkGbn": "1",
+            //         "bnrNm": "TEST",
+            //         "bnrImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/bnr_20180503204519653.png",
+            //         "linkUrl": "",
+            //         "goodsCd": "G18050300173"
+            //     },
+            //     {
+            //         "bnrCd": "B00008",
+            //         "bnrLinkGbn": "3",
+            //         "bnrNm": "TEST11",
+            //         "bnrImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/bnr_20180504102442432.png",
+            //         "linkUrl": "http://page-dev.echoss.co.kr/bluemembers/wallet.html",
+            //         "goodsCd": ""
+            //     },
+            //     {
+            //         "bnrCd": "B00009",
+            //         "bnrLinkGbn": "0",
+            //         "bnrNm": "연결없는 배너",
+            //         "bnrImg": "https://12cm-image.s3.amazonaws.com/pointMall/dev/bnr_20180504103839683.png",
+            //         "linkUrl": "",
+            //         "goodsCd": ""
+            //     }
+            // ]
+
+
+        }
         ,brand_url : function(){
 
             var that = this;
@@ -258,13 +395,4 @@ var vm = new Vue({
 
 });
 
-
-
-
-
-
-
-
-
-//
 

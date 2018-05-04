@@ -8,6 +8,7 @@
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/wallet.css" rel="stylesheet"/>
     <link href="css/utils.css" rel="stylesheet"/>
+    <link href="css/lib/swiper-4.1.0.min.css" rel="stylesheet" />
     <script type="text/javascript" src="js/lib/vue.min.js"></script>
     <script type="text/javascript" src="js/px2rem.js"></script>
 
@@ -25,12 +26,27 @@
             </a>
         </div>
 
-
         <!--
             :href="brandUrllist[0].link_url"
          -->
 
         <ul class="section">
+
+            <!-- 배너 START -->
+
+                <div v-if="bannerView_YN" class="main_swiper swiper-container wallet_swiper">
+
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide bg_cover"  v-for="item in bannerlist"
+                             :style="{backgroundImage:'url('+ item.bnrImg +')'}">
+                            <a :href="item.href"></a>
+                        </div>
+                    </div>
+
+                    <div class="main_pagination swiper-pagination"></div>
+                </div>
+
+            <!-- 배너 END -->
 
             <li v-show="onReady" class="article article_1" :class="{show_motion:onReady}">
                 <a class="bg_box" :href="brandUrllist[0].link_url">
@@ -108,10 +124,11 @@
     <div :loading_type="loading_type" is="loading"></div>
 
 </div>
+
 <script type="text/javascript" src="https://developer.echoss.co.kr/sdk/echoss-lite-min.js"></script>
 <script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
 <script type="text/javascript" src="js/lib/utils.js"></script>
 <script type="text/javascript" src="js/wallet.js"></script>
-
+<script type="text/javascript" src="js/lib/swiper-4.1.0.min.js"></script>
 </body>
 </html>
