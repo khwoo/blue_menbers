@@ -25,6 +25,7 @@ var vm = new Vue ({
         coupon_use_type_stamp   : false ,
         coupon_use_type_barcode : false ,
         coupon_use_type_pinNo   : false ,
+        coupon_use_type_useNo   : false ,
         coupon_use_type_pinNo_text : '' ,
         coupon_box_url : ''
         ,popdata : {
@@ -59,10 +60,51 @@ var vm = new Vue ({
 
             console.log([
                 '사용 구분 : ' + res.ticketUseCd
-                ,' [1] 스탬프 : ' + that.coupon_use_type_stamp
-                ,' [2] 바코드 : ' + that.coupon_use_type_barcode
-                ,' [3] 핀번호 : ' + that.coupon_use_type_pinNo
+                ,' [1] 스탬프  : ' + that.coupon_use_type_stamp
+                ,' [2] 바코드  : ' + that.coupon_use_type_barcode
+                ,' [3] 핀번호  : ' + that.coupon_use_type_pinNo
+                ,' [4] 쿠폰사용 : ' + that.coupon_type
             ].join('\n'));
+
+            //사용 방식
+            if( that.coupon_use_type_stamp ){
+
+                //발급 상태
+                if( res.stCd == '1' ){
+
+                    that.$utils_echoss_init( that ,function( res ){
+                        that.$utils_echoss_onStamp( function( res ){
+                            //쿠폰 사용
+                            that.coupon_use(res);
+                        },function(code , msg ){
+                            that.$utils_popup(that,true,'',msg);
+                        });
+
+                        //otp
+                        that.$utils_setOtp( that,  function(){
+
+                            that.couponDisable = true;
+                            that.couponUsed = true;
+
+                        },function( code , msg ){
+                            //otp error
+                            that.$utils_popup(that,true,'', msg );
+
+                        });
+
+                        ///////////// OTP /////////////
+
+                    },function( code , msg  ){
+                        that.$utils_popup( that, true , '' , msg );
+                    });
+
+                }else{
+
+                    //사용 완료 .
+
+                }
+
+            }
 
         },function( code, msg ){
 
@@ -75,6 +117,57 @@ var vm = new Vue ({
 
     methods: {
 
+        /*
+        *
+        * 스탬프 쿠폰 사용
+        *
+        * */
+        coupon_use : function( data ){
+
+            var that = this;
+
+            var param = {};
+
+            param.custNo = that.key_custNo;
+            param.ticketNo = that.key_ticketNo;
+            param.eq = data.equipTyp;
+            param.s = data.s;
+            param.p = data.p;
+            param.c = data.c;
+            param.version = data.version;
+            param.brand = that.brdId;
+            param.useGbnCd = '1';
+
+            BM.TICKET_USE( param , function( res ){
+
+                stopStampAnimation();
+
+                that.couponDisable = true;
+                that.couponUsed = true;
+
+                that.usedDate = [
+                    res.useDt.substr(0,4)
+                    ,'-'
+                    ,res.useDt.substr( 4 , 2 )
+                    ,'-'
+                    ,res.useDt.substr( 6 , 2 )
+                    ,' '
+                    ,res.useTm.substr( 0 , 2 )
+                    ,':'
+                    ,res.useTm.substr( 2 , 2 )
+                ].join('');
+
+                that.usedPlace = res.brdNm;
+
+            },function( code , msg ){
+
+                stopStampAnimation();
+
+                that.$utils_popup(that,true,'' , msg);
+
+            });
+
+        },
 
         /*
         *
@@ -121,6 +214,62 @@ var vm = new Vue ({
                 ].join('');
 
                 that.usedPlace = res.brdNm;
+
+            },function( code , msg ){
+
+                that.loading_type = false;
+                that.$utils_popup(that,true,'' , msg);
+
+            });
+
+        }
+
+
+        /*
+        *
+        * 핀번호 쿠폰 사용
+        *
+        *
+        * */
+        ,coupon_pinNo_use : function( data ){
+
+            var that = this;
+
+            if(that.couponDisable){
+
+                return;
+
+            }
+
+            var param = {};
+
+            param.custNo = that.key_custNo;
+            param.ticketNo = that.key_ticketNo;
+            param.brand = that.brdId;
+            param.useGbnCd = '4';
+            that.loading_type = true;
+
+            BM.TICKET_USE( param , function( res ){
+
+                that.couponDisable = true;
+                that.couponUsed = true;
+                that.loading_type = false;
+
+                that.usedDate = [
+                    res.useDt.substr(0,4)
+                    ,'-'
+                    ,res.useDt.substr( 4 , 2 )
+                    ,'-'
+                    ,res.useDt.substr( 6 , 2 )
+                    ,' '
+                    ,res.useTm.substr( 0 , 2 )
+                    ,':'
+                    ,res.useTm.substr( 2 , 2 )
+                ].join('');
+
+                that.usedPlace = res.brdNm;
+
+                that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
 
             },function( code , msg ){
 
@@ -199,43 +348,38 @@ var vm = new Vue ({
                 that.couponDisable   = false;
                 that.couponUsed          = false;
 
-                //
-                if( res.goodsSalGbn == '1' ) { //포인트
+                res.ticketUseCd = '1,2,4';
 
-                    var _useCd = res.ticketUseCd.split(',');
+                var _useCd = res.ticketUseCd.split(',');
 
-                    for (var i = 0; i < _useCd.length; i++) {
+                for (var i = 0; i < _useCd.length; i++) {
 
-                        switch (_useCd[i]) {
+                    switch (_useCd[i]) {
 
-                            case "1":
+                        case "1":
 
-                                that.coupon_use_type_stamp = true;
+                            that.coupon_use_type_stamp = true;
 
-                                break;
-                            case "2":
+                            break;
+                        case "2":
 
-                                that.coupon_use_type_barcode = true;
+                            that.coupon_use_type_barcode = true;
 
-                                break;
-                            case "3":
+                            break;
+                        case "3":
 
-                                that.coupon_use_type_pinNo = true;
-                                that.coupon_use_type_pinNo_text = '쿠폰번호 확인을 위해 본 버튼을 클릭해 주세요.';
-                                break;
+                            that.coupon_use_type_pinNo = true;
+                            that.coupon_use_type_pinNo_text = '쿠폰번호 확인을 위해 본 버튼을 클릭해 주세요.';
+                            break;
+                        case "4":
 
-                        }
+                            that.coupon_type = false;
+
+                            break;
 
                     }
 
-                    that.coupon_type = true;
-
-                }else{ // 할인
-
-                    that.coupon_type = false;
-
                 }
-
 
                 if( res.stCd === '2' || res.stCd === '8' ){
                     if( res.stCd === '2' ){

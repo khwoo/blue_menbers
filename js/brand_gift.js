@@ -131,13 +131,6 @@ var vm = new Vue ({
 
                     }
 
-                    // _info.productHref = 'details.html'+
-                    //     '?custNo='+ that.key_custNo +''+
-                    //     '&productId='+ _item.goodsCd +'' +
-                    //     '&brandCd='+ that.key_brandCd +'' +
-                    //     '&uid=' + that.key_uid + '' +
-                    //     '&link=brand_gift';
-
                     list.push( _info );
 
                 }

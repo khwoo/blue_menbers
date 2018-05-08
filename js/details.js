@@ -10,7 +10,7 @@ var vm = new Vue({
        priceAfter           : '',
        subMenuIdx           : 0,
        subMenuList          : [
-                   {name: '상품안내'},{name: '구매정보'},{name: '가맹점정보'}
+                   {name: '상품안내'},{name: '사용안내'},{name: '가맹점정보'}
                ],
        subContentList       : [],
        btnOptionShow        :false,

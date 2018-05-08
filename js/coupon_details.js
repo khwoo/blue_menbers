@@ -52,6 +52,8 @@ var vm = new Vue ({
 
         //
 
+        that.loading_type = true;
+
         that.couponInfo(function( res){
 
 
@@ -84,6 +86,8 @@ var vm = new Vue ({
                             that.couponDisable = true;
                             that.couponUsed = true;
 
+                            that.loading_type = false;
+
                         },function( code , msg ){
                             //otp error
                             that.$utils_popup(that,true,'', msg );
@@ -92,6 +96,8 @@ var vm = new Vue ({
 
                         ///////////// OTP /////////////
 
+                        that.loading_type = false;
+
                     },function( code , msg  ){
                         that.$utils_popup( that, true , '' , msg );
                     });
@@ -99,8 +105,12 @@ var vm = new Vue ({
                 }else{
 
                     //사용 완료 .
-
+                    that.loading_type = false;
                 }
+
+            }else{
+
+                that.loading_type = false;
 
             }
 
@@ -124,6 +134,12 @@ var vm = new Vue ({
         coupon_use : function( data ){
 
             var that = this;
+
+            if(that.couponDisable){
+
+                return;
+
+            }
 
             var param = {};
 
@@ -157,6 +173,31 @@ var vm = new Vue ({
                 ].join('');
 
                 that.usedPlace = res.brdNm;
+
+                that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
+
+
+                //////////////////////////////////////////////////
+
+                    try {
+                        echoss.Icon.hideIcon();
+                    }catch(e){
+
+                    }
+
+                    try {
+                        that.$utils_echoss_onStampRemove();
+                    }catch(e){
+
+                    }
+
+                    try{
+                        echoss.Icon.enableStampingErrorMsg(false);
+                    }catch(e){
+
+                    }
+
+                //////////////////////////////////////////////////
 
             },function( code , msg ){
 
@@ -214,6 +255,29 @@ var vm = new Vue ({
 
                 that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
 
+                //////////////////////////////////////////////////
+
+                try {
+                    echoss.Icon.hideIcon();
+                }catch(e){
+
+                }
+
+                try {
+                    that.$utils_echoss_onStampRemove();
+                }catch(e){
+
+                }
+
+                try{
+                    echoss.Icon.enableStampingErrorMsg(false);
+                }catch(e){
+
+                }
+
+                //////////////////////////////////////////////////
+
+
             },function( code , msg ){
 
                 that.loading_type = false;
@@ -269,6 +333,31 @@ var vm = new Vue ({
 
                 that.usedPlace = res.brdNm;
 
+                that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
+
+                //////////////////////////////////////////////////
+
+                try {
+                    echoss.Icon.hideIcon();
+                }catch(e){
+
+                }
+
+                try {
+                    that.$utils_echoss_onStampRemove();
+                }catch(e){
+
+                }
+
+                try{
+                    echoss.Icon.enableStampingErrorMsg(false);
+                }catch(e){
+
+                }
+
+                //////////////////////////////////////////////////
+
+
             },function( code , msg ){
 
                 that.loading_type = false;
@@ -313,7 +402,7 @@ var vm = new Vue ({
                     that.useDate = "유효기간 없음";
                 }
 
-                that.couponNumber = res.pinNo;
+                that.couponNumber = res.pinNo.trim();
 
                 that.noticeList.push({
                     noticeTitle : '상품안내'
@@ -346,9 +435,6 @@ var vm = new Vue ({
                 that.couponDisable   = false;
                 that.couponUsed          = false;
 
-                //
-                if( res.goodsSalGbn == '1' ) { //포인트
-
                     var _useCd = res.ticketUseCd.split(',');
 
                     for (var i = 0; i < _useCd.length; i++) {
@@ -370,18 +456,15 @@ var vm = new Vue ({
                                 that.coupon_use_type_pinNo = true;
                                 that.coupon_use_type_pinNo_text = '쿠폰번호 확인을 위해 본 버튼을 클릭해 주세요.';
                                 break;
+                            case "4":
+
+                                that.coupon_type = false;
+
+                                break;
 
                         }
 
                     }
-
-                    that.coupon_type = true;
-
-                }else{ // 할인
-
-                    that.coupon_type = false;
-
-                }
 
 
                 if( res.stCd === '2' || res.stCd === '8' ){

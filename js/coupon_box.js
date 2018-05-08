@@ -387,7 +387,7 @@ var vm = new Vue ({
 
                 var _coupon = {};
 
-                if(_item.goodsSalGbn == '1' ){
+                //if(_item.goodsSalGbn == '1' ){
 
                     _coupon.productHref = [
                         'coupon_details.html'
@@ -399,21 +399,21 @@ var vm = new Vue ({
                         ,'uid=' + that.key_uid
                     ].join('');
 
-                }
+               // }
 
-                if(_item.goodsSalGbn == '2' ){
-
-                    _coupon.productHref = [
-                        'discount_coupon_details.html'
-                        ,'?'
-                        ,'custNo=' + that.key_custNo
-                        ,'&'
-                        ,'ticketNo=' + _item.ticketNo
-                        ,'&'
-                        ,'uid=' + that.key_uid
-                    ].join('');
-
-                }
+                // if(_item.goodsSalGbn == '2' ){
+                //
+                //     _coupon.productHref = [
+                //         'discount_coupon_details.html'
+                //         ,'?'
+                //         ,'custNo=' + that.key_custNo
+                //         ,'&'
+                //         ,'ticketNo=' + _item.ticketNo
+                //         ,'&'
+                //         ,'uid=' + that.key_uid
+                //     ].join('');
+                //
+                // }
 
 
 

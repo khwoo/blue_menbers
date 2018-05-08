@@ -246,6 +246,8 @@ var vm = new Vue ({
 
                         //상품연결
                         //
+
+
                         if(_item.goodsSalGbn == '1' ){
 
                             _href = 'details.html'+
@@ -277,7 +279,7 @@ var vm = new Vue ({
 
                         //내부연결
                         _href = [
-                            'banner_view.html'
+                            _item.linkUrl
                             ,'?'
                             ,'custNo=' + that.key_custNo
                             ,'&'
