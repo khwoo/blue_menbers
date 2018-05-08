@@ -106,12 +106,37 @@ var vm = new Vue ({
                     _info.productName = _item.goodsNm;
                     _info.priceAfter = _item.goodsSalPrice;
 
-                    _info.productHref = 'details.html'+
-                        '?custNo='+ that.key_custNo +''+
-                        '&productId='+ _item.goodsCd +'' +
-                        '&brandCd='+ that.key_brandCd +'' +
-                        '&uid=' + that.key_uid + '' +
-                        '&link=brand_gift';
+                    //goodsSalGbn 1 포인트 쿠폰
+                    //goodsSalGbn 2 할인 쿠폰
+
+                    if(_item.goodsSalGbn == '1' ){
+
+                        _info.productHref = 'details.html'+
+                            '?custNo='+ that.key_custNo +''+
+                            '&productId='+ _item.goodsCd +'' +
+                            '&brandCd='+ that.key_brandCd +'' +
+                            '&uid=' + that.key_uid + '' +
+                            '&link=brand_gift';
+
+                    }
+
+                    if(_item.goodsSalGbn == '2' ){
+
+                        _info.productHref = 'discount_details.html'+
+                            '?custNo='+ that.key_custNo +''+
+                            '&productId='+ _item.goodsCd +'' +
+                            '&brandCd='+ that.key_brandCd +'' +
+                            '&uid=' + that.key_uid + '' +
+                            '&link=brand_gift';
+
+                    }
+
+                    // _info.productHref = 'details.html'+
+                    //     '?custNo='+ that.key_custNo +''+
+                    //     '&productId='+ _item.goodsCd +'' +
+                    //     '&brandCd='+ that.key_brandCd +'' +
+                    //     '&uid=' + that.key_uid + '' +
+                    //     '&link=brand_gift';
 
                     list.push( _info );
 

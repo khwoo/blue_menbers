@@ -34,5 +34,49 @@ new Vue({
 
         },1);
     }
+    ,methods: {
+
+        echoss_link : function( callback ){
+
+            var that = this;
+
+            that.$utils_echossHttpSend(PF_URL + "/fcm/gateway/link", {
+
+                uid     : that.key_uid,
+                sid     : that.key_uid,
+                sto     : 0
+
+            }, "POST", function(result) {
+
+                that.key_custNo = result.user;
+                var scheme = result.scheme;
+
+                that.userInfo();
+
+                var historyParam = {};
+
+                historyParam.custNo = that.key_custNo;
+                historyParam.uid = that.key_uid;
+
+                that.$utils_history_replaceState( historyParam );
+
+                that.wallet_url = scheme + "://echoss/close";
+
+                return callback();
+
+            }, function(errorCode, errorMessage, result) {
+                if(result != undefined) {
+                    var scheme = result.scheme;
+
+                    that.wallet_url = scheme + "://echoss/close";
+                }
+
+                return callback();
+
+            });
+
+        }
+
+    }
 
 });
