@@ -71,6 +71,11 @@
                 <!--<p v-if="" class="coupon_number flex_center">쿠폰번호 : {{couponNumber}}</p>-->
 
                 <p v-if="coupon_use_type_pinNo" v-text="coupon_use_type_pinNo_text" class="coupon_number flex_center" v-on:click="coupon_pinNo_use"></p>
+                <p v-if="coupon_use_type_pinNo && !couponDisable" style="font-size: 0.34375rem;padding: 10px 0 0 0;">
+                    * 쿠폰번호를 확인하시면 쿠폰사용완료로 간주합니다.
+                </p>
+
+
                 <!-- 할인 쿠폰 사용 -->
                 <p v-if="!coupon_type && !couponDisable" v-on:click="discount_coupon_use" class="coupon_number flex_center">쿠폰 사용</p>
                 <p v-if="!coupon_type && !couponDisable" style="font-size: 0.34375rem;padding: 10px 0 0 0;">
@@ -102,7 +107,9 @@
     <div :loading_type="loading_type" is="loading"></div>
 
 </div>
+
 <script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>
+<!--<script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>-->
 <script type="text/javascript" src="https://developer.echoss.co.kr/sdk/echoss-lite-min.js"></script>
 <script type="text/javascript" src="dist/vue-barcode.js"></script>
 <script type="text/javascript" src="js/lib/utils.js"></script>

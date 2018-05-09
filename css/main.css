@@ -8,7 +8,8 @@
 /* swiper */
 .swiper-container.main_swiper {
   width: 100%;
-  height: 4.21875rem; }
+  height: 4.21875rem;
+}
   .swiper-container.main_swiper .swiper-slide a {
     display: block;
     width: 100%;

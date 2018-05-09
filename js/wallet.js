@@ -322,7 +322,7 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A044B004'
+                    ,'brandCd=V00A012B011'
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -337,7 +337,7 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A002B302'
+                    ,'brandCd=V00A003B603'
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -352,7 +352,7 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A044B001'
+                    ,'brandCd=V00A012B003'
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -367,7 +367,7 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A044B002'
+                    ,'brandCd=V00A003B371'
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')

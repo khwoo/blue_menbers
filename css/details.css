@@ -16,7 +16,8 @@ body {
   .article_top .product_img {
     position: relative;
     width: 100%;
-    height: 6.390625rem; }
+    height: 6.390625rem;
+  }
   .article_top .product_info {
     width: 9.296875rem;
     margin-top: 0.5rem;
