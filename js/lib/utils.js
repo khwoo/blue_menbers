@@ -258,10 +258,11 @@ utils.install = function( Vue ){
     //초기화
     Vue.prototype.$utils_echoss_init = function( that, callbackSuccess , callbackFail ){
         var API_KEY = SVC_KEY;
-        echoss.initialize(API_KEY, echoss.REGION_CODE_TYPE.KOREA);
+
         echoss.initializeSuccess = function() {
 
             echoss.setLanguageCode(echoss.Common.LANGUAGE_CODE_TYPE.KOREAN);
+
             echoss.Stamp.init( function(locUseTyp) {
                 echoss.Icon.init();
                 echoss.Icon.enableStampingErrorMsg(true);
@@ -274,6 +275,13 @@ utils.install = function( Vue ){
                 return callbackFail( errorCode , errorMsg );
             });
         }
+
+        echoss.initializeFail = function(errorCode, errorMessage) {
+
+            return callbackFail( errorCode , errorMessage );
+
+        }
+        echoss.initialize(API_KEY, echoss.REGION_CODE_TYPE.KOREA);
     }
 
     Vue.prototype.$utils_echoss_onStampRemove = function(){

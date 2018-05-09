@@ -99,6 +99,7 @@ var vm = new Vue ({
                         that.loading_type = false;
 
                     },function( code , msg  ){
+                        that.loading_type = false;
                         that.$utils_popup( that, true , '' , msg );
                     });
 
@@ -182,19 +183,19 @@ var vm = new Vue ({
                     try {
                         echoss.Icon.hideIcon();
                     }catch(e){
-
+                        console.log(e);
                     }
 
                     try {
                         that.$utils_echoss_onStampRemove();
                     }catch(e){
-
+                        console.log(e);
                     }
 
                     try{
                         echoss.Icon.enableStampingErrorMsg(false);
                     }catch(e){
-
+                        console.log(e);
                     }
 
                 //////////////////////////////////////////////////
@@ -260,19 +261,19 @@ var vm = new Vue ({
                 try {
                     echoss.Icon.hideIcon();
                 }catch(e){
-
+                    console.log(e);
                 }
 
                 try {
                     that.$utils_echoss_onStampRemove();
                 }catch(e){
-
+                    console.log(e);
                 }
 
                 try{
                     echoss.Icon.enableStampingErrorMsg(false);
                 }catch(e){
-
+                    console.log(e);
                 }
 
                 //////////////////////////////////////////////////
@@ -340,19 +341,19 @@ var vm = new Vue ({
                 try {
                     echoss.Icon.hideIcon();
                 }catch(e){
-
+                    console.log(e);
                 }
 
                 try {
                     that.$utils_echoss_onStampRemove();
                 }catch(e){
-
+                    console.log(e);
                 }
 
                 try{
                     echoss.Icon.enableStampingErrorMsg(false);
                 }catch(e){
-
+                    console.log(e);
                 }
 
                 //////////////////////////////////////////////////
