@@ -120,7 +120,28 @@ var vm = new Vue({
                 that.productImg = res.goodsDtlImgs[0].goodsDtlImg;
                 that.brandName = res.brdNm;
                 that.productName = res.goodsNm;
-                that.productNotice = that.$utils_date( res.salEndDt , '년' , '월 ' , '일까지 구매가능' );
+                //expiDt
+
+                if( res.expiDt.length == 2 ) {
+                    if( res.expiDt.indexOf("일") >= 0 )
+                        that.productNotice = "구매일로부터 " + res.expiDt.substr(0,1) + "일까지 이용가능";
+                    else if( res.expiDt.indexOf("월") >= 0 )
+                        that.productNotice = "구매일로부터 " + res.expiDt.substr(0,1) + "개월까지 이용가능";
+                }
+                else if( res.expiDt.length == 3 ) {
+                    if( res.expiDt.indexOf("일") >= 0 )
+                        that.productNotice = "구매일로부터 " + res.expiDt.substr(0,2) + "일까지 이용가능";
+                    else if( res.expiDt.indexOf("월") >= 0 )
+                        that.productNotice = "구매일로부터 " + res.expiDt.substr(0,2) + "개월까지 이용가능";
+                }
+                else if( res.expiDt.length == 8 ) {
+                    that.productNotice = that.$utils_date( res.expiDt , '년' , '월 ' , '일까지 이용가능' );
+                }
+                else {
+                    that.productNotice = "이용기간 제한없음";
+                }
+
+                //that.productNotice = that.$utils_date( res.salEndDt , '년' , '월 ' , '일까지 이용가능' );
                 that.priceAfter = res.goodsSalPrice;
                 that.totalPrice = res.goodsSalPrice;
                 that.prstPsbYn = res.prstPsbYn;
@@ -206,10 +227,10 @@ var vm = new Vue({
         tap_buy: function() {
             var that = this;
 
-            var _message_1 ='선택한 할인쿠폰을 다운받으시겠습니까?';
+            var _message_1 ='선택한 혜택권을 다운받으시겠습니까?';
             var _message_2 = [
-                 '쿠폰 발급이 완료되었습니다.</br>'
-                ,'발급된 쿠폰은 보관함에서 확인할 수 있습니다.'
+                 '혜택권 다운로드가 완료되었습니다.</br>'
+                ,'발급된 혜택권은 보관함에서 확인할 수 있습니다.'
             ].join('');
 
             that.$utils_popupForm( that ,true , '' , _message_1 , false , function( res ){

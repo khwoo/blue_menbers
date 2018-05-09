@@ -90,3 +90,7 @@
 .history_list ul .left{
     width: 6.03125rem!important;
 }
+
+.coupon_info .product_name{
+    width: auto!important;
+}

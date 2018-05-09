@@ -372,40 +372,57 @@ var vm = new Vue ({
             var id = parent.dataset.id;
             that.categoryIdx = id;
 
-            if( that.menuIdx == '0' ){
+            var historyParam = {};
 
-                var historyParam = {};
+            if( that.menuIdx == '0' ){
 
                 historyParam.custNo = that.key_custNo;
                 historyParam.uid = that.key_uid;
 
-                that.$utils_history_replaceState( historyParam );
+            }else{
+
+                historyParam.custNo = that.key_custNo;
+                historyParam.menuIdx = that.menuIdx;
+                historyParam.categoryIdx = '';
+                historyParam.uid = that.key_uid;
 
             }
 
+            that.$utils_history_replaceState( historyParam );
+
+
+
+            var param = new Array();
             if( that.menuIdx == 0 ){
 
-                var param = new Array();
+
                 param.custNo = that.key_custNo;
 
-                that.loading_type = true;
-
-                BM.MAIN( param ,function( res ){
-                    if( res.bnrList.length > 0 ){
-                        that.banrData( res );
-                    }
-                    that.productData(  true , res );
-
-                    that.loading_type = false;
-
-                },function( code , msg ){
-
-                    that.loading_type = false;
-                    that.$utils_popup( that , true , '' , msg );
-
-                });
-
+            }else{
+                param.ctgrGrpCd = that.menuIdx;
+                param.custNo = that.key_custNo;
+                param.ctgrCd = '';
+                that.key_categoryIdx = '';
+                that.categoryIdx = '';
             }
+
+            that.loading_type = true;
+
+            BM.MAIN( param ,function( res ){
+                if( res.bnrList.length > 0 ){
+                    that.banrData( res );
+                }
+                that.productData(  true , res );
+
+                that.loading_type = false;
+
+            },function( code , msg ){
+
+                that.loading_type = false;
+                that.$utils_popup( that , true , '' , msg );
+
+            });
+
 
         }
         //카테고리

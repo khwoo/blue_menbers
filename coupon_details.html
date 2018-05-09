@@ -77,9 +77,9 @@
 
 
                 <!-- 할인 쿠폰 사용 -->
-                <p v-if="!coupon_type && !couponDisable" v-on:click="discount_coupon_use" class="coupon_number flex_center">쿠폰 사용</p>
+                <p v-if="!coupon_type && !couponDisable" v-on:click="discount_coupon_use" class="coupon_number flex_center">쿠폰 사용시 버튼을 눌러주세요</p>
                 <p v-if="!coupon_type && !couponDisable" style="font-size: 0.34375rem;padding: 10px 0 0 0;">
-                    *쿠폰 사용시에만 사용완료를 눌러주세요.<br/>
+                    *버튼은 쿠폰 사용시에만 눌러주세요.<br/>
                     *사용완료 후에는 재사용이 불가하오니, 신중하게 사용해주세요.
                 </p>
 
@@ -108,8 +108,8 @@
 
 </div>
 
+<!--<script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>-->
 <script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>
-<!--<script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>-->
 <script type="text/javascript" src="https://developer.echoss.co.kr/sdk/echoss-lite-min.js"></script>
 <script type="text/javascript" src="dist/vue-barcode.js"></script>
 <script type="text/javascript" src="js/lib/utils.js"></script>

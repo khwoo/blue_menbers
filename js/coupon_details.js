@@ -114,8 +114,8 @@ var vm = new Vue ({
 
             }
 
-
         },function( code, msg ){
+            that.loading_type = false;
 
         });
 
@@ -385,21 +385,21 @@ var vm = new Vue ({
 
                 if( res.expiDt.length == 2 ) {
                     if( res.expiDt.indexOf("일") >= 0 )
-                        that.useDate = "구매일로부터 " + res.expiDt.substr(0,1) + "일";
+                        that.useDate = "구매일로부터 " + res.expiDt.substr(0,1) + "일까지 이용가능";
                     else if( res.expiDt.indexOf("월") >= 0 )
-                        that.useDate = "구매일로부터 " + res.expiDt.substr(0,1) + "개월";
+                        that.useDate = "구매일로부터 " + res.expiDt.substr(0,1) + "개월까지 이용가능";
                 }
                 else if( res.expiDt.length == 3 ) {
                     if( res.expiDt.indexOf("일") >= 0 )
-                        that.useDate = "구매일로부터 " + res.expiDt.substr(0,2) + "일";
+                        that.useDate = "구매일로부터 " + res.expiDt.substr(0,2) + "일까지 이용가능";
                     else if( res.expiDt.indexOf("월") >= 0 )
-                        that.useDate = "구매일로부터 " + res.expiDt.substr(0,2) + "개월";
+                        that.useDate = "구매일로부터 " + res.expiDt.substr(0,2) + "개월까지 이용가능";
                 }
                 else if( res.expiDt.length == 8 ) {
-                    that.useDate = "~ " + res.expiDt.substr(0,4) + "-" + res.expiDt.substr(4,2) + "-" + res.expiDt.substr(6,2);
+                    that.useDate = that.$utils_date( res.expiDt , '년' , '월 ' , '일까지 이용가능' );
                 }
                 else {
-                    that.useDate = "유효기간 없음";
+                    that.useDate = "이용기간 제한없음";
                 }
 
                 that.couponNumber = res.pinNo.trim();

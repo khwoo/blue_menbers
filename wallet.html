@@ -28,7 +28,7 @@
 
         <!-- 배너 START -->
 
-        <div v-if="bannerView_YN" class="main_swiper swiper-container wallet_swiper top_banner bg_cover">
+        <div v-if="bannerView_YN && bannerlist.length > 1" class="main_swiper swiper-container wallet_swiper top_banner bg_cover">
 
             <div class="top_banner bg_cover swiper-wrapper" style="padding-top: initial;">
                 <div class="swiper-slide bg_cover"  v-for="item in bannerlist"
@@ -38,6 +38,19 @@
             </div>
 
             <div class="main_pagination swiper-pagination"></div>
+
+
+        </div>
+
+        <div v-if="bannerView_YN && bannerlist.length == 1" class=" wallet_swiper top_banner bg_cover">
+
+            <div class="top_banner bg_cover swiper-wrapper" style="padding-top: initial;">
+                <div class="swiper-slide bg_cover"  v-for="item in bannerlist"
+                     :style="{backgroundImage:'url('+ item.bnrImg +')'}">
+                    <a :href="item.href"></a>
+                </div>
+            </div>
+
         </div>
 
         <!-- 배너 END -->
