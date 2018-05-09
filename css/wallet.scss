@@ -20,6 +20,19 @@ $light: #fff; /* light 폰트 컬러 */
 .container {
   /* coupon_wallet.html */
   /* 공통 */
+
+  .top_banner {
+    width:100%;
+    height:px2rem(200px);
+    margin-bottom:px2rem(-76px);
+    padding-top:px2rem(76px);
+
+    a {
+      display: block;
+      width:100%;
+      height:100%;
+    }
+  }
   .section {
     .show_motion {
       //transform: translate(0,300%);
@@ -68,39 +81,12 @@ $light: #fff; /* light 폰트 컬러 */
     .bg_box {
       display: block;
       width: 100%;
-      background-color: #FBDA33;
     }
 
-    .logo_emart {
-      position: static;
-      width: px2rem(197px);
-      margin-top: px2rem(58px);
-      margin-left: px2rem(52px);
-    }
-    .content {
-      padding-top: px2rem(20px);
-      padding-left: px2rem(52px);
-      .title {
-        line-height: px2rem(29px);
-        font-weight: bold;
-        font-size: px2rem(24px);
-      }
-      .text {
-        line-height: px2rem(22px);
-        font-size: px2rem(15px);
-      }
-    }
-
-    .shap_1 {
-      top: px2rem(59px);
-      right: 0;
-      width: px2rem(223px);
-    }
-
-    .img_emart_1 {
-      top: px2rem(147px);
-      right: px2rem(34px);
-      width: px2rem(308px);
+    .img_shop_1 {
+      top: 0;
+      left: 0;
+      width: 100%;
     }
   }
 
@@ -114,51 +100,26 @@ $light: #fff; /* light 폰트 컬러 */
       transform: rotate(-8deg);
     }
 
-    .logo_ja {
-      top: px2rem(54px);
-      left: px2rem(108px);
-      width: px2rem(484px);
+    .img_shop_2 {
+      top: px2rem(-92px);
+      left: px2rem(20px);
+      width: px2rem(686px);
     }
   }
 
   .article_3 {
     height: px2rem(225px);
-    top: px2rem(-184px);
+    top: px2rem(-180px);/**/
     .bg_box {
       left: px2rem(-36px);
       width: px2rem(720px);
       background-color: #F79300;
-      transform: rotate(-8deg);
+      transform: rotate(-9deg);
     }
-    .logo_cui {
-      top: px2rem(40px);
-      left: px2rem(332px);
-      width: px2rem(36px);
-
-      transform: rotate(8deg);
-    }
-
-    .content {
-      position: absolute;
-      top: px2rem(40px);
-      left: px2rem(402px);
-
-      transform: rotate(9deg);
-
-      p {
-        color: #fff;
-      }
-      .title {
-        line-height: px2rem(30px);
-        font-weight: bold;
-        font-size: px2rem(25px);
-        margin-bottom: px2rem(6px);
-      }
-
-      .text {
-        line-height: px2rem(22px);
-        font-size: px2rem(15px);
-      }
+    .img_shop_3 {
+      top: px2rem(-98px);/**/
+      left: 0;
+      width: px2rem(673px);
     }
   }
 
@@ -171,42 +132,10 @@ $light: #fff; /* light 폰트 컬러 */
       transform: rotate(12deg);
     }
 
-    .img_golf {
+    .img_shop_4 {
       top: px2rem(-130px);
       left: 0;
       width: px2rem(708px);
-    }
-
-    .shap_2 {
-      left: 0;
-      top: px2rem(108px);
-      width: px2rem(212px);
-
-      transform: rotate(-12deg);
-    }
-
-    .content {
-      position: absolute;
-      top: px2rem(90px);
-      left: px2rem(390px);
-
-      transform: rotate(-12deg);
-
-      p {
-        color: #fff;
-      }
-
-      .title {
-        line-height: px2rem(31px);
-        font-weight: bold;
-        font-size: px2rem(26px);
-        margin-bottom: px2rem(6px);
-      }
-
-      .text {
-        line-height: px2rem(22px);
-        font-size: px2rem(15px);
-      }
     }
   }
 
@@ -239,7 +168,7 @@ $light: #fff; /* light 폰트 컬러 */
     padding-bottom:px2rem(30px);
 
     ul {
-      padding-top: px2rem(23px);
+      padding-top: px2rem(13px);
       padding-left: px2rem(54px);
 
       li {
@@ -252,6 +181,7 @@ $light: #fff; /* light 폰트 컬러 */
         display: inline-block;
         width: 100%;
         height: 100%;
+        padding-top: px2rem(10px);
       }
 
       p {

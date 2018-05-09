@@ -23,6 +23,7 @@ table {border-collapse:collapse; border-spacing:0;}
 header, footer, section, article, aside, nav, hgroup, details, menu, figure, figcaption {display:block;}
 a {text-decoration:none;color:#000;}
 body {
+  width: 100%;
   background:transparent;line-height:1.15;letter-spacing:-0.3px;
   font-family:HyundaiSansTextKRRegular,Helvetica,AppleSDGothicNeo,Arial,sans-serif;
   -webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;word-break:break-all;/*-webkit-user-select:none;*/
@@ -241,7 +242,6 @@ body {
       .icon_down {
         font-size: px2rem(18px);
         margin-top: px2rem(2px);
-        margin-left: px2rem(-3px);
         color:transparent;
       }
 

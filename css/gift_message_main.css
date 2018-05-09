@@ -165,8 +165,7 @@ body {
   .content .shape_gift {
     width: 1.4375rem; }
   .content .gift_number {
-
-    width: 7.34375rem;
+    width: 5.34375rem;
     height: 0.859375rem;
     margin: 0.359375rem 0 0.171875rem;
     line-height: 0.859375rem;
@@ -174,7 +173,7 @@ body {
     background-color: #FBDA33;
     border: 0.015625rem solid #707070;
     font-weight: bold;
-    font-size: 0.34375rem; }
+    font-size: 0.40625rem; }
   .content .validity {
     font-weight: bold;
     font-size: 0.34375rem; }

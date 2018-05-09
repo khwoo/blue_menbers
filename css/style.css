@@ -2,9 +2,6 @@
 @font-face {
   font-family: 'HyundaiSansTextKRRegular';
   src: url("../HyundaiSans/HyundaiSansTextKRRegular.ttf"); }
-  /*src: url("file:///android_asset/Fonts/HyundaiSansTextKRRegular.ttf"); }*/
-
-
 ol, ul, li {
   list-style: none; }
 
@@ -66,11 +63,11 @@ a {
   color: #000; }
 
 body {
+  width: 100%;
   background: transparent;
   line-height: 1.15;
   letter-spacing: -0.3px;
-  font-family: HyundaiSansTextKRRegular;
-/*,Helvetica,AppleSDGothicNeo,Arial,sans-serif*/
+  font-family: HyundaiSansTextKRRegular,Helvetica,AppleSDGothicNeo,Arial,sans-serif;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   word-break: break-all;
@@ -251,7 +248,6 @@ body {
       .section .header_menu li .icon_down {
         font-size: 0.28125rem;
         margin-top: 0.03125rem;
-        margin-left: -0.046875rem;
         color: transparent; }
       .section .header_menu li.on .menu_name {
         color: #fff; }
