@@ -321,41 +321,7 @@ var vm = new Vue ({
         tap_giftCancel: function() {
             this.alertShow = true
         },
-        tap_giftAgain: function() {
 
-            var that = this;
-
-            if(that.retryYn == 'N'){
-                that.$utils_popup(that, true , '' , '');
-                //처리중 재전송 불가
-                return;
-            }
-
-            var param = {};
-
-            // params.trxNo			= request.trxNo;   // 거레번호
-            // params.custNo			= request.custNo;   // 거레번호
-
-            param.custNo = that.key_custNo;
-            param.trxNo = that.key_trxNo;
-
-            that.loading_type = true;
-
-            BM.SEND_RETRY( param , function( res ){
-
-                console.log( res );
-                that.loading_type = false;
-                that.$utils_popup( that , true , '' , '재전송 되었습니다.');
-
-                that.retryYn = 'N';
-
-            },function( code , msg ){
-                that.loading_type = false;
-                that.$utils_popup( that , true , '' , msg );
-
-            });
-
-        },
         tap_cancel: function() {
             this.alertShow = false
         },
