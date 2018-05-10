@@ -15,7 +15,7 @@
 <body>
 <div class="container">
     <div v-cloak class="container_box flex_column_center">
-        <div class="section flex_center" style="padding: 0px;">
+        <div class="section flex_center" style="padding: 0px; position: relative; ">
 
 
             <div v-if="couponDisable" class="disable_box flex_column_center">
@@ -54,7 +54,10 @@
                     <p class="gift_name" v-text="giftName"></p>
                     <img class="shape_gift" src="images/icon_shap_gift.png"/>
 
-                    <p class="gift_number" v-if="coupon_use_type_pinNo" v-text="coupon_use_type_pinNo_text" v-on:click="coupon_pinNo_use"></p>
+                    <p class="gift_number" v-if="coupon_use_type_pinNo" v-text="coupon_use_type_pinNo_text" v-on:click="coupon_pinNo_use" style=" width: 7.54375rem!important; "></p>
+                    <p v-if="coupon_use_type_pinNo && !couponDisable" style="font-size: 0.34375rem;padding: 10px 0 0 0;">
+                        * 쿠폰번호를 확인하시면 쿠폰사용완료로 간주합니다.
+                    </p>
 
                     <p class="validity" v-text="giftValidity"></p>
 
@@ -78,8 +81,8 @@
 
     <div is="popup" :popdata="popdata"></div>
     <div :loading_type="loading_type" is="loading"></div>
-
 </div>
+
 <script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>
 <script type="text/javascript" src="https://developer.echoss.co.kr/sdk/echoss-lite-min.js"></script>
 <script type="text/javascript" src="dist/vue-barcode.js"></script>

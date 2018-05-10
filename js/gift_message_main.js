@@ -147,6 +147,30 @@ var vm = new Vue({
 
                     that.usedPlace = res.brdNm;
 
+                    that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.pinNo;
+
+                    //////////////////////////////////////////////////
+
+                    try {
+                        echoss.Icon.hideIcon();
+                    }catch(e){
+                        console.log(e);
+                    }
+
+                    try {
+                        that.$utils_echoss_onStampRemove();
+                    }catch(e){
+                        console.log(e);
+                    }
+
+                    try{
+                        echoss.Icon.enableStampingErrorMsg(false);
+                    }catch(e){
+                        console.log(e);
+                    }
+
+                    //////////////////////////////////////////////////
+
                 });
 
 
@@ -207,6 +231,28 @@ var vm = new Vue({
 
                 that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.pinNo;
 
+                //////////////////////////////////////////////////
+
+                try {
+                    echoss.Icon.hideIcon();
+                }catch(e){
+                    console.log(e);
+                }
+
+                try {
+                    that.$utils_echoss_onStampRemove();
+                }catch(e){
+                    console.log(e);
+                }
+
+                try{
+                    echoss.Icon.enableStampingErrorMsg(false);
+                }catch(e){
+                    console.log(e);
+                }
+
+                //////////////////////////////////////////////////
+
             },function( code , msg ){
 
                 that.loading_type = false;
@@ -237,21 +283,22 @@ var vm = new Vue({
 
                 if( res.expiDt.length == 2 ) {
                     if( res.expiDt.indexOf("일") >= 0 )
-                        that.giftValidity = "구매일로부터 " + res.expiDt.substr(0,1) + "일";
+                        that.giftValidity = "구매일로부터 " + res.expiDt.substr(0,1) + "일까지 이용가능";
                     else if( res.expiDt.indexOf("월") >= 0 )
-                        that.giftValidity = "구매일로부터 " + res.expiDt.substr(0,1) + "개월";
+                        that.giftValidity = "구매일로부터 " + res.expiDt.substr(0,1) + "개월까지 이용가능";
                 }
                 else if( res.expiDt.length == 3 ) {
                     if( res.expiDt.indexOf("일") >= 0 )
-                        that.giftValidity = "구매일로부터 " + res.expiDt.substr(0,2) + "일";
+                        that.giftValidity = "구매일로부터 " + res.expiDt.substr(0,2) + "일까지 이용가능";
                     else if( res.expiDt.indexOf("월") >= 0 )
-                        that.giftValidity = "구매일로부터 " + res.expiDt.substr(0,2) + "개월";
+                        that.giftValidity = "구매일로부터 " + res.expiDt.substr(0,2) + "개월까지 이용가능";
                 }
                 else if( res.expiDt.length == 8 ) {
-                    that.giftValidity = "~ " + res.expiDt.substr(0,4) + "-" + res.expiDt.substr(4,2) + "-" + res.expiDt.substr(6,2);
+                    // that.giftValidity = "~ " + res.expiDt.substr(0,4) + "-" + res.expiDt.substr(4,2) + "-" + res.expiDt.substr(6,2);
+                    that.giftValidity = that.$utils_date( res.expiDt , '년' , '월 ' , '일까지 이용가능' );
                 }
                 else {
-                    that.giftValidity = "유효기간 없음";
+                    that.giftValidity = "이용기간 제한없음";
                 }
 
                 //쿠폰 상테
