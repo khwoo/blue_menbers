@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <div v-cloak class="container_box">
+    <div v-cloak class="container_box two_btn_content">
         <div class="nav flex_center">
             <a class="btn_back flex_center" href="javascript:history.back();">
                 <img src="../../images/icon_back.png"/>
@@ -50,7 +50,10 @@
             </div>
 
             <div class="btn">
-                <a class="btn_gift" :href="brand_gift_url">
+                <a class="btn_top" :href="point_use_url">
+                    <p>포인트사용 > </p>
+                </a>
+                <a class="btn_bottom" :href="brand_gift_url">
                     <p>포인트 구매/선물하기 > </p>
                 </a>
             </div>

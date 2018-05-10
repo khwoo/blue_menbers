@@ -5,6 +5,7 @@ var vm = new Vue({
         alertDirection: false,
         alertTitle: '이용안내',
         brand_gift_url : '' ,
+        point_use_url : '' ,
         contentList: [],
     },
 
@@ -16,6 +17,14 @@ var vm = new Vue({
 
         that.brand_gift_url = [
             '../../brand_gift.html'
+            ,'?custNo=' + that.key_custNo
+            ,'&brandCd=' + that.key_brandCd
+            ,'&'
+            ,'uid=' + that.key_uid
+        ].join('');
+
+        that.point_use_url = [
+            '../../point_use.html'
             ,'?custNo=' + that.key_custNo
             ,'&brandCd=' + that.key_brandCd
             ,'&'
