@@ -39,7 +39,13 @@ var vm = new Vue({
         })
     },
     methods: {
+    map_url : function(){
 
+        var that = this;
+
+        location.href = 'map.html';
+
+    }
     }
 
 });

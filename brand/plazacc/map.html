@@ -6,9 +6,9 @@
     <meta name="format-detection" content="telephone=no"/>
     <title>brand</title>
     <link href="css/style.css" rel="stylesheet"/>
-    <link href="css/utils.css" rel="stylesheet" />
-    <script type="text/javascript" src="js/lib/vue.min.js"></script>
-    <script type="text/javascript" src="js/px2rem.js"></script>
+    <link href="../../css/utils.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="../../js/px2rem.js"></script>
     <style>
 
         .nav {
@@ -24,28 +24,21 @@
         <div class="nav flex_center">
             <!--<a class="btn_back flex_center" :href="wallet_url">-->
             <a class="btn_back flex_center" href="javascript:history.back();">
-                <img src="images/icon_back.png"/>
+                <img src="../../images/icon_back.png"/>
             </a>
             <p class="title">{{brandName}}</p>
         </div>
     </div><!-- end of container_box -->
 
-    <div id="map" :data-lat="lat" :data-lng="lng" style="height:100%;"></div>
+    <div id="map" style="height:100%;"></div>
 
 </div>
-<script type="text/javascript" src="js/lib/utils.js" ></script>
+<script type="text/javascript" src="../../js/lib/utils.js" ></script>
 <script type="text/javascript" src="js/map.js"></script>
 <script>
     function initMap() {
-
-        var _map = document.querySelector('#map');
-
-        var lat = _map.dataset.lat;
-        var lng = _map.dataset.lng;
-
-        //37.506027 lat
-        //127.047902 lng
-        var uluru = {lat: Number(lat) , lng: Number(lng) };
+        //37.129841, 127.148161
+        var uluru = {lat: 37.129841, lng: 127.148161 };
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 16,
             center: uluru
@@ -54,7 +47,6 @@
             position: uluru,
             map: map
         });
-
     }
 
     var _height = window.innerHeight;
