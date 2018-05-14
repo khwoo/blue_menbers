@@ -94,3 +94,10 @@
 .coupon_info .product_name{
     width: auto!important;
 }
+
+.link:link {
+    color: #23527c;
+}
+.link:visited {
+    color: Purple;
+}

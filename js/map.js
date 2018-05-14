@@ -21,9 +21,17 @@ new Vue({
         that.lat        = that.key_lat;
         that.lng        = that.key_lng;
 
-        that.brandName = "MAP";
+        if( that.key_title == undefined || that.key_title == '' ){
 
-        //that.brandName  = decodeURIComponent(that.key_title);
+            that.brandName = "MAP";
+
+        }else{
+
+            that.brandName  = decodeURIComponent(that.key_title);
+
+        }
+
+
 
 
     }
