@@ -20,7 +20,11 @@ new Vue({
 
         that.lat        = that.key_lat;
         that.lng        = that.key_lng;
-        that.brandName  = decodeURIComponent(that.key_title);
+
+        that.brandName = "MAP";
+
+        //that.brandName  = decodeURIComponent(that.key_title);
+
 
     }
 
