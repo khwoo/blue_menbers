@@ -33,7 +33,7 @@
                         <p class="title">사용일시</p>
                         <p class="content" v-text="usedDate"></p>
                     </li>
-                    <li class="flex_column_center">
+                    <li v-if="usedPlace != null && usedPlace != '' " class="flex_column_center">
                         <p class="title">사용처</p>
                         <p class="content" v-text="usedPlace"></p>
                     </li>

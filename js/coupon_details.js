@@ -522,7 +522,6 @@ var vm = new Vue ({
                 //     that.ticketUseCd = '9';
                 // }
 
-
             return callbackSuccess(res);
 
             },function( code , msg ){
