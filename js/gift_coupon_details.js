@@ -410,12 +410,14 @@ var vm = new Vue ({
 
                 that.noticeList.push({
                     noticeTitle : '상품안내'
-                    ,productNotice : res.goodsDesc.replace(/\r\n/gi, "<br/>")
+                    ,productNotice : res.goodsDesc.replace(/\r\n/gi, "<br/>").replace(/toClient:doBrowser##/gi ,'')
                 });
+
+                //toClient:doBrowser##
 
                 that.noticeList.push({
                     noticeTitle : '사용안내'
-                    ,productNotice : res.useDesc.replace(/\r\n/gi, "<br/>")
+                    ,productNotice : res.useDesc.replace(/\r\n/gi, "<br/>").replace(/toClient:doBrowser##/gi ,'')
                 });
 
                 that.noticeList.push({
@@ -429,7 +431,7 @@ var vm = new Vue ({
                     //     ,'가맹점 설명 : </br>' + res.brdDesc.replace(/\r\n/gi, "<br/>")
                     // ].join('')
                     ,productNotice : [
-                        res.brdDesc.replace(/\r\n/gi, "<br/>")
+                        res.brdDesc.replace(/\r\n/gi, "<br/>").replace(/toClient:doBrowser##/gi ,'')
                     ].join('')
                     //"주소 :" + res.brdAddr
                 });
