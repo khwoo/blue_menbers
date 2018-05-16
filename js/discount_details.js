@@ -122,26 +122,35 @@ var vm = new Vue({
                 that.productName = res.goodsNm;
                 //expiDt
 
-                if( res.expiDt.length == 2 ) {
-                    if( res.expiDt.indexOf("일") >= 0 ) {
-                        that.productNotice = that.$utils_date( that.$utils_addDate(Number(res.expiDt.substr(0, 1))) , '년 ' ,'월 ' , '일까지 이용가능' );
-                        console.log(res.expiDt);
-                    }else if( res.expiDt.indexOf("월") >= 0 ) {
-                        that.productNotice = that.$utils_date( that.$utils_addMonth(Number(res.expiDt.substr(0, 1))) , '년 ' ,'월 ' , '일까지 이용가능' );
-                    }
-                }
-                else if( res.expiDt.length == 3 ) {
-                    if( res.expiDt.indexOf("일") >= 0 ) {
-                        that.productNotice = that.$utils_date( that.$utils_addDate(Number(res.expiDt.substr(0, 2))) , '년 ' ,'월 ' , '일까지 이용가능' );
-                    }else if( res.expiDt.indexOf("월") >= 0 ) {
-                        that.productNotice = that.$utils_date( that.$utils_addMonth(Number(res.expiDt.substr(0, 2))) , '년 ' ,'월 ' , '일까지 이용가능' );
-                    }
-                }
-                else if( res.expiDt.length == 8 ) {
-                    that.productNotice = that.$utils_date( res.expiDt , '년 ' , '월 ' , '일까지 이용가능' );
-                }
-                else {
-                    that.productNotice = "이용기간 제한없음";
+                //expiGbnCd
+                //expiPrd
+
+                // expire_div_code(0:없음, 1:일수, 2:개월수, 3:지정일)
+                // exp_dt (숫자만 들어가 있음)
+                switch( res.expiGbnCd ){
+
+                    case "0" :
+
+                        that.productNotice = "이용기간 제한없음";
+
+                        break;
+                    case "1" :
+
+                        that.productNotice = that.$utils_date( that.$utils_addDate(Number(res.expiPrd)) , '년 ' ,'월 ' , '일까지 이용가능' );
+
+                        break;
+
+                    case "2" :
+
+                        that.productNotice = that.$utils_date( that.$utils_addMonth(Number(res.expiPrd)) , '년 ' ,'월 ' , '일까지 이용가능' );
+
+                        break;
+
+                    case "3" :
+
+                        that.productNotice = that.$utils_date( res.expiPrd , '년 ' , '월 ' , '일까지 이용가능' );
+
+                        break;
                 }
 
                 //that.productNotice = that.$utils_date( res.salEndDt , '년' , '월 ' , '일까지 이용가능' );
@@ -154,11 +163,17 @@ var vm = new Vue({
 
                 //value.replace(/\r\n/gi, "<br/>")
                 that.subContentList.push({
-                    contentText : res.goodsDesc1.replace(/\r\n/gi, "<br/>")
+                    contentText : [
+                        ( res.goodsDescImg == null || res.goodsDescImg == '' ? '' : '<img style="width:100%;" src="'+ res.goodsDescImg +'" />' )
+                        ,res.goodsDesc1.replace(/\r\n/gi, "<br/>")
+                    ].join('')
                 });
 
                 that.subContentList.push({
-                    contentText : res.useDesc.replace(/\r\n/gi, "<br/>")
+                    contentText : [
+                        ( res.useDescImg == null || res.useDescImg == '' ? '' : '<img style="width:100%;" src="'+ res.useDescImg +'" />' )
+                        ,res.useDesc.replace(/\r\n/gi, "<br/>")
+                    ].join('')
                 });
 
 
