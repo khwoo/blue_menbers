@@ -40,6 +40,57 @@ utils.install = function( Vue ){
 
     }
 
+    Vue.prototype.$utils_addDate = function( days ){
+
+        return addDate(days);
+
+    }
+
+    Vue.prototype.$utils_addMonth = function( month ){
+
+        return addMonth(month);
+
+    }
+
+    function addMonth(month){
+
+        if (month == undefined || month == '') {
+            month = 0;
+        }
+        var date = new Date();
+        date.setMonth(date.getMonth() + month);
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        return date.getFullYear() + '' + getFormatDate(month) + '' + getFormatDate(day);
+
+    }
+
+    function addDate(days) {
+        if (days == undefined || days == '') {
+            days = 1;
+        }
+        var date = new Date();
+        date.setDate(date.getDate() + days);
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        return date.getFullYear() + '' + getFormatDate(month) + '' + getFormatDate(day);
+    }
+
+    function getFormatDate(arg) {
+
+        if (arg == undefined || arg == '') {
+            return '';
+        }
+
+        var re = arg + '';
+        if (re.length < 2) {
+            re = '0' + re;
+        }
+
+        return re;
+    }
+
+
     Vue.prototype.$utils_pageView = function( that ){
 
         pageVIewInfo(that);
@@ -238,7 +289,7 @@ utils.install = function( Vue ){
         echoss.Icon.setEchossIconData({
             aprvData    : _data,
             //otpGbn,chCd,custNo,brdId,usePoint
-            funcCd      : "SBLPT",
+            funcCd      : "SBLTM",
             isuDivCd    : echoss.Icon.OTP_ISSUE_TYPE.COMMON_ETC,
             cntYn       : "N"
         }, function(res) {

@@ -199,7 +199,7 @@ var vm = new Vue ({
 
                 }
 
-                if(_item.goodsQttEpsYn == 'Y' ){
+                if(_item.goodsQttEpsYn == 'N' ){
 
                     _item.url = 'details_1.html'+
                         '?custNo='+ that.key_custNo +''+
