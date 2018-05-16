@@ -32,8 +32,18 @@ new Vue({
 
         that.bannerinfo();
 
+        // that.gift_message_main_url = [
+        //     'gift_message_main.html'
+        //     ,'?'
+        //     ,'custNo=' + that.key_cid
+        //     ,'&'
+        //     ,'ticketNo=' + that.key_tid
+        //     ,'&'
+        //     ,'uid=' + that.key_uid
+        // ].join('');
+
         that.gift_message_main_url = [
-            'gift_message_main.html'
+            'gift_coupon_details.html'
             ,'?'
             ,'custNo=' + that.key_cid
             ,'&'

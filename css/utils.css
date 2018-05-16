@@ -101,3 +101,11 @@
 .link:visited {
     color: Purple;
 }
+
+.method_use .method_bar_code img{
+    width: auto!important;
+}
+
+.method_use .method_bar_code{
+    padding: 0!important;
+}
