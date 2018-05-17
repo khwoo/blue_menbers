@@ -109,3 +109,10 @@
 .method_use .method_bar_code{
     padding: 0!important;
 }
+
+
+.container .category ul li:last-child{
+
+    padding-right: 0.84375rem!important;
+
+}
