@@ -99,7 +99,6 @@ var vm = new Vue ({
                     var _item = res.brdGoodsList[i];
 
                     var _info = {};
-                    console.log(_item.brdNm);
                     that.brandName = _item.brdNm;
                     _info.brandName = _item.brdNm;
                     _info.productImg = _item.goodsImg;

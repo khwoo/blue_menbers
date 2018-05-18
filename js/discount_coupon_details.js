@@ -157,7 +157,7 @@ var vm = new Vue ({
                     ,res.useTm.substr( 2 , 2 )
                 ].join('');
 
-                that.usedPlace = res.brdNm;
+                that.usedPlace = res.useCtnt;
 
             },function( code , msg ){
 
@@ -213,7 +213,7 @@ var vm = new Vue ({
                     ,res.useTm.substr( 2 , 2 )
                 ].join('');
 
-                that.usedPlace = res.brdNm;
+                that.usedPlace = res.useCtnt;
 
             },function( code , msg ){
 
@@ -267,7 +267,7 @@ var vm = new Vue ({
                     ,res.useTm.substr( 2 , 2 )
                 ].join('');
 
-                that.usedPlace = res.brdNm;
+                that.usedPlace = res.useCtnt;
 
                 that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
 
@@ -291,7 +291,7 @@ var vm = new Vue ({
 
                 console.log(res);
                 that.productImg = res.ticketDtlImgUrl;
-                that.brandName = res.brdNm;
+                that.brandName = res.useCtnt;
                 that.productName = res.ticketGoodsNm;
                 that.brdId = res.brdId;
                 that.trxNo = res.trxNo;
@@ -398,7 +398,7 @@ var vm = new Vue ({
                             ,res.useTm.substr( 2 , 2 )
                         ].join('');
 
-                        that.usedPlace = res.brdNm;
+                        that.usedPlace = res.useCtnt;
 
                     }
                     if( res.stCd === '8' ){

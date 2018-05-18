@@ -119,10 +119,6 @@ var vm = new Vue ({
 
             var that = this;
 
-            if( that.categoryIdx == 0 || that.categoryIdx == null || that.categoryIdx == '' ){
-                return;
-            }
-
             try {
 
                 setTimeout(function(){
@@ -130,6 +126,11 @@ var vm = new Vue ({
                     var _id = that.categoryIdx;
 
                     var _category = document.querySelector('.category_banner');
+
+                    if( that.categoryIdx == 0 || that.categoryIdx == null || that.categoryIdx == '' ){
+                        _category.scrollLeft = 0;
+                        return;
+                    }
 
                     var _li = _category.getElementsByTagName('li');
 
@@ -582,11 +583,11 @@ var vm = new Vue ({
 
                 if(_menuSHow){
 
-                    //that.categoryFocus();
+                    that.categoryFocus();
 
                 }
 
-                that.categoryFocus();
+                //that.categoryFocus();
 
             },function( code , msg ){
                 that.loading_type = false;

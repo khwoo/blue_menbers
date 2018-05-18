@@ -88,6 +88,8 @@ var vm = new Vue ({
 
                             that.loading_type = false;
 
+                            that.couponInfo(function(){},function(){});
+
                         },function( code , msg ){
                             //otp error
                             that.$utils_popup(that,true,'', msg );
@@ -173,7 +175,7 @@ var vm = new Vue ({
                     ,res.useTm.substr( 2 , 2 )
                 ].join('');
 
-                that.usedPlace = res.brdNm;
+                that.usedPlace = res.useCtnt;
 
                 that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
 
@@ -252,7 +254,7 @@ var vm = new Vue ({
                     ,res.useTm.substr( 2 , 2 )
                 ].join('');
 
-                that.usedPlace = res.brdNm;
+                that.usedPlace = res.useCtnt;
 
                 that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
 
@@ -332,7 +334,7 @@ var vm = new Vue ({
                     ,res.useTm.substr( 2 , 2 )
                 ].join('');
 
-                that.usedPlace = res.brdNm;
+                that.usedPlace = res.useCtnt;
 
                 that.coupon_use_type_pinNo_text = '쿠폰번호 : ' + that.couponNumber;
 
@@ -485,7 +487,7 @@ var vm = new Vue ({
                             ,res.useTm.substr( 2 , 2 )
                         ].join('');
 
-                        that.usedPlace = res.brdNm;
+                        that.usedPlace = res.useCtnt;
 
                     }
                     if( res.stCd === '8' ){
