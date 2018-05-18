@@ -114,6 +114,79 @@ var vm = new Vue ({
                 this.selectAllCity = false
             }
         }
+
+        ,categoryFocus : function(){
+
+            var that = this;
+
+            if( that.categoryIdx == 0 || that.categoryIdx == null || that.categoryIdx == '' ){
+                return;
+            }
+
+            try {
+
+                setTimeout(function(){
+
+                    var _id = that.categoryIdx;
+
+                    var _category = document.querySelector('.category_banner');
+
+                    var _li = _category.getElementsByTagName('li');
+
+                    _li_Left = 0;
+
+                    _li_that_left = 0;
+
+                    _li_No = 0;
+
+                    _li_i = 0;
+
+                    for (var i = 0; i < _li.length; i++) {
+
+                        var _item = _li[i];
+
+                        if( _li_No <= 0 ){
+
+                            _li_No = _item.clientWidth;
+
+                        }
+
+                        if (_item.querySelector('a').getAttribute('data-id') == _id) {
+
+                            _li_i = i + 1;
+
+                            _li_that_left = document.querySelector('*[data-id='+ _id +']').offsetLeft;
+
+                            break;
+
+                        }
+
+                        _li_Left += _item.clientWidth;
+
+                    }
+
+                    var _scrollLeft = 0 ;
+
+
+                    var _win_width = document.documentElement.clientWidth;
+
+                    _scrollLeft = (( _win_width - _li_No ) / 2).toFixed(0);
+
+                    _scrollLeft = _li_that_left - _scrollLeft;
+
+                    _category.scrollLeft = _scrollLeft;
+
+
+                },1);
+
+            }catch (e) {
+
+                //error
+
+            }
+
+
+        }
         //상품 정보
         ,productData : function( scroll , data ){
 
@@ -359,8 +432,12 @@ var vm = new Vue ({
                 categoryList.push( _category_param );
 
             }
+
             that.menuList       = menuList;
             that.categoryList   = categoryList;
+
+            that.categoryFocus();
+
         }
         //그룹
         ,selectgroup : function( e ){
@@ -452,9 +529,12 @@ var vm = new Vue ({
 
             var param = new Array();
 
+            var _menuSHow = false;
+
             if(that.menuShow){
                 that.menuShow = false;
                 that.menuIdx = parent.getAttribute('data-group_id');
+                _menuSHow = true;
             }
 
             param.custNo = that.key_custNo;
@@ -499,6 +579,14 @@ var vm = new Vue ({
                 that.productData(  true , res );
 
                 that.loading_type = false;
+
+                if(_menuSHow){
+
+                    //that.categoryFocus();
+
+                }
+
+                that.categoryFocus();
 
             },function( code , msg ){
                 that.loading_type = false;
