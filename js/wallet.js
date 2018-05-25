@@ -338,6 +338,8 @@ new Vue({
                     ,'custNo=' + that.key_custNo
                     ,'&'
                     ,'brandCd=V00A003B603'
+                    //,'brandCd=V00A002B302'
+
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
