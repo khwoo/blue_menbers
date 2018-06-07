@@ -27,6 +27,8 @@ var vm = new Vue({
        prstPsbYn            : 'Y',
        loading_type         : false,
        alertContent         : '',
+       custMonthlyPsbCnt    : 0 ,                                  //포인트 구매 가능 횟수
+       custMonthlyBuyCnt    : 0 ,                                  //포인트 구매 한 횟수
        buySuccess           : false
        ,popdata : {
 
@@ -100,6 +102,8 @@ var vm = new Vue({
            var that = this;
 
            var param = {};
+
+           param.custNo = that.key_custNo;
            param.goodsCd = that.key_productId;
 
            that.loading_type = true;
@@ -109,6 +113,10 @@ var vm = new Vue({
                that.productImg = res.goodsDtlImgs[0].goodsDtlImg;
                that.brandName = res.brdNm;
                that.productName = res.goodsNm;
+
+               that.custMonthlyPsbCnt = res.custMonthlyPsbCnt;
+               that.custMonthlyBuyCnt = res.custMonthlyBuyCnt;
+
                //expiDt
 
                //expiGbnCd
@@ -207,7 +215,8 @@ var vm = new Vue({
             BM.ORDER( param , function( res ){
                 that.alertOption = true;
                 that.alertTitle = '구매완료';
-                that.alertContent = '구매가 완료되었습니다.<br/>구매한 상품은 보관함에서 확인할 수 있습니다.';
+                that.alertContent = '구매가 완료되었습니다.<br/>구매한 상품은 보관함에서 확인할 수 있습니다.'+
+                                    '<span>당월 포인트구매 이용가능횟수 : '+ res.custMonthlyPsbCnt +'회</span>';
                 return callback(true);
             },function( code , msg ){
                 that.$utils_popup(that,true , '' , msg );
@@ -290,6 +299,14 @@ var vm = new Vue({
         //구매 확인
         tap_buyConfirm: function() {
             var that = this;
+
+            if(that.custMonthlyPsbCnt <= 0 ){
+
+                that.alertShow      = false;
+
+                return;
+
+            }
 
             that.loading_type = true;
             that.alertShow      = false;

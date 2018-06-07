@@ -111,6 +111,7 @@ var vm = new Vue({
             var that = this;
 
             var param = {};
+            param.custNo = that.key_custNo;
             param.goodsCd = that.key_productId;
 
             that.loading_type = true;

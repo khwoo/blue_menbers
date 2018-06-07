@@ -67,12 +67,34 @@
                             구매확인
                         </p>
 
-                        <p class="alert_content">
+                        <!-- 구매 가능 -->
+                        <p class="alert_content" v-if="custMonthlyPsbCnt > 0 ">
                             블루멤버스 포인트 {{totalPrice | formatMoney}}점이 차감됩니다.<br/>
                             구매를 진행하시겠습니까?
+                            <br/>
+                            <span>
+                                <br/>포인트구매 이용 가능횟수 : <span v-text="custMonthlyPsbCnt"></span>회
+                                <br/>
+                                매월 포인트구매는 고객당 10회로 제한됩니다.(수량선택 무관)​
+                            </span>
                         </p>
 
-                        <div class="btn_group flex_between">
+
+                        <!-- 구매 불가 -->
+                        <p class="alert_content" v-if="custMonthlyPsbCnt <= 0 ">
+                            포인트 구매 이용횟수 제한으로 구매가 불가합니다.<br/>
+                            다음 달에 이용해 주세요.
+                            <br/>
+                            <span>
+                                <br/>포인트구매 이용 가능횟수 : <span v-text="custMonthlyPsbCnt"></span>회
+                                <br/>
+                                매월 포인트구매는 고객당 10회로 제한됩니다.(수량선택 무관)​
+                            </span>
+                        </p>
+
+
+                        <!-- 구매 가능 -->
+                        <div class="btn_group flex_between" v-if="custMonthlyPsbCnt > 0 ">
                             <a class="btn_left flex_center" href="javascript:void(0)" @click="tap_cancel">
                                 <p>
                                     취소
@@ -84,6 +106,22 @@
                                 </p>
                             </a>
                         </div>
+
+
+                        <!-- 구매 불가 -->
+                        <div class="btn_group flex_between" v-if="custMonthlyPsbCnt <= 0 ">
+
+                            <a class="flex_center" href="javascript:void(0)" @click="tap_cancel" style="width: 100%;">
+                                <p>
+                                    확인
+                                </p>
+                            </a>
+                        </div>
+
+
+
+
+
                     </div>
                 </div>
             </div>

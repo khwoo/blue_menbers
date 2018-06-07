@@ -46,8 +46,35 @@ var vm = new Vue({
             ,'uid=' + that.key_uid
         ].join('');
 
+        that.goods_info();
+
     },
     methods: {
+
+        goods_info: function(){
+
+            var that = this;
+
+            var param = {};
+            param.custNo = that.key_custNo;
+            param.goodsCd = that.key_productId;
+
+            that.loading_type = true;
+
+            BM.SAL_GOODS_DTL_INFO( param , function(res) {
+                console.log(res);
+
+                that.custMonthlyPsbCnt = res.custMonthlyPsbCnt;
+                that.custMonthlyBuyCnt = res.custMonthlyBuyCnt;
+                that.loading_type = false;
+            },function( code , msg ){
+                that.loading_type = false;
+
+                that.$utils_popup( that , true , '' , msg );
+
+            });
+
+        },
         //확인
         tap_buy: function() {
             var that = this;
@@ -111,6 +138,7 @@ var vm = new Vue({
                 that.alertPop( '선물완료',  [
                     '구매 완료되어 입력한 연락처로 상품을 SMS로 발송합니다.</br>'
                     ,'선물내역은 보관함에서 확인하실수 있습니다.'
+                    ,'<span>당월 포인트구매 이용가능횟수 : '+ res.custMonthlyPsbCnt +'회</span>'
                 ].join('') );
 
                 that.buySuccess = true;
