@@ -106,7 +106,7 @@ var vm = new Vue ({
                     _info.priceAfter = _item.goodsSalPrice;
                     _info.goodsCnt = _item.goodsCnt;
                     _info.goodsSalGbn = _item.goodsSalGbn;
-
+                    _info.goodsQttGbn = _item.goodsQttGbn;
 
                     //goodsSalGbn 1 포인트 쿠폰
                     //goodsSalGbn 2 할인 쿠폰

@@ -32,8 +32,8 @@
                             <div class="product_info">
                                 <p class="name">{{item.brandName}}</p>
                                 <p class="product_name">{{item.productName}}</p>
-                                <p class="after_price">{{item.priceAfter | formatPoint}}</p>
-                                <p class="inventory">
+                                <p v-if="item.goodsSalGbn == '1'" class="after_price">{{item.priceAfter | formatPoint}}</p>
+                                <p v-if="item.goodsQttGbn == '2' " class="inventory">
                                     (잔여수량 : {{item.goodsCnt}})
                                 </p>
                             </div>
