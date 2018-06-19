@@ -5,12 +5,23 @@ var vm = new Vue({
        bannerDetailSrc: 'images/banner_details_1.png'
     },
 
-    mounted: function() {
-        this.$nextTick(function() {
+    created:function(){
 
-        })
+        var that = this;
+
+        that.$utils_link( that );
+
+    },
+    mounted: function() {
+
+        var that = this;
+
+        that.$utils_location_params( that );
+
     },
     methods: {
+
+
 
     }
 

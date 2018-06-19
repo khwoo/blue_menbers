@@ -2,6 +2,7 @@
 var utils = {};
 
 utils.install = function( Vue ){
+
     Vue.prototype.$utils_location_params = function( that ){
         var href = location.href;
         var _paramStr = href.split('?')[1];
@@ -31,6 +32,28 @@ utils.install = function( Vue ){
         }
 
         pageVIewInfo(that);
+
+    }
+
+    Vue.prototype.$utils_link = function( that ){
+
+        var referrer = document.referrer;
+
+        if(that.appLink == null || that.appLink == '' ){
+
+            that.appLink = '';
+
+        }
+
+        if( referrer ){
+
+            that.appLink = "javascript:history.back();";
+
+        }else{
+
+            that.appLink = "toclient:movemain";
+
+        }
 
     }
 

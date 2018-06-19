@@ -8,7 +8,13 @@ var vm = new Vue({
         point_use_url : '' ,
         contentList: [],
     },
+    created:function(){
 
+        var that = this;
+
+        that.$utils_link( that );
+
+    },
     mounted: function() {
 
         var that = this;

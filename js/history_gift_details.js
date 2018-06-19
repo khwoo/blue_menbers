@@ -56,7 +56,11 @@ var vm = new Vue ({
         }
     },
     created:function(){
+
         var that = this;
+
+        that.$utils_link( that );
+
     }
     ,mounted: function() {
 

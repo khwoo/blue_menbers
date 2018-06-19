@@ -11,7 +11,13 @@ var vm = new Vue({
         coupon_box :''
 
     },
+    created:function(){
 
+        var that = this;
+
+        that.$utils_link( that );
+
+    },
     mounted: function() {
 
         var that = this;

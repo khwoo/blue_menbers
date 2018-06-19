@@ -19,6 +19,13 @@ var vm = new Vue ({
             return parseInt(value).toLocaleString() + unit;
         }
     },
+    created:function(){
+
+        var that = this;
+
+        that.$utils_link( that );
+
+    },
     mounted: function() {
 
         var that = this;

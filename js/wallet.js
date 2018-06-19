@@ -33,7 +33,11 @@ new Vue({
     },
 
     created:function(){
-        this.brand_url();
+
+        var that = this;
+
+        that.$utils_link( that );
+
     }
     ,mounted: function() {
 
