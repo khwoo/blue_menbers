@@ -57,6 +57,26 @@ utils.install = function( Vue ){
 
     }
 
+    Vue.prototype.$utils_addPageParam = function( that , url ){
+
+        if( url.indexOf('?') == -1 ){
+            url += '?';
+        }
+
+        for( var item in that ){
+            if(/^key_/.test(item)){
+                url += item.replace('key_' , '') +"=" + that[item] +"&";
+            }
+        }
+
+        if( url.substring( url.length - 1 , url.length ) == '&' ){
+            url = url.substring(0 , url.length - 1 );
+        }
+
+        return url;
+
+    }
+
     Vue.prototype.$utils_addDate = function( days ){
 
         return addDate(days);
