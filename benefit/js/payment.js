@@ -2,7 +2,7 @@
 var vm = new Vue({
     el: '.container',
     data: {
-        productUrl : 'payment.html?'
+        productUrl : 'product_list.html?'
     },
 
     created:function(){
@@ -19,7 +19,6 @@ var vm = new Vue({
         that.$utils_location_params( that );
 
         that.productUrl = that.$utils_addPageParam( that , that.productUrl );
-
 
     },
     methods: {
