@@ -326,7 +326,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A012B011'
+                    //,'brandCd=V00A012B011'  //상용
+                    ,'brandCd=V00A002B301'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -341,9 +342,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A003B603'
-                    //,'brandCd=V00A002B302'
-
+                    //,'brandCd=V00A012B012'  //상용
+                    ,'brandCd=V00A002B302'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -358,7 +358,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A012B003'
+                    //,'brandCd=V00A012B003'  //상용
+                    ,'brandCd=V00A044B001'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -373,7 +374,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    ,'brandCd=V00A003B371'
+                    //,'brandCd=V00A003B371'  //상용
+                    ,'brandCd=V00A044B002'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')

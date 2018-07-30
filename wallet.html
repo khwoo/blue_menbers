@@ -69,23 +69,35 @@
                 </a>
             </li>
 
-            <li v-show="onReady" class="article article_3" :class="{show_motion:onReady}">
-                <a class="bg_box" :href="brandUrllist[2].link_url">
-                    <img :src="brandUrllist[2].image_url" class="img_shop_3">
-                </a>
-            </li>
+            <!--<li v-show="onReady" class="article article_3" :class="{show_motion:onReady}">-->
+                <!--<a class="bg_box" :href="brandUrllist[2].link_url">-->
+                    <!--<img :src="brandUrllist[2].image_url" class="img_shop_3">-->
+                <!--</a>-->
+            <!--</li>-->
 
             <li v-show="onReady" class="article article_4" :class="{show_motion:onReady}">
-                <a class="bg_box" :href="brandUrllist[3].link_url">
-                    <img :src="brandUrllist[3].image_url" class="img_shop_4"/>
-                </a>
+                <!--<a class="bg_box" :href="brandUrllist[3].link_url">-->
+                    <!--<img :src="brandUrllist[3].image_url" class="img_shop_4"/>-->
+                <!--</a>-->
             </li>
 
             <div class="article bottom">
-                <p class="h2">주요 카테고리</p>
+                <!--<p class="h2">주요 카테고리</p>-->
             </div>
             <div class="category">
-                <ul style="white-space: nowrap; overflow-x: auto; overflow-y: hidden; display: flex; ">
+
+                <div style="font-size: 0.390625rem;
+                            font-weight: bold;
+                            color: #fff;
+                            margin: 0 0.64375rem;
+                            padding-bottom: 0.403125rem;
+                            border-bottom: 1px solid #fff;
+                        ">
+                    <!--주요 카테고리-->
+                    혜택
+                </div>
+
+                <ul style="white-space: nowrap; overflow-x: auto; overflow-y: hidden; display: inline-block; text-align: center; ">
 
                     <li v-for="item in bizlist ">
                         <a href="" :href="item.url">

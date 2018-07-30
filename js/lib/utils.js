@@ -323,7 +323,8 @@ utils.install = function( Vue ){
 
         }
 
-        echoss.Icon.setEchossIconData({
+        //echoss.Icon.setEchossIconData({
+        echoss.Icon.setStampData({
             aprvData    : _data,
             //otpGbn,chCd,custNo,brdId,usePoint
             funcCd      : "SBLTM",

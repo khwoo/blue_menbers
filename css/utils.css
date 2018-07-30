@@ -24,7 +24,7 @@
 
  }
  .loading_sub {
-     background-image: url('../images/icon_loading.png');
+     background-image: url('../../../github/blue_menbers/images/icon_loading.png');
      background-repeat: no-repeat;
      background-size: 50px 50px;
      background-position: 50% center;
@@ -113,6 +113,9 @@
 
 .container .category ul li:last-child{
 
-    padding-right: 0.84375rem!important;
+    /*padding-right: 0.84375rem!important;*/
 
 }
+
+ #echoss_icon_stamp_no_input {font-size: 0.8em !important;}
+#echoss_icon_popup > div > div > p {font-size: 15px !important;}
