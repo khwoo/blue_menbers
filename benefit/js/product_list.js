@@ -41,12 +41,12 @@ var vm = new Vue({
             },
             {
                 "chCd": "3b807881ea0a4e4bae3cc31f5cdc8ac7",
-                "goodsCd": "G18031200142",
+                "goodsCd": "G18071100269",
                 "rcmdGoodsYn": "N",
                 "goodsSalGbn": "1",
                 "goodsQttEpsYn": "Y",
                 "goodsQttGbn": "1",
-                "goodsSalPrice": "50000",
+                "goodsSalPrice": "5000",
                 "goodsNm": "플라자CC용인 5만원권",
                 "goodsGbn": "G",
                 "goodsImg": "https://12cm-image.s3.amazonaws.com/commerce/dev/goods/20180312112804307.png",
@@ -58,6 +58,25 @@ var vm = new Vue({
                 "goodsCnt": 0
             }
         ]
+        ,popdata : {
+
+            alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+
+        }
+        ,popformdata : {
+
+            alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+            ,alertCall_1 : null
+            ,alertCall_2 : null
+            ,cancelShow : true
+
+        }
     },
 
     created:function(){
@@ -74,6 +93,16 @@ var vm = new Vue({
         that.$utils_location_params( that );
 
          console.log(that.key_custNo);
+
+        that.$utils_offeringPageOpen(that, function( msg ){
+
+            that.$utils_popupForm(that,true,'' , msg , true , function(){
+
+                location.href = that.$utils_addPageParam( that , 'index.html?' );
+
+            });
+            return;
+        });
 
          console.log(that.$utils_addPageParam( that , 'pageUrl?'));
 
@@ -103,6 +132,7 @@ var vm = new Vue({
 
                     _item.url = 'details/details.html'+
                         '?custNo='+ that.key_custNo +''+
+                        '&otkey=' + that.key_otkey + '' +
                         '&uid=' + that.key_uid + '' +
                         '&productId='+ _item.goodsCd +' ';
 
@@ -112,6 +142,7 @@ var vm = new Vue({
 
                     _item.url = 'details/discount_details.html'+
                         '?custNo='+ that.key_custNo +''+
+                        '&otkey=' + that.key_otkey + '' +
                         '&uid=' + that.key_uid + '' +
                         '&productId='+ _item.goodsCd +' ';
 
@@ -121,6 +152,7 @@ var vm = new Vue({
 
                     _item.url = 'details/details_1.html'+
                         '?custNo='+ that.key_custNo +''+
+                        '&otkey=' + that.key_otkey + '' +
                         '&uid=' + that.key_uid + '' +
                         '&productId='+ _item.goodsCd +' ';
 

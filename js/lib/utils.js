@@ -31,7 +31,27 @@ utils.install = function( Vue ){
             that['key_' + _item[0] ] = _item[1];
         }
 
+        //블루멤버스 page view
         pageVIewInfo(that);
+
+    }
+
+    Vue.prototype.$utils_offeringPageOpen = function( that ,   FailCallback ){
+
+        try {
+
+            echossTracker.pageOpen(that.key_otkey , function( code , msg ){
+
+                FailCallback( msg );
+
+            });
+
+
+        }catch(e){
+
+            FailCallback(e);
+
+        }
 
     }
 

@@ -38,6 +38,18 @@ var vm = new Vue({
 
         that.$utils_location_params(that);
 
+        that.$utils_offeringPageOpen(that, function( msg ){
+
+            that.$utils_popupForm(that,true,'' , msg , true , function(){
+
+                location.href = that.$utils_addPageParam( that , '../index.html?' );
+
+            });
+
+            return;
+
+        });
+
         that.totalQuantity_text = that.key_count +" 개";
         that.totalQuantity = that.key_count;
         that.totalPrice = that.key_totalprice;
@@ -138,9 +150,18 @@ var vm = new Vue({
 
             BM.MHOUSE_ORDER( param , function( res ){
 
+                try {
+                    echossTracker.couponIssue( that.key_otkey );
+                }catch(e){
+                    //error
+                }
+
+                that['ticketNo'] = res.ticketList[0].ticketNo;
+
                 that.alertOption    = true;
                 that.btnOptionShow  = false;
                 that.loading_type   = false;
+
 
                 that.alertPop( '선물완료',  [
                     '구매 완료되어 입력한 연락처로 상품을 SMS로 발송합니다.</br>'
@@ -180,7 +201,7 @@ var vm = new Vue({
 
                 historyParam.custNo = that.key_custNo;
                 historyParam.uid = that.key_uid;
-                historyParam.link = 'gift';
+                historyParam.otkey = that.key_otkey;
 
                 var url = location.href.substring( 0 , location.href.indexOf('?')).replace('details/gift_1' , 'product_list');
 

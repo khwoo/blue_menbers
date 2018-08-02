@@ -68,28 +68,17 @@ var vm = new Vue({
        var that = this;
        that.$utils_location_params( that );
 
-        that.main_url = [
-            'main.html'
-            ,'?'
-            ,'custNo=' + that.key_custNo
-            ,'&'
-            ,'uid=' + that.key_uid
-        ].join('');
+        that.$utils_offeringPageOpen(that, function( msg ){
 
-        if(that.key_link == 'brand_gift'){
+            that.$utils_popupForm(that,true,'' , msg , true , function(){
 
-            that.main_url = [
-                'brand_gift.html'
-                ,'?'
-                ,'custNo=' + that.key_custNo
-                ,'&brandCd=' + that.key_brandCd
-                ,'&'
-                ,'uid=' + that.key_uid
-            ].join('');
+                location.href = that.$utils_addPageParam( that , '../index.html?' );
 
-        }
+            });
 
+            return;
 
+        });
 
         that.productDetailsData();
 
@@ -217,6 +206,15 @@ var vm = new Vue({
             param.ordGbn = '1';
 
             BM.ORDER( param , function( res ){
+
+                try {
+                    echossTracker.couponIssue( that.key_otkey );
+                }catch(e){
+                    //error
+                }
+
+                that['ticketNo'] = res.ticketList[0].ticketNo;
+
                 that.alertOption = true;
                 that.alertTitle = '구매완료';
                 //that.alertContent = '구매가 완료되었습니다.<br/>구매한 상품은 보관함에서 확인할 수 있습니다.'+
@@ -288,6 +286,8 @@ var vm = new Vue({
                 ,'totalprice=' + that.totalPrice
                 ,'&'
                 ,'uid=' + that.key_uid
+                ,'&'
+                ,'otkey=' + that.key_otkey
             ].join('');
 
            return _url;
@@ -345,8 +345,10 @@ var vm = new Vue({
 
                 historyParam.custNo = that.key_custNo;
                 historyParam.uid = that.key_uid;
+                historyParam.otkey = that.key_otkey;
+                historyParam.ticketNo = that.ticketNo;
 
-                var url = location.href.substring( 0 , location.href.indexOf('?')).replace('details/details' , 'product_list');
+                var url = location.href.substring( 0 , location.href.indexOf('?')).replace('details/details' , 'details/coupon_details');
 
                 that.$utils_history_replaceState( historyParam , url );
 
