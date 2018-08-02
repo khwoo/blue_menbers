@@ -24,7 +24,8 @@
 
  }
  .loading_sub {
-     background-image: url('../../../github/blue_menbers/images/icon_loading.png');
+     /*background-image: url('../../../github/blue_menbers/images/icon_loading.png');*/
+     background-image: url('../images/icon_loading.png');
      background-repeat: no-repeat;
      background-size: 50px 50px;
      background-position: 50% center;
