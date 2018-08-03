@@ -282,6 +282,10 @@ utils.install = function( Vue ){
 
     }
 
+
+
+
+
     Vue.prototype.$utils_popupForm = function( that , show , title , content  , cancelShow ,  callbackSuccess , callbackFail ){
 
         if(that.popformdata == null || that.popformdata == 'undefined'){
@@ -302,8 +306,6 @@ utils.install = function( Vue ){
         }
         that.popformdata.cancelShow = cancelShow;
 
-
-
     }
 
     Vue.prototype.$utils_popup = function( that , show , title , content  ){
@@ -320,6 +322,21 @@ utils.install = function( Vue ){
         that.popdata.alertOption = true;
         that.popdata.alertTitle = title;
         that.popdata.alertContent = content;
+
+    }
+
+    Vue.prototype.$utils_popTips = function( that , show , content  ){
+
+        if(that.poptipsdata == null || that.poptipsdata == 'undefined'){
+            that.poptipsdata = {};
+        }
+        if(show == null || show == 'undefined' ){
+            that.poptipsdata.alertOption = false;
+        }else{
+            that.poptipsdata.alertOption = show;
+        }
+        that.poptipsdata.alertOption = show;
+        that.poptipsdata.alertContent = content;
 
     }
 
@@ -468,6 +485,21 @@ utils.install = function( Vue ){
         '            </div>' +
         '        </transition>'
         ,props: ['popdata']
+    });
+
+    Vue.component('popuptips' , {
+        template : '<transition name="fade">' +
+        '            <div v-if="poptipsdata.alertOption" class="modal alert">' +
+        '                <div class="bg_shadow flex_column_center">' +
+        '                    <div class="modal_box flex_column_center" style="padding-bottom: 0;">' +
+        '                        <p class="title"></p>' +
+        '                        <p style="text-align:center;" class="alert_content" v-html="poptipsdata.alertContent"></p>' +
+        '                        <p class="title"></p>' +
+        '                    </div>' +
+        '                </div>' +
+        '            </div>' +
+        '        </transition>'
+        ,props: ['poptipsdata']
     });
 
     var VueBarcode = window.VueBarcode;
