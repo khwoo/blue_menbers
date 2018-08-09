@@ -214,9 +214,13 @@ body {
     font-weight: bold;
     font-size: 0.484375rem; }
   .nav .btn_coupon_box {
-    right: 0.15625rem; }
+    /*right: 0.15625rem;*/
+    right: 0.45625rem;
+  }
     .nav .btn_coupon_box img {
-      width: 0.4375rem; }
+      /*width: 0.4375rem; */
+      width: 1.2rem;
+    }
 
 /* section  header*/
 .section {
