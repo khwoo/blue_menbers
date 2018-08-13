@@ -307,6 +307,8 @@ var vm = new Vue ({
 
             }
 
+            that.categorySort(that.key_categoryIdx , that.productList );
+
         }
         //배너 정보
         ,banrData : function( data ){
@@ -577,6 +579,9 @@ var vm = new Vue ({
             that.loading_type = true;
 
             BM.MAIN( param ,function( res ){
+
+                console.log("categroy : " + that.categoryIdx);
+
                 if( res.bnrList.length > 0 ){
 
                     that.banrData( res );
@@ -584,6 +589,7 @@ var vm = new Vue ({
                 }
                 //menuShow
                 console.log(that.menuShow);
+
                 that.productData(  true , res );
 
                 that.loading_type = false;
@@ -600,6 +606,92 @@ var vm = new Vue ({
                 that.loading_type = false;
                 that.$utils_popup( that , true , '' , msg );
             });
+
+        }
+        /**
+        *
+        *   카테고리 정열
+        *
+        * 2018/8/13 上午10:46
+        */
+        ,categorySort:function( categoryId , data ){
+
+            var that = this;
+
+            try {
+                console.log(categoryId);
+                //data.salGoodsList
+                if (categoryId == 'CTG0001CT0010') {
+
+                    // 순서	극 장 명	            상품코드
+                    // 1	잠실 자동차극장	        G18080601272
+                    // 2	일산 자유로극장	        G18080601273
+                    // 3	장흥 자동차극장	        G18080601274
+                    // 4	양평 유니모극장	        G18080601275
+                    // 5	광릉수목원 자동차극장	    G18080601276
+                    // 6	포천자동차극장	        G18080601277
+                    // 7	무비마운틴	            G18080601285
+                    // 8	시네마파크	            G18080601278
+                    // 9	씨네 80	            G18080601284
+                    // 10	블루마씨네	            G18080601281
+                    // 11	대전 자동차극장	        G18080601282
+                    // 12	씨네드림	            G18080601280
+                    // 13	강릉 자동차극장	        G18080601279
+                    // 14	오송 자동차극장	        G18080601288
+                    // 15	용봉산 시네마	        G18080601286
+                    // 16	로드 시네마	        G18080601287
+
+                    var categoryCdList = new Array();
+
+                    categoryCdList.push('G18080601272');
+                    categoryCdList.push('G18080601273');
+                    categoryCdList.push('G18080601274');
+                    categoryCdList.push('G18080601275');
+                    categoryCdList.push('G18080601276');
+                    categoryCdList.push('G18080601277');
+                    categoryCdList.push('G18080601285');
+                    categoryCdList.push('G18080601278');
+                    categoryCdList.push('G18080601284');
+                    categoryCdList.push('G18080601281');
+                    categoryCdList.push('G18080601282');
+                    categoryCdList.push('G18080601280');
+                    categoryCdList.push('G18080601279');
+                    categoryCdList.push('G18080601288');
+                    categoryCdList.push('G18080601286');
+                    categoryCdList.push('G18080601287');
+
+                    var categorySortList = new Array();
+
+                    for (var i = 0; i < categoryCdList.length; i++) {
+                        let code = categoryCdList[i];
+                        for (let q = 0; q < data.length; q++) {
+                            let item = data[q];
+                            if (item.goodsCd == code) {
+                                categorySortList.splice(i, 0, item);
+                            }
+                        }
+                    }
+
+                    var categoryCdString = categoryCdList.join('');
+
+                    for (let q = 0; q < data.length; q++) {
+                        let item = data[q];
+                        if (categoryCdString.indexOf(item.goodsCd) == -1) {
+                            categorySortList.push(item);
+                        }
+                    }
+
+                    that.productList = categorySortList;
+
+                }
+
+            }catch(e ){
+
+                console.log('카테고리 순서 에러');
+
+            }
+
+
 
         }
     }
