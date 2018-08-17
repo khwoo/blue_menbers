@@ -18,10 +18,12 @@ var vm = new Vue ({
 
         boughtQuantity: 0,
         alertShow: false,
+        ticketList:[],
         alertOption: false,
         alertTitle: '',
         alertContent: '',
         loading_type: true ,
+        ticketCanPsbYn:'N',
         history_type : false, // true 선물  ,   false 구매
         coupon_box_url : '',
         ordGbn : '3' , // 상테
@@ -113,14 +115,17 @@ var vm = new Vue ({
             BM.CUST_ORD_DTL_INFO( param , function( res ){
 
                 console.log(res);
-
+                console.log('ticketCanPsbYn:' + res.ticketCanPsbYn);
                 var data = res.ordDtlInfo;
-                that.ticketList = res.ticketList;
+                if(res.ticketList) {
+                    that.ticketList = res.ticketList;
+                }
                 console.log(data);
                 // "ordStCd": "2", //2:발급 완료, 9:주문 취소
                 // "ordGbn": "1",  //1:구매 ,2:선물 ,3:현장구매     [9-3] 현장취소  [9-2] 선물취소  [9-1] 구매취소
 
                 that.ordGbn = data.ordGbn;
+                that.ticketCanPsbYn = res.ticketCanPsbYn;
 
                 if( data.ordGbn == '2' ){ //선물
 

@@ -3,9 +3,16 @@ var vm = new Vue({
     el: '.container',
     data: {
         termsShow:false , // popup 사용 여부
-        loading_type : false,
-        termsGet:'',
-        url : 'https://m.bluemembers.hyundai.com:444/hmb/membership/privacy_agreement_process.jsp'
+        termsYn  : 'N',
+        loading_type : false
+        ,popdata : {
+
+            alertOption : false
+            ,alertTitle : ''
+            ,alertContent : ''
+            ,alertStyle : ''
+
+        }
     },
 
     created:function(){
@@ -21,14 +28,82 @@ var vm = new Vue({
 
         that.$utils_location_params( that );
 
-        that.init();
-        that.termsShow = true;
+        if( that.key_custNo == null || that.key_custNo == 'undefined' || that.key_custNo == '' ){
+
+            location.href = 'hyundaimembers://checklogin##' + location.href ;
+
+        }else{
+
+            that.init();
+
+        }
+
+
+
     },
     methods: {
 
+
         /**
         *
+        *   약광동의 API 호출
         *
+        * 2018/8/13 下午3:39
+        */
+        termsAgree:function(){
+
+            var that = this;
+
+            var params = {}
+
+            params.custNo = that.key_custNo;
+
+            BM.PRIVACY_AGREEMENT_INSERT( params, function( res){
+
+                if(res.resultYn == 'Y'){
+
+                    that.$utils_popup(that, true , '' , '정보제공 동의 성공' );
+                    that.termsYn = 'Y';
+                    that.termsShow = false;
+
+                }else{
+
+                    that.$utils_popup(that, true , '' , res.errorMessage );
+
+                }
+
+            } ,function( code , msg ){
+
+                that.$utils_popup(that,true , '' , msg );
+
+            } );
+
+        },
+
+        /**
+        *
+        * 약관등의
+        *
+        * 2018/8/13 下午3:32
+        */
+        termsClick:function(){
+
+            var that = this;
+
+            if( that.termsYn == 'Y' ){
+
+                //that.$utils_popup(that,true , '' , '정보제공 동의 했습니다' );
+                that.termsShow = true;
+            }else{
+
+                that.termsShow = true;
+
+            }
+
+        },
+        /**
+        *
+        *   초기화
         *
         * 2018/8/10 上午11:58
         */
@@ -36,20 +111,28 @@ var vm = new Vue({
 
             var that = this;
 
+            that.custNo = that.key_loginUserNo;
             that.loading_type = true;
 
             var params = {};
 
-            let url = that.url.concat(`?processType=12CM_AGREE_CHECK&userNo=${that.key_custNo}&timeSeed=${Date.parse(new Date() )}`);
+            params.custNo = that.key_custNo;
 
-            that.$utils_echossHttpSend( url , params , 'GET' , function( res ){
+            BM.PRIVACY_AGREEMENT_CHECK( params , function( res ){
+
                 that.loading_type = false;
-                console.log(res);
 
-            },function( code , msg ){
+                if(res.resultYn == 'Y' ){
+                    that.termsYn = res.agreeExistsYn;
+                }else{
+
+                    that.$utils_popup(that, true , '' , res.errorMessage );
+
+                }
+
+            },function (code , msg ) {
                 that.loading_type = false;
-                console.log(msg);
-
+                that.$utils_popup(that,true ,'' ,  msg );
             });
 
         }

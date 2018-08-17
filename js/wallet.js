@@ -382,7 +382,26 @@ new Vue({
                 ,image_url : 'images/shop_img_4.png'
             });
 
+            var params = {};
+
+            params.custNo = that.key_custNo;
+
+            BM.TEESCANNER_TKN( params, function( res ){
+
+                console.log(res);
+
+                _url.splice( 0 , 1 , {
+                    link_url : res.REDIRECT_URL
+                    ,image_url : 'images/shop_img_1.png'
+                } );
+
+            },function(){
+
+            });
+
+
             that.brandUrllist = _url;
+
 
         }
         ,company_url:function(){

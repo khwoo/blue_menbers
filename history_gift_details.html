@@ -91,11 +91,11 @@
                     </tbody>
                 </table>
 
-                <div v-if="!canceled" class="btn_group">
+                <div v-if="!canceled && ordCanPsbYn == 'Y' && ticketCanPsbYn == 'Y' || ticketList.length > 0 " class="btn_group">
 
                     <!-- 구매 -->
                     <div v-if="btnType == '1' " class="flex_between">
-                        <a v-if="!canceled && ordCanPsbYn == 'Y' " class="btn_left flex_center" data-type="coupon" href="javascript:void(0)" @click="coupon_cancel">
+                        <a v-if="!canceled && ordCanPsbYn == 'Y' && ticketCanPsbYn == 'Y' " class="btn_left flex_center" data-type="coupon" href="javascript:void(0)" @click="coupon_cancel">
                             <p>구매취소</p>
                         </a>
                         <a v-if="ticketList.length > 0 " class="flex_center" href="javascript:void(0)" @click="coupon_details_url">
@@ -106,7 +106,7 @@
 
                     <!-- 선물 -->
                     <div v-if="btnType == '2' " class="flex_between">
-                        <a v-if="!canceled && ordCanPsbYn == 'Y' " class="btn_left flex_center" data-type="gift" href="javascript:void(0)" @click="coupon_cancel">
+                        <a v-if="!canceled && ordCanPsbYn == 'Y' && ticketCanPsbYn == 'Y' " class="btn_left flex_center" data-type="gift" href="javascript:void(0)" @click="coupon_cancel">
                             <p>선물취소</p>
                         </a>
                     </div>

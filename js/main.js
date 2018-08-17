@@ -610,7 +610,7 @@ var vm = new Vue ({
         }
         /**
         *
-        *   카테고리 정열
+        *   카테고리 정렬
         *
         * 2018/8/13 上午10:46
         */
@@ -682,6 +682,70 @@ var vm = new Vue ({
                     }
 
                     that.productList = categorySortList;
+
+                }else if(categoryId == 'CTG0002CT0019'){
+
+                    var categoryCdList = new Array();
+
+                    categoryCdList.push('G18081401307');
+                    categoryCdList.push('G18081401306');
+                    categoryCdList.push('G18081401305');
+
+                    var categorySortList = new Array();
+
+                    for (var i = 0; i < categoryCdList.length; i++) {
+                        let code = categoryCdList[i];
+                        for (let q = 0; q < data.length; q++) {
+                            let item = data[q];
+                            if (item.goodsCd == code) {
+                                categorySortList.splice(i, 0, item);
+                            }
+                        }
+                    }
+
+                    var categoryCdString = categoryCdList.join('');
+
+                    for (let q = 0; q < data.length; q++) {
+                        let item = data[q];
+                        if (categoryCdString.indexOf(item.goodsCd) == -1) {
+                            categorySortList.push(item);
+                        }
+                    }
+
+                    that.productList = categorySortList;
+
+                }else if(categoryId == 'CTG0001CT0009' ){
+
+                    var categoryCdList = new Array();
+
+                    categoryCdList.push('G18062701128');
+                    categoryCdList.push('G18081401307');
+                    categoryCdList.push('G18081401306');
+                    categoryCdList.push('G18081401305');
+
+                    var categorySortList = new Array();
+
+                    for (var i = 0; i < categoryCdList.length; i++) {
+                        let code = categoryCdList[i];
+                        for (let q = 0; q < data.length; q++) {
+                            let item = data[q];
+                            if (item.goodsCd == code) {
+                                categorySortList.splice(i, 0, item);
+                            }
+                        }
+                    }
+
+                    var categoryCdString = categoryCdList.join('');
+
+                    for (let q = 0; q < data.length; q++) {
+                        let item = data[q];
+                        if (categoryCdString.indexOf(item.goodsCd) == -1) {
+                            categorySortList.push(item);
+                        }
+                    }
+
+                    that.productList = categorySortList;
+
 
                 }
 
