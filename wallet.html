@@ -58,7 +58,10 @@
         <ul class="section">
 
             <li v-show="onReady" class="article article_1" :class="{show_motion:onReady}">
-                <a class="bg_box" :href="brandUrllist[0].link_url">
+                <!--<a class="bg_box" :href="brandUrllist[0].link_url">-->
+                    <!--<img :src="brandUrllist[0].image_url" class="img_shop_1"/>-->
+                <!--</a>-->
+                <a class="bg_box" @click="devRedirect">
                     <img :src="brandUrllist[0].image_url" class="img_shop_1"/>
                 </a>
             </li>
