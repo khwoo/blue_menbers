@@ -428,6 +428,17 @@ utils.install = function( Vue ){
         };
     }
 
+    /**
+    *
+    * 블루멤버스 로그인 체크
+    *
+    */
+    Vue.prototype.$utils_blueLoginCheck = function( that ){
+	    if( that.key_custNo == null || that.key_custNo == 'undefined' || that.key_custNo == '' ){
+		    location.href = 'hyundaimembers://checklogin##' + location.href ;
+	    }
+    }
+
     Vue.component('popupform' , {
         template : '<transition name="fade">' +
         '            <div v-if="popformdata.alertOption" class="modal alert">' +

@@ -33,7 +33,7 @@ var vm = new Vue({
     methods: {
 
 	    bannerclick:function(){
-	        location.href= 'http://www.naver.com'
+	        location.href= 'https://www.hyundai.com/kr/ko'
         }
 
     }
