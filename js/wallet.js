@@ -70,7 +70,6 @@ new Vue({
 
         });
 
-
         this.$nextTick(function() {
             this.onReady = !this.onReady;
         })

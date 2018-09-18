@@ -61,6 +61,7 @@ var vm = new Vue({
 			var params = {};
 
 			params.custNo = that.key_custNo;
+			params.uid = that.key_uid;
 
 			BM.TEESCANNER_TKN(params, function (res) {
 
