@@ -17,7 +17,9 @@
 <div class="container">
     <div v-cloak class="container_box">
         <div class="nav flex_center">
-            <a class="btn_back flex_center" :href="wallet_url">
+            <!--<a class="btn_back flex_center" :href="wallet_url">-->
+            <a class="btn_back flex_center" :href="appLink">
+
                 <img src="images/icon_back.png"/>
             </a>
             <p class="title">이달의 혜택</p>
@@ -59,7 +61,7 @@
 
             <li v-show="onReady" class="article article_1" :class="{show_motion:onReady}">
                 <!--<a class="bg_box" :href="brandUrllist[0].link_url">-->
-                    <!--<img :src="brandUrllist[0].image_url" class="img_shop_1"/>-->
+                <!--<img :src="brandUrllist[0].image_url" class="img_shop_1"/>-->
                 <!--</a>-->
                 <!--<a class="bg_box" @click="devRedirect">-->
                 <a class="bg_box" :href="brandUrllist[0].link_url">
@@ -74,20 +76,20 @@
             </li>
 
             <!--<li v-show="onReady" class="article article_3" :class="{show_motion:onReady}">-->
-                <!--<a class="bg_box" :href="brandUrllist[2].link_url">-->
-                    <!--<img :src="brandUrllist[2].image_url" class="img_shop_3">-->
-                <!--</a>-->
+            <!--<a class="bg_box" :href="brandUrllist[2].link_url">-->
+            <!--<img :src="brandUrllist[2].image_url" class="img_shop_3">-->
+            <!--</a>-->
             <!--</li>-->
 
-            <li v-show="onReady" class="article article_4" :class="{show_motion:onReady}">
-                <!--<a class="bg_box" :href="brandUrllist[3].link_url">-->
-                    <!--<img :src="brandUrllist[3].image_url" class="img_shop_4"/>-->
-                <!--</a>-->
-            </li>
+            <!--<li v-show="onReady" class="article article_4" :class="{show_motion:onReady}">-->
+            <!--&lt;!&ndash;<a class="bg_box" :href="brandUrllist[3].link_url">&ndash;&gt;-->
+            <!--&lt;!&ndash;<img :src="brandUrllist[3].image_url" class="img_shop_4"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--</li>-->
 
-            <div class="article bottom">
-                <!--<p class="h2">주요 카테고리</p>-->
-            </div>
+            <!--<div class="article bottom">-->
+            <!--&lt;!&ndash;<p class="h2">주요 카테고리</p>&ndash;&gt;-->
+            <!--</div>-->
             <div class="category">
 
                 <div style="font-size: 0.390625rem;
@@ -153,7 +155,7 @@
 <script type="text/javascript" src="https://developer.echoss.co.kr/sdk/echoss-lite-min.js"></script>
 <script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>
 
-<!--<script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>-->
+<!--<script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>-->
 <script type="text/javascript" src="js/lib/utils.js"></script>
 <script type="text/javascript" src="js/wallet.js"></script>
 <script type="text/javascript" src="js/lib/swiper-4.1.0.min.js"></script>

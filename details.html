@@ -67,8 +67,8 @@
             <!-- 상품 개수 선택 -->
             <div v-if="btnOptionShow" class="btn_option">
 
-                <div>
-                    최대 구매
+                <div v-if="custBuyLimitYn == 'Y' " style="font-size: .3rem;color: #fff;text-align: right;padding: 0 .2rem .15rem .4rem;">
+                    최대 구매 {{custBuyLimitCnt}}개 (1인당)
                 </div>
 
                 <div class="quantity_box flex_row_center">
@@ -85,7 +85,7 @@
 
                 <!-- 구매 -->
                     <div class="btn_item flex_center">
-                        <a class="flex_center" href="javascript:void(0)" @click="tap_buy">
+                        <a :style="button_background" class="flex_center" href="javascript:void(0)" @click="tap_buy">
                             <p class="flex_center">
                                 구매하기
                             </p>
@@ -94,7 +94,7 @@
 
                 <!-- 선물 -->
                     <div v-if="prstPsbYn == 'Y' " class="btn_item flex_center">
-                        <a class="flex_center" href="javascript:void(0)"  @click="tap_gift">
+                        <a :style="button_background" class="flex_center" href="javascript:void(0)"  @click="tap_gift">
                             <p class="flex_center">
                                 선물하기
                             </p>
@@ -119,6 +119,10 @@
                             <br/>
                             <span>
                                 <br/>포인트구매 이용 가능횟수 : <span v-text="custMonthlyPsbCnt"></span>회
+                                <h v-if="custBuyLimitYn == 'Y' ">
+                                    <br/>본 상품 구매 가능 개수 : <span v-text="custGoodsBuyPsbCnt"></span>개
+                                </h>
+                                <br/>
                                 <br/>
                                 매월 포인트구매는 고객당 10회로 제한됩니다.(수량선택 무관)​
                             </span>
@@ -131,6 +135,10 @@
                             <br/>
                             <span>
                                 <br/>포인트구매 이용 가능횟수 : <span v-text="custMonthlyPsbCnt"></span>회
+                                <h v-if="custBuyLimitYn == 'Y' ">
+                                    <br/>본 상품 구매 가능 개수 : <span v-text="custGoodsBuyPsbCnt"></span>개
+                                </h>
+                                <br/>
                                 <br/>
                                 매월 포인트구매는 고객당 10회로 제한됩니다.(수량선택 무관)
                             </span>
@@ -153,8 +161,6 @@
                                 <p>확인</p>
                             </a>
                         </div>
-
-
 
                     </div>
                 </div>
@@ -183,7 +189,7 @@
 
     <div :loading_type="loading_type" is="loading"></div>
 </div>
-<script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
+<script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>
 <script type="text/javascript" src="js/lib/utils.js"></script>
 <script type="text/javascript" src="js/details.js"></script>
 

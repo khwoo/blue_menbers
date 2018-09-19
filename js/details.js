@@ -29,6 +29,13 @@ var vm = new Vue({
        alertContent         : '',
        custMonthlyPsbCnt    : 0 ,                                  //포인트 구매 가능 횟수
        custMonthlyBuyCnt    : 0 ,                                  //포인트 구매 한 횟수
+
+	   custBuyLimitYn       : 'N',      //고객 구매 제한 여부(N:무제한, Y:제한)
+	   custBuyLimitCnt      :"10",		//고객 구매 제한 건수
+
+	   custGoodsBuyPsbYn    :"N",	    //고객 상품 구매 가능 여부(Y:구매가능, N:구매불가)
+	   custGoodsBuyPsbCnt   :"-1",	    //고객 상품 구매 가능 건수
+       button_background    : '',       //구매 버튼 color
        buySuccess           : false
        ,popdata : {
 
@@ -162,13 +169,23 @@ var vm = new Vue({
                that.goodsQttGbn = res.goodsQttGbn;
                that.goodsCnt = res.goodsCnt;
 
+               that.custBuyLimitYn = res.custBuyLimitYn;//고객 구매 제한 여부(N:무제한, Y:제한)
+               that.custBuyLimitCnt = res.custBuyLimitCnt;//고객 구매 제한 건수
+               that.custGoodsBuyPsbYn = res.custGoodsBuyPsbYn;//고객 상품 구매 가능 여부(Y:구매가능, N:구매불가)
+               that.custGoodsBuyPsbCnt = res.custGoodsBuyPsbCnt;//고객 상품 구매 가능 건수
+
+               if(that.custBuyLimitYn == 'Y'){
+                   if(that.custGoodsBuyPsbYn == 'N' ){
+                       that.button_background = 'background-color:rgba(127,127,127,1);border:none;';
+                   }
+               }
+
                //구매 제한 여부
                //  "custBuyLimitYn":"Y",		//고객 구매 제한 여부(N:무제한, Y:제한)
                //  "custBuyLimitCnt":"10",		//고객 구매 제한 건수
                //
                //  "custGoodsBuyPsbYn":"N",	//고객 상품 구매 가능 여부(Y:구매가능, N:구매불가)
                //  "custGoodsBuyPsbCnt":"-1"	//고객 상품 구매 가능 건수
-
 
                that.subContentList.push({
                    contentText : [
@@ -235,14 +252,43 @@ var vm = new Vue({
             });
         }
 
+        /**
+        *
+        *
+        *
+        */
         ,tap_plus: function() {
             var that = this;
             if(that.productQuantity<that.maxProductQuantity) {
-                that.productQuantity ++;
+
+                //구매 제한 여부
+                if(that.custBuyLimitYn == 'Y' ){
+                    if(that.productQuantity >= Number(that.custGoodsBuyPsbCnt)){
+                        let msg = [
+                             '고객 당 구매 가능 개수가 제한된 상품입니다.</br>'
+                            ,'현재 고객님은 이 상품을 '+ that.custGoodsBuyPsbCnt +' 개 까지만</br>'
+                            ,'구매 하실 수 있습니다.'
+                        ].join('');
+                        that.$utils_popup( that , true , '' , msg );
+                        return;
+                    }
+                }
+                // "custBuyLimitYn":"Y",		//고객 구매 제한 여부(N:무제한, Y:제한)
+                // "custBuyLimitCnt":"10",		//고객 구매 제한 건수
+                //
+                // "custGoodsBuyPsbYn":"N",	//고객 상품 구매 가능 여부(Y:구매가능, N:구매불가)
+                // "custGoodsBuyPsbCnt":"-1"	//고객 상품 구매 가능 건수
+	            that.productQuantity ++;
                 that.totalPrice = that.priceAfter*that.productQuantity
+
             }
         },
 
+        /**
+        *
+        *
+        *
+        */
         tap_minus: function() {
             var that = this;
             if(that.productQuantity>1) {
@@ -250,9 +296,24 @@ var vm = new Vue({
                 that.totalPrice = that.priceAfter*that.productQuantity
             }
         },
+
+
+
         //구매
         tap_buy: function() {
             var that = this;
+
+            //구매 제한 여부
+            // "custBuyLimitYn":"Y",		//고객 구매 제한 여부(N:무제한, Y:제한)
+            // "custBuyLimitCnt":"10",		//고객 구매 제한 건수
+            //
+            // "custGoodsBuyPsbYn":"N",	//고객 상품 구매 가능 여부(Y:구매가능, N:구매불가)
+            // "custGoodsBuyPsbCnt":"-1"	//고객 상품 구매 가능 건수
+
+            //구매 제한 여부
+            if(!that.$utils_buy_limit_bottom(that)){
+                return;
+            }
 
             if(that.btnOptionShow==false) {
                 that.btnOptionShow = true;
@@ -267,6 +328,18 @@ var vm = new Vue({
         //선물
         tap_gift: function() {
             var that =this;
+
+	        //구매 제한 여부
+	        // "custBuyLimitYn":"Y",		//고객 구매 제한 여부(N:무제한, Y:제한)
+	        // "custBuyLimitCnt":"10",		//고객 구매 제한 건수
+	        //
+	        // "custGoodsBuyPsbYn":"N",	//고객 상품 구매 가능 여부(Y:구매가능, N:구매불가)
+	        // "custGoodsBuyPsbCnt":"-1"	//고객 상품 구매 가능 건수
+
+	        //구매 제한 여부
+	        if(!that.$utils_buy_limit_bottom(that)){
+		        return;
+	        }
 
             if(that.btnOptionShow==false) {
                 that.btnOptionShow = true;

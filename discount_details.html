@@ -59,11 +59,14 @@
         <!-- 할인 쿠폰 받기 -->
         <div class="btn_container">
             <!-- 구매 선물 -->
+            <div v-if="custBuyLimitYn == 'Y' " style="font-size: 0.3rem;color: rgb(255, 255, 255);text-align: right;padding: 0.2375rem 0.5rem 0 0.4rem;margin-bottom: -0.2rem;">
+                최대 구매 {{custBuyLimitCnt}}개 (1인당)
+            </div>
             <div class="btn_box flex_between">
 
                 <!-- 할인 쿠폰 받기 -->
                 <div class="btn_item flex_center">
-                    <a class="flex_center" href="javascript:void(0)" @click="tap_buy">
+                    <a :style="button_background" class="flex_center" href="javascript:void(0)" @click="tap_buy">
                         <p class="flex_center">
                             혜택권 다운받기
                         </p>
@@ -80,7 +83,7 @@
 
     <div :loading_type="loading_type" is="loading"></div>
 </div>
-<script type="text/javascript" src="http://61.35.35.203:45270/resource/js/pointMall-api.js"></script>
+<script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>
 <script type="text/javascript" src="js/lib/utils.js"></script>
 <script type="text/javascript" src="js/discount_details.js"></script>
 

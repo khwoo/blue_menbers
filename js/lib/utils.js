@@ -143,6 +143,36 @@ utils.install = function( Vue ){
         return re;
     }
 
+	Vue.prototype.$utils_buy_limit = function( that ){
+
+		let result = true;
+
+		if(that.custBuyLimitYn == 'Y' ){
+			result = false;
+		}
+
+		return result;
+
+	}
+
+    Vue.prototype.$utils_buy_limit_bottom = function( that ){
+
+        let result = true;
+
+	    if(that.custBuyLimitYn == 'Y' ){
+		    if(that.custGoodsBuyPsbYn == 'N' ){
+			    let msg = ['고객 당 구매 가능 개수가 제한된 상품입니다.<br/>'
+				    ,'현재 고객님은 구매 가능한 횟수가 초과되어<br/>'
+				    ,'더 이상 구매 하실 수 없습니다.'
+			    ].join('');
+			    that.$utils_popup(that,true,'' , msg );
+			    result = false;
+		    }
+	    }
+
+	    return result;
+
+    }
 
     Vue.prototype.$utils_pageView = function( that ){
 
@@ -434,9 +464,15 @@ utils.install = function( Vue ){
     *
     */
     Vue.prototype.$utils_blueLoginCheck = function( that ){
+
+        var result = true;
+
 	    if( that.key_custNo == null || that.key_custNo == 'undefined' || that.key_custNo == '' ){
-		    location.href = 'hyundaimembers://checklogin##' + location.href ;
+		    location.href = 'hyundaimembers://checklogin##' + location.href;
+		    result = false;
 	    }
+
+	    return result;
     }
 
     Vue.component('popupform' , {

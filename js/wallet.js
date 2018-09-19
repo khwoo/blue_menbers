@@ -325,8 +325,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    //,'brandCd=V00A012B011'  //상용
-                    ,'brandCd=V00A002B301'  //개발
+                    ,'brandCd=V00A012B011'  //상용
+                    // ,'brandCd=V00A002B301'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -341,8 +341,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    //,'brandCd=V00A012B012'  //상용
-                    ,'brandCd=V00A002B302'  //개발
+                    ,'brandCd=V00A012B012'  //상용
+                    // ,'brandCd=V00A002B302'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -357,8 +357,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    //,'brandCd=V00A012B003'  //상용
-                    ,'brandCd=V00A044B001'  //개발
+                    ,'brandCd=V00A012B003'  //상용
+                    // ,'brandCd=V00A044B001'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -373,8 +373,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    //,'brandCd=V00A003B371'  //상용
-                    ,'brandCd=V00A044B002'  //개발
+                    ,'brandCd=V00A003B371'  //상용
+                    // ,'brandCd=V00A044B002'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -402,19 +402,19 @@ new Vue({
         }
         ,devRedirect:function(){
 
-            var that = this;
-
-            var params = {};
-
-            params.custNo = that.key_custNo;
-
-            BM.TEESCANNER_TKN( params, function( res ){
-
-                location.href = res.REDIRECT_URL;
-
-            },function(){
-
-            });
+            // var that = this;
+            //
+            // var params = {};
+            //
+            // params.custNo = that.key_custNo;
+            //
+            // BM.TEESCANNER_TKN( params, function( res ){
+            //
+            //     location.href = res.REDIRECT_URL;
+            //
+            // },function(){
+            //
+            // });
 
         }
 
