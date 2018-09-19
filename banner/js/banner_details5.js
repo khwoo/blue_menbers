@@ -24,7 +24,6 @@ var vm = new Vue({
 
         that.$utils_location_params( that );
 
-        that.$utils_blueLoginCheck(that);
 
     },
     methods: {
@@ -34,13 +33,17 @@ var vm = new Vue({
 
             var that = this;
 
-            location.href = [''
-            ,'https://web.12cmservice.co.kr/tami/bluemembers/main.html?'
-            ,'custNo=' + that.key_custNo
-            ,'&menuIdx=CTG0002'
-            ,'&categoryIdx=CTG0002CT0019'
-            ,'&uid=' + that.key_uid
-            ].join('');
+	        if(that.$utils_blueLoginCheck(that)){
+		        location.href = [''
+			        ,'https://web.12cmservice.co.kr/tami/bluemembers/main.html?'
+			        ,'custNo=' + that.key_custNo
+			        ,'&menuIdx=CTG0002'
+			        ,'&categoryIdx=CTG0002CT0019'
+			        ,'&uid=' + that.key_uid
+		        ].join('');
+            }
+
+
 
         }
 
