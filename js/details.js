@@ -162,6 +162,12 @@ var vm = new Vue({
                that.goodsQttGbn = res.goodsQttGbn;
                that.goodsCnt = res.goodsCnt;
 
+               //구매 제한 여부
+               //  "custBuyLimitYn":"Y",		//고객 구매 제한 여부(N:무제한, Y:제한)
+               //  "custBuyLimitCnt":"10",		//고객 구매 제한 건수
+               //
+               //  "custGoodsBuyPsbYn":"N",	//고객 상품 구매 가능 여부(Y:구매가능, N:구매불가)
+               //  "custGoodsBuyPsbCnt":"-1"	//고객 상품 구매 가능 건수
 
 
                that.subContentList.push({
