@@ -50,12 +50,6 @@ var vm = new Vue({
 
         that.$utils_location_params( that );
 
-	    if( that.key_custNo == null || that.key_custNo == 'undefined' || that.key_custNo == '' ){
-		    location.href = 'hyundaimembers://checklogin##' + location.href ;
-	    }else{
-		    that.init();
-	    }
-
     },
     methods: {
 
@@ -77,13 +71,14 @@ var vm = new Vue({
 		    });
 
 	    }
+
 	    /**
 	     *
 	     *   약광동의 API 호출
 	     *
 	     * 2018/8/13 下午3:39
 	     */
-	    ,termsAgree:function(){
+	    , termsAgree: function () {
 
 		    var that = this;
 
@@ -91,28 +86,27 @@ var vm = new Vue({
 
 		    params.custNo = that.key_custNo;
 
-		    BM.PRIVACY_AGREEMENT_INSERT( params, function( res){
+		    BM.PRIVACY_AGREEMENT_INSERT(params, function (res) {
 
-			    if(res.resultYn == 'Y'){
+			    if (res.resultYn == 'Y') {
 
-				    //that.$utils_popup(that, true , '' , '정보제공 동의 성공' );
 				    that.termsYn = 'Y';
 				    that.termsShow = false;
-
-				    that.$utils_popupForm(that, true, '', '정보제공 동의 했습니다', true, function () {
+				    that.$utils_popupForm(that, true, '', '정보제공 동의 성공', true, function () {
 					    that.devRedirect();
 				    });
-			    }else{
 
-				    that.$utils_popup(that, true , '' , res.errorMessage );
+			    } else {
+
+				    that.$utils_popup(that, true, '', res.errorMessage);
 
 			    }
 
-		    } ,function( code , msg ){
+		    }, function (code, msg) {
 
-			    that.$utils_popup(that,true , '' , msg );
+			    that.$utils_popup(that, true, '', msg);
 
-		    } );
+		    });
 
 	    },
 
@@ -122,31 +116,14 @@ var vm = new Vue({
 	     *
 	     * 2018/8/13 下午3:32
 	     */
-	    bannerclick:function(){
+	    bannerclick: function () {
 
 		    var that = this;
 
-		    if( that.termsYn == 'Y' ){
-
-			    //that.$utils_popup(that,true , '' , '정보제공 동의 했습니다' );
-			    //that.termsShow = true;
-			    that.devRedirect();
-		    }else{
-
-			    that.termsShow = true;
-
+		    if (that.key_custNo == null || that.key_custNo == 'undefined' || that.key_custNo == '') {
+			    location.href = 'hyundaimembers://checklogin##' + location.href;
+			    return;
 		    }
-
-	    },
-	    /**
-	     *
-	     *   초기화
-	     *
-	     * 2018/8/10 上午11:58
-	     */
-	    init:function(){
-
-		    var that = this;
 
 		    that.custNo = that.key_loginUserNo;
 		    that.loading_type = true;
@@ -155,22 +132,27 @@ var vm = new Vue({
 
 		    params.custNo = that.key_custNo;
 
-		    BM.PRIVACY_AGREEMENT_CHECK( params , function( res ){
+		    BM.PRIVACY_AGREEMENT_CHECK(params, function (res) {
 
 			    that.loading_type = false;
 
-			    if(res.resultYn == 'Y' ){
-				    that.termsYn = res.agreeExistsYn;
-			    }else{
-
-				    that.$utils_popup(that, true , '' , res.errorMessage );
+			    if (res.resultYn == 'Y') {
+				    that.termsShow = false;
+				    that.devRedirect();
+				    // that.$utils_popupForm(that, true, '', '정보제공 동의 했습니다', true, function () {
+					 //    that.devRedirect();
+				    // });
+			    } else {
+				    that.termsShow = true;
+				    //that.$utils_popup(that, true, '', res.errorMessage);
 
 			    }
 
-		    },function (code , msg ) {
+		    }, function (code, msg) {
 			    that.loading_type = false;
-			    that.$utils_popup(that,true ,'' ,  msg );
+			    that.$utils_popup(that, true, '', msg);
 		    });
+
 
 	    }
 
