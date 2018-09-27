@@ -37,6 +37,11 @@
                         <p class="after_price">{{priceAfter | formatMoney}}</p>
 
                     </div>
+
+                    <!-- 구매 제한 추가 -->
+                    <div v-if="custBuyLimitYn == 'Y' " style="font-size: 0.375rem;text-align: right; color: #959595;">
+                        ( 구매 가능 개수 : <span style="color:#005DB2!important;font-weight: bold;" v-text="custGoodsBuyPsbCnt < 0 ? 0 : custGoodsBuyPsbCnt"></span> 개 )
+                    </div>
                 </div>
             </div>
             <!-- menu -->

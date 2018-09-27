@@ -45,11 +45,11 @@ var vm = new Vue({
 
 		that.$utils_location_params(that);
 
-		if( that.key_custNo == null || that.key_custNo == 'undefined' || that.key_custNo == '' ){
-			location.href = 'hyundaimembers://checklogin##' + location.href ;
-		}else{
-			that.init();
-		}
+		// if( that.key_custNo == null || that.key_custNo == 'undefined' || that.key_custNo == '' ){
+		// 	location.href = 'hyundaimembers://checklogin##' + location.href ;
+		// }else{
+		// 	that.init();
+		// }
 
 	},
 	methods: {
