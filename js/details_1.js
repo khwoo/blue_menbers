@@ -303,6 +303,12 @@ var vm = new Vue({
         //선물 페이지 url 설정.
         gift_url : function(){
             var that= this;
+
+	        // that.custBuyLimitYn//고객 구매 제한 여부(N:무제한, Y:제한)
+	        // that.custBuyLimitCnt//고객 구매 제한 건수
+	        // that.custGoodsBuyPsbYn//고객 상품 구매 가능 여부(Y:구매가능, N:구매불가)
+	        // that.custGoodsBuyPsbCnt//고객 상품 구매 가능 건수
+
             var _url = [
                 'gift_1.html'
                 ,'?'
@@ -315,6 +321,14 @@ var vm = new Vue({
                 ,'totalprice=' + that.totalPrice
                 ,'&'
                 ,'uid=' + that.key_uid
+                ,'&'
+                ,'custBuyLimitYn=' + that.custBuyLimitYn
+                ,'&'
+                ,'custBuyLimitCnt=' + that.custBuyLimitCnt
+                ,'&'
+                ,'custGoodsBuyPsbYn=' + that.custGoodsBuyPsbYn
+                ,'&'
+                ,'custGoodsBuyPsbCnt=' + that.custGoodsBuyPsbCnt
             ].join('');
 
             return _url;

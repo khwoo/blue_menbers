@@ -74,6 +74,10 @@
                             <br/>
                             <span>
                                 <br/>포인트구매 이용 가능횟수 : <span v-text="custMonthlyPsbCnt"></span>회
+                                <h v-if="key_custBuyLimitYn == 'Y' ">
+                                    <br/>본 상품 구매 가능 개수 : <span v-text="key_custGoodsBuyPsbCnt"></span>개
+                                </h>
+                                <br/>
                                 <br/>
                                 매월 포인트구매는 고객당 10회로 제한됩니다.(수량선택 무관)​
                             </span>
@@ -87,6 +91,10 @@
                             <br/>
                             <span>
                                 <br/>포인트구매 이용 가능횟수 : <span v-text="custMonthlyPsbCnt"></span>회
+                                <h v-if="key_custBuyLimitYn == 'Y' ">
+                                    <br/>본 상품 구매 가능 개수 : <span v-text="key_custGoodsBuyPsbCnt"></span>개
+                                </h>
+                                <br/>
                                 <br/>
                                 매월 포인트구매는 고객당 10회로 제한됩니다.(수량선택 무관)​
                             </span>

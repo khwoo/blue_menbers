@@ -366,6 +366,14 @@ var vm = new Vue({
                 ,'totalprice=' + that.totalPrice
                 ,'&'
                 ,'uid=' + that.key_uid
+	            ,'&'
+	            ,'custBuyLimitYn=' + that.custBuyLimitYn
+	            ,'&'
+	            ,'custBuyLimitCnt=' + that.custBuyLimitCnt
+	            ,'&'
+	            ,'custGoodsBuyPsbYn=' + that.custGoodsBuyPsbYn
+	            ,'&'
+	            ,'custGoodsBuyPsbCnt=' + that.custGoodsBuyPsbCnt
             ].join('');
 
            return _url;
