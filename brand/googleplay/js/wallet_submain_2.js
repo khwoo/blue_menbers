@@ -57,9 +57,12 @@ var vm = new Vue({
         that.brand_gift_url = [
             '../../brand_gift.html'
             ,'?custNo=' + that.key_custNo
-            ,'&brandCd=' + that.key_brandCd
+            // ,'&brandCd=' + that.key_brandCd
+	        ,'&brandCd=V00A012B012'
             ,'&'
             ,'uid=' + that.key_uid
+	        ,'&'
+	        ,'time=' + Date.parse(new Date())
         ].join('');
 
     },

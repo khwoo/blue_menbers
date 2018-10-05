@@ -25,6 +25,8 @@ var vm = new Vue ({
 
         that.$utils_link( that );
 
+
+
     },
     mounted: function() {
 

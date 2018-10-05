@@ -70,6 +70,8 @@ new Vue({
 
         });
 
+
+
         this.$nextTick(function() {
             this.onReady = !this.onReady;
         })
@@ -325,8 +327,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    //,'brandCd=V00A012B011'  //상용
-                    ,'brandCd=V00A002B301'  //개발
+                    ,'brandCd=V00A012B011'  //상용
+                    // ,'brandCd=V00A002B301'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -341,10 +343,12 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    //,'brandCd=V00A012B012'  //상용
-                    ,'brandCd=V00A002B302'  //개발
+                    ,'brandCd=V00A012B012'  //상용
+                    // ,'brandCd=V00A002B302'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
+                    ,'&'
+                    ,'time=' + Date.parse(new Date())
                 ].join('')
                 ,image_url : 'images/shop_img_2.png'
             });
@@ -357,8 +361,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    //,'brandCd=V00A012B003'  //상용
-                    ,'brandCd=V00A044B001'  //개발
+                    ,'brandCd=V00A012B003'  //상용
+                    // ,'brandCd=V00A044B001'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
@@ -373,8 +377,8 @@ new Vue({
                     ,'?'
                     ,'custNo=' + that.key_custNo
                     ,'&'
-                    //,'brandCd=V00A003B371'  //상용
-                    ,'brandCd=V00A044B002'  //개발
+                    ,'brandCd=V00A003B371'  //상용
+                    // ,'brandCd=V00A044B002'  //개발
                     ,'&'
                     ,'uid=' + that.key_uid
                 ].join('')
