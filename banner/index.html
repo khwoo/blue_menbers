@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=0.5" />
     <meta name="format-detection" content="telephone=no"/>
     <title>Echoss Mall</title>
     <link href="../css/style.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
     <script type="text/javascript" src="../js/lib/vue.min.js"></script>
     <script type="text/javascript" src="../js/px2rem.js"></script>
 
@@ -21,13 +22,13 @@
         </div>
         <div class="section" style="overflow: hidden;">
 
-            <img style="width:100%;display: block;" :src="info.bnrDtlTopImg">
+            <img id="bannerTopImage" style="width:100%;display: block;" :src="info.bnrDtlTopImg">
 
-            <img v-if="info.bnrDtlBtnYn == 'Y' "
-                 style="width: 70%;display: block;margin: 0.3rem auto;"
-                 @click="bannerclick"
-                 :src="info.bnrDtlBtnImg">
-
+            <div v-if="info.bnrDtlBtnYn == 'Y' " class="banner_btn">
+                <img style="width: 70%;display: block;margin: 0.3rem auto;"
+                     @click="bannerclick"
+                     :src="info.bnrDtlBtnImg">
+            </div>
             <img style="width:100%;display: block;" :src="info.bnrDtlBottomImg">
 
         </div> <!-- end of .section -->
@@ -39,6 +40,29 @@
 <script type="text/javascript" src="../js/lib/utils.js"></script>
 <script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+
+
+<!--<script type="text/javascript">-->
+
+    <!--window.onload = function(){-->
+    	<!--_setHeight();-->
+    <!--}-->
+
+    <!--window.onresize = function(){-->
+    	<!--_setHeight();-->
+    <!--}-->
+
+    <!--function _setHeight(){-->
+	    <!--document.body.style.overflow = 'hidden';-->
+    	<!--var section = document.querySelector('.section');-->
+	    <!--var bannerTopImage = document.querySelector('#bannerTopImage');-->
+	    <!--var navHeight = ( document.querySelector('.nav').getBoundingClientRect().height ).toFixed(2);-->
+	    <!--var windowHeight = window.innerHeight;-->
+	    <!--section.style.height = windowHeight - navHeight + 'px' ;-->
+	    <!--section.style.overflow = 'auto';-->
+    <!--}-->
+
+<!--</script>-->
 
 </body>
 </html>

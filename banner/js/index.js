@@ -83,8 +83,19 @@ var vm = new Vue({
 
 			var that = this;
 
-			if(that.info.bnrDtlBtnLinkUrl != '' ){
-				location.href = that.info.bnrDtlBtnLinkUrl;
+			if(that.$utils_blueLoginCheck(that)) {
+				if (that.info.bnrDtlBtnLinkUrl != '') {
+
+					var url = that.info.bnrDtlBtnLinkUrl;
+
+					if(url.indexOf('?') == -1 ){
+						url += '?custNo=' + that.key_custNo
+					}else{
+						url += '&custNo=' + that.key_custNo
+					}
+
+					location.href = url;
+				}
 			}
 
 		}

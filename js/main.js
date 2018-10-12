@@ -383,6 +383,21 @@ var vm = new Vue ({
                         ].join('');
 
                         break;
+	                case "4": //직접 등록
+		                _href = [
+			                _item.linkUrl
+			                ,'?'
+			                ,'custNo=' + that.key_custNo
+			                ,'&'
+			                ,'uid=' + that.key_uid
+			                ,'&'
+			                ,'id=' + _item.bnrCd
+			                ,'&'
+			                ,'bannerNm=' + _item.bnrNm
+			                ,'&'
+			                ,'linkUrl=' + encodeURIComponent(_item.linkUrl)
+		                ].join('');
+		                break;
 
                 }
 
