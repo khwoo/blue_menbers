@@ -5,7 +5,11 @@ new Vue({
         onReady:false,
         wallet_url : 'javascript:void(0)' ,
         bizlist : []
-        ,brandUrllist : []
+        ,brandUrllist : [{
+            image_url:''
+        },{
+            image_url:''
+        }]
         ,bannerlist : []
         ,coupon_box :''
         ,main_url :''
@@ -47,7 +51,7 @@ new Vue({
 
         that.echoss_link( function(){
 
-            that.brand_url();
+	        that.brand_url();
 
             that.coupon_box = [
                 'coupon_box.html'
@@ -352,21 +356,32 @@ new Vue({
 
             // 브랜드 2
 
-            _url.push({
-                link_url : [
-                    'brand/googleplay/wallet_submain_2.html'
-                    ,'?'
-                    ,'custNo=' + that.key_custNo
-                    ,'&'
-                    ,'brandCd=V00A012B012'  //상용
-                    // ,'brandCd=V00A002B302'  //개발
-                    ,'&'
-                    ,'uid=' + that.key_uid
-                    ,'&'
-                    ,'time=' + Date.parse(new Date())
-                ].join('')
-                ,image_url : 'images/shop_img_2.png'
-            });
+            // _url.push({
+            //     link_url : [
+            //         'brand/googleplay/wallet_submain_2.html'
+            //         ,'?'
+            //         ,'custNo=' + that.key_custNo
+            //         ,'&'
+            //         ,'brandCd=V00A012B012'  //상용
+            //         // ,'brandCd=V00A002B302'  //개발
+            //         ,'&'
+            //         ,'uid=' + that.key_uid
+            //         ,'&'
+            //         ,'time=' + Date.parse(new Date())
+            //     ].join('')
+            //     ,image_url : 'images/shop_img_2.png'
+            // });
+
+		    _url.push({
+			    link_url : [
+				    'event/event.html'
+				    ,'?'
+				    ,'custNo=' + that.key_custNo
+				    ,'&'
+				    ,'uid=' + that.key_uid
+			    ].join('')
+			    ,image_url : 'images/event01.png'
+		    });
 
             // 브랜드 3
 
