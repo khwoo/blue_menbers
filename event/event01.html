@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Echoss Mall</title>
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="css/event.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="../js/px2rem.js"></script>
+
+    <style>
+        body{
+            background-color: rgba(249,245,242,1);
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div v-cloak class="container_box" style="overflow: hidden;">
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" :href="appLink">
+                <img src="../images/icon_back.png"/>
+            </a>
+            <p class="title">이달의 혜택</p>
+        </div>
+        <div class="section" style="overflow: hidden; position: relative; ">
+            <img usemap="#event" id="eventImage" :src="eventImageURL" style=" width:100%;" hidefocus="true" />
+            <map name="event" id="event">
+                <template v-for="item in linkCoordsList">
+                    <area shape="rect" :coords="item.coords" @click="link(item)"/>
+                </template>
+            </map>
+
+
+            <!--<div style="position: absolute;-->
+                <!--width: 1.9rem;-->
+                <!--height: 1.9rem;-->
+                <!--top: 10.7rem;-->
+                <!--left: 1.2rem;-->
+                <!--background-color: #1b1b1b5c;"-->
+            <!--&gt;</div>-->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/lib/utils.js"></script>
+<script type="text/javascript" src="js/event01.js"></script>
+
+
+</body>
+</html>

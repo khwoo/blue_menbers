@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Echoss Mall</title>
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="../js/px2rem.js"></script>
+
+    <style>
+        body{
+            background-color: rgba(255,255,255,1)!important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div v-cloak class="container_box">
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" :href="appLink">
+                <img src="../images/icon_back.png"/>
+            </a>
+            <p class="title">딜카</p>
+        </div>
+        <div class="section" style="overflow: hidden;">
+            <img usemap="#event" id="eventImage" src="image/event09-2.jpg?v=1" style=" width:100%;" hidefocus="true" />
+            <map name="event" id="event">
+                <area @click="eventLink" shape="rect" :coords="eventLink_Coords"/>
+            </map>
+
+
+
+            <!--<div style="position: fixed;-->
+    <!--width: 1.9rem;-->
+    <!--height: 1.9rem;-->
+    <!--top: 10.7rem;-->
+    <!--left: 1.2rem;-->
+    <!--background-color: #1b1b1b5c;"-->
+            <!--&gt;</div>-->
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="../js/lib/utils.js"></script>
+<script type="text/javascript" src="js/banner_details10.js"></script>
+
+
+</body>
+</html>
