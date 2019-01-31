@@ -11,8 +11,8 @@ var vm = new Vue({
 	created:function(){
 		var that = this;
 		that.$utils_link( that );
-		// that.eventImageURL = `image/event02.png?v=${Date.parse(new Date())}`;
-		that.eventImageURL = `image/event02.png`;
+		that.eventImageURL = `image/event02.png?v=${Date.parse(new Date())}`;
+		// that.eventImageURL = `image/event02.png`;
 	},
 	mounted: function() {
 		var that = this;

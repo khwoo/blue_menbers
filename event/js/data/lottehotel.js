@@ -3,7 +3,7 @@ var lottehotel = [
 		goodsCd :'G19010301626'
 		,brdNm:'롯데호텔부산'
 		,goodsImg:'https://12cm-kr-esp-prod-image.s3.ap-northeast-2.amazonaws.com/commerce/prob/goods/20190103113402286.jpg'
-		,goodsNm:'전통리조트 구름에 할인쿠폰 (주중 20%, 주말 10%)'
+		,goodsNm:'델리카한스 생크림케이크 교환권 (10% 할인)'
 		,goodsSalPrice:'34000'
 		,goodsCnt:'0'
 		,goodsSalGbn:'1'

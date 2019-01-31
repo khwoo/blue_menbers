@@ -157,28 +157,28 @@ var vm = new Vue({
 					,goodsQttGbn:'1'
 					,goodsQttEpsYn:'N'
 				}
-				,{
-					goodsCd:'G19010201616'
-					,brdNm:'부산 아쿠아리움'
-					,goodsImg:'https://12cm-kr-esp-prod-image.s3.ap-northeast-2.amazonaws.com/commerce/prob/goods/20190102194804529.png'
-					,goodsNm:'부산 아쿠아리움 입장권 단품 (대인)'
-					,goodsSalPrice:'21090'
-					,goodsCnt:'0'
-					,goodsSalGbn:'1'
-					,goodsQttGbn:'1'
-					,goodsQttEpsYn:'N'
-				}
-				,{
-					goodsCd:'G19010201615'
-					,brdNm:'부산 아쿠아리움'
-					,goodsImg:'https://12cm-kr-esp-prod-image.s3.ap-northeast-2.amazonaws.com/commerce/prob/goods/20190102200013692.png'
-					,goodsNm:'부산 아쿠아리움 입장권 단품(소인)'
-					,goodsSalPrice:'17000'
-					,goodsCnt:'0'
-					,goodsSalGbn:'1'
-					,goodsQttGbn:'1'
-					,goodsQttEpsYn:'N'
-				}
+				// ,{
+				// 	goodsCd:'G19010201616'
+				// 	,brdNm:'부산 아쿠아리움'
+				// 	,goodsImg:'https://12cm-kr-esp-prod-image.s3.ap-northeast-2.amazonaws.com/commerce/prob/goods/20190102194804529.png'
+				// 	,goodsNm:'부산 아쿠아리움 입장권 단품 (대인)'
+				// 	,goodsSalPrice:'21090'
+				// 	,goodsCnt:'0'
+				// 	,goodsSalGbn:'1'
+				// 	,goodsQttGbn:'1'
+				// 	,goodsQttEpsYn:'N'
+				// }
+				// ,{
+				// 	goodsCd:'G19010201615'
+				// 	,brdNm:'부산 아쿠아리움'
+				// 	,goodsImg:'https://12cm-kr-esp-prod-image.s3.ap-northeast-2.amazonaws.com/commerce/prob/goods/20190102200013692.png'
+				// 	,goodsNm:'부산 아쿠아리움 입장권 단품(소인)'
+				// 	,goodsSalPrice:'17000'
+				// 	,goodsCnt:'0'
+				// 	,goodsSalGbn:'1'
+				// 	,goodsQttGbn:'1'
+				// 	,goodsQttEpsYn:'N'
+				// }
 				,{
 					goodsCd:'G19010201614'
 					,brdNm:'일산 원마운트_스노우파크'
