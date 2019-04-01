@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=0.5"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-store,must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="Wed,26 Feb 1997 08:21:57 GMT">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+    <title>brand</title>
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/utils.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/lib/vue.min.js"></script>
+    <script type="text/javascript" src="../js/px2rem.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div v-cloak class="container_box">
+        <div class="nav flex_center">
+            <a class="btn_back flex_center" :href="appLink">
+                <img src="../images/icon_back.png"/>
+            </a>
+            <p class="title">{{brandName}}</p>
+        </div>
+
+        <div class="section">
+            <div class="product_list">
+                <ul class="product_list_ul">
+                    <li v-for="item in productList">
+                        <a class="flex_row_center" :href="item.productHref">
+                            <div class="product_img bg_cover" :style="{backgroundImage:'url('+ item.productImg +')'}">
+                            </div>
+                            <div class="product_info">
+                                <p class="name">{{item.brandName}}</p>
+                                <p class="product_name">{{item.productName}}</p>
+                                <p v-if="item.goodsSalGbn == '1'" class="after_price">{{item.priceAfter | formatPoint}}</p>
+                                <p v-if="item.goodsQttGbn == '2' " class="inventory">
+                                    (잔여수량 : {{item.goodsCnt}})
+                                </p>
+                            </div>
+                            <img v-if="item.goodsSalGbn == '1' " class="mark" src="../images/icon_mark_type02.png" />
+                            <img v-if="item.goodsSalGbn == '2' " class="mark" src="../images/tip_01.png" />
+                        </a>
+                    </li>
+                    <div class="loading_more flex_center" :style="loading_show ? 'display:none;' : '' ">
+                        <div class="move_circle">
+                            <img class="icon_loading" src="../images/icon_loading.png">
+                        </div>
+                        <p>Loading . . .</p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div><!-- end of container_box -->
+
+    <div :loading_type="loading_type" is="loading"></div>
+
+</div>
+<script type="text/javascript" src="https://tami.12cmservice.co.kr/resource/js/pointMall-api.js"></script>
+<script type="text/javascript" src="../js/lib/utils.js"></script>
+<script type="text/javascript" src="../js/lib/scroll.js"></script>
+<script type="text/javascript" src="js/data/event04.js"></script>
+
+<script>
+	var vm = new Vue({
+		el: ".container",
+		data: {
+			brandName: '',
+			productList: [],
+			productLength: 0,
+			wallet_url: '',
+			loading_type: false,
+			loadValue: 100, //로드 위치
+			productCountType: 1, //
+			loadStatus: true,  //로드 상태
+			loading_show: true,
+			productLoading: false //페이지 초기화 여부
+		},
+		filters: {
+			formatPoint: function (value, unit) {
+				unit = 'P';
+				return parseInt(value).toLocaleString() + unit;
+			}
+		},
+		created: function () {
+			var that = this;
+			that.$utils_link(that);
+		},
+		mounted: function () {
+
+			var that = this;
+
+			that.$utils_location_params(that);
+
+			that.brandProductList();
+
+		}
+		, methods: {
+
+			/**
+			 *
+			 *  브랜드 상품 정보 조회
+			 *
+			 * */
+			brandProductList: function () {
+
+				var that = this;
+
+				var param = {};
+
+				if (that.productCountType <= 0) {
+
+					return;
+
+				}
+
+				param.custNo = that.key_custNo;
+				param.lastSelNo = that.productLength;
+
+				if (!that.productLoading) {
+
+					that.loading_type = true;
+
+				} else {
+
+					that.loadStatus = false;
+					that.loading_show = false;
+
+				}
+
+				var brdGoodsList = new Array();
+
+				var brandName = '';
+
+				for(let i = 0 ; i < event04data.length ;i++ ){
+					var item = event04data[i];
+					if(that.key_id === item.id){
+						brandName = item.title;
+						brdGoodsList = item.list;
+						break;
+                    }
+                }
+                //
+				// brandName = "이달의 음료";
+				// brdGoodsList = event03DataList;
+
+				that.brandName = brandName;
+
+				var list = new Array();
+
+				for (var i = 0; i < brdGoodsList.length; i++) {
+
+					var _item = brdGoodsList[i];
+
+					var _info = {};
+					// that.brandName = _item.brdNm;
+					_info.brandName = _item.brdNm;
+					_info.productImg = _item.goodsImg;
+					_info.productName = _item.goodsNm;
+					_info.priceAfter = _item.goodsSalPrice;
+					_info.goodsCnt = _item.goodsCnt;
+					_info.goodsSalGbn = _item.goodsSalGbn;
+					_info.goodsQttGbn = _item.goodsQttGbn;
+
+					//goodsSalGbn 1 포인트 쿠폰
+					//goodsSalGbn 2 할인 쿠폰
+
+					if (_item.goodsSalGbn == '1') {
+
+						_info.productHref = '../details.html' +
+							'?custNo=' + that.key_custNo + '' +
+							'&productId=' + _item.goodsCd + '' +
+							'&uid=' + that.key_uid + '' +
+							'&link=brand_gift';
+
+					}
+					if (_item.goodsSalGbn == '2') {
+						_info.productHref = '../discount_details.html' +
+							'?custNo=' + that.key_custNo + '' +
+							'&productId=' + _item.goodsCd + '' +
+							'&uid=' + that.key_uid + '' +
+							'&link=brand_gift';
+					}
+					if (_item.goodsQttEpsYn == 'N') {
+
+						_info.productHref = '../details_1.html' +
+							'?custNo=' + that.key_custNo + '' +
+							'&uid=' + that.key_uid + '' +
+							'&productId=' + _item.goodsCd + ' ';
+
+					}
+
+					console.log(_item.url);
+
+					list.push(_info);
+				}
+
+				if (that.productLoading) {
+
+					for (var i = 0; i < list.length; i++) {
+
+						that.productList.push(list[i]);
+
+					}
+
+					that.loadStatus = true;
+					that.loading_show = true;
+
+				} else {
+
+					that.productLoading = true;
+					that.loading_type = false;
+					that.productList = list;
+
+				}
+
+
+			}
+
+		}
+	});
+
+
+</script>
+</body>
+</html>

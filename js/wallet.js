@@ -340,80 +340,77 @@ new Vue({
 
             // 브랜드 1
 
-            _url.push({
-                link_url : [
-                    'brand/jejuair/wallet_submain_1.html'
-                    ,'?'
-                    ,'custNo=' + that.key_custNo
-                    ,'&'
-                    ,'brandCd=V00A012B011'  //상용
-                    // ,'brandCd=V00A002B301'  //개발
-                    ,'&'
-                    ,'uid=' + that.key_uid
-                ].join('')
-                ,image_url : 'images/shop_img_1.png'
-            });
-
-            // 브랜드 2
-
             // _url.push({
             //     link_url : [
-            //         'brand/googleplay/wallet_submain_2.html'
+            //         'brand/jejuair/wallet_submain_1.html'
             //         ,'?'
             //         ,'custNo=' + that.key_custNo
             //         ,'&'
-            //         ,'brandCd=V00A012B012'  //상용
-            //         // ,'brandCd=V00A002B302'  //개발
+            //         ,'brandCd=V00A012B011'  //상용
+            //         // ,'brandCd=V00A002B301'  //개발
             //         ,'&'
             //         ,'uid=' + that.key_uid
-            //         ,'&'
-            //         ,'time=' + Date.parse(new Date())
             //     ].join('')
-            //     ,image_url : 'images/shop_img_2.png'
+            //     ,image_url : 'images/shop_img_1.png'
             // });
 
 		    _url.push({
 			    link_url : [
-				    'event/event.html'
+				    'brand/jejuair/wallet_submain_1.html'
+				    ,'?'
+				    ,'custNo=' + that.key_custNo
+				    ,'&'
+				    ,'brandCd=V00A012B011'  //상용
+				    // ,'brandCd=V00A002B301'  //개발
+				    ,'&'
+				    ,'uid=' + that.key_uid
+			    ].join('')
+			    ,image_url : 'images/event05.jpg'
+		    });
+
+		    _url.push({
+			    link_url : [
+				    'event/event04.html'
 				    ,'?'
 				    ,'custNo=' + that.key_custNo
 				    ,'&'
 				    ,'uid=' + that.key_uid
 			    ].join('')
-			    ,image_url : 'images/event01.png'
+			    ,image_url : 'images/event06.jpg'
 		    });
+
 
             // 브랜드 3
 
-            _url.push({
-                link_url : [
-                    'brand/choiinabooks/wallet_submain_3.html'
-                    ,'?'
-                    ,'custNo=' + that.key_custNo
-                    ,'&'
-                    ,'brandCd=V00A012B003'  //상용
-                    // ,'brandCd=V00A044B001'  //개발
-                    ,'&'
-                    ,'uid=' + that.key_uid
-                ].join('')
-                ,image_url : 'images/shop_img_3.png'
-            });
+            // _url.push({
+            //     link_url : [
+            //         'brand/choiinabooks/wallet_submain_3.html'
+            //         ,'?'
+            //         ,'custNo=' + that.key_custNo
+            //         ,'&'
+            //         ,'brandCd=V00A012B003'  //상용
+            //         // ,'brandCd=V00A044B001'  //개발
+            //         ,'&'
+            //         ,'uid=' + that.key_uid
+            //     ].join('')
+            //     ,image_url : 'images/shop_img_3.png'
+            // });
 
             // 브랜드 4
 
-            _url.push({
-                link_url : [
-                    'brand/plazacc/wallet_submain_4.html'
-                    ,'?'
-                    ,'custNo=' + that.key_custNo
-                    ,'&'
-                    ,'brandCd=V00A003B371'  //상용
-                    // ,'brandCd=V00A044B002'  //개발
-                    ,'&'
-                    ,'uid=' + that.key_uid
-                ].join('')
-                ,image_url : 'images/shop_img_4.png'
-            });
+            // _url.push({
+            //     link_url : [
+            //         'brand/plazacc/wallet_submain_4.html'
+            //         ,'?'
+            //         ,'custNo=' + that.key_custNo
+            //         ,'&'
+            //         ,'brandCd=V00A003B371'  //상용
+            //         // ,'brandCd=V00A044B002'  //개발
+            //         ,'&'
+            //         ,'uid=' + that.key_uid
+            //     ].join('')
+            //     ,image_url : 'images/shop_img_4.png'
+            // });
 
             that.brandUrllist = _url;
 
