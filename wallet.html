@@ -65,11 +65,8 @@
         <ul class="section">
 
             <li v-show="onReady" class="article article_1" :class="{show_motion:onReady}" style="border:none;">
-                <!--<a class="bg_box" :href="brandUrllist[0].link_url">-->
-                <!--<img :src="brandUrllist[0].image_url" class="img_shop_1"/>-->
-                <!--</a>-->
-                <a class="bg_box" @click="devRedirect">
-                    <img :src="brandUrllist[0].image_url" class="img_shop_1"/>
+                <a class="bg_box" :href="brandUrllist[0].link_url">
+                    <img :src="brandUrllist[0].image_url" class="img_shop_1">
                 </a>
             </li>
 
@@ -79,6 +76,11 @@
                 </a>
             </li>
 
+            <li v-show="onReady" class="article article_2" :class="{show_motion:onReady}" style="border:none;">
+                <a class="bg_box" @click="devRedirect">
+                    <img :src="brandUrllist[2].image_url" class="img_shop_3"/>
+                </a>
+            </li>
 
             <!--<li v-show="onReady" class="article article_3" :class="{show_motion:onReady}">-->
             <!--<a class="bg_box" :href="brandUrllist[2].link_url">-->

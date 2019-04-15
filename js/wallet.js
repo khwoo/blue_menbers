@@ -353,7 +353,27 @@ new Vue({
             //     ].join('')
             //     ,image_url : 'images/shop_img_1.png'
             // });
+		    _url.push({
+			    link_url : [
+				    'event/event08.html'
+				    ,'?'
+				    ,'custNo=' + that.key_custNo
+				    ,'&'
+				    ,'uid=' + that.key_uid
+			    ].join('')
+			    ,image_url : 'images/event08.jpg'
+		    });
 
+		    _url.push({
+			    link_url : [
+				    'event/event07.html'
+				    ,'?'
+				    ,'custNo=' + that.key_custNo
+				    ,'&'
+				    ,'uid=' + that.key_uid
+			    ].join('')
+			    ,image_url : 'images/event07.jpg'
+		    });
 		    _url.push({
 			    link_url : [
 				    'brand/jejuair/wallet_submain_1.html'
@@ -367,18 +387,6 @@ new Vue({
 			    ].join('')
 			    ,image_url : 'images/event05.jpg'
 		    });
-
-		    _url.push({
-			    link_url : [
-				    'event/event04.html'
-				    ,'?'
-				    ,'custNo=' + that.key_custNo
-				    ,'&'
-				    ,'uid=' + that.key_uid
-			    ].join('')
-			    ,image_url : 'images/event06.jpg'
-		    });
-
 
             // 브랜드 3
 

@@ -24,7 +24,7 @@
   animation: showAnimate .6s ease-out; }
 .container .section .show_motion:nth-child(3) {
   animation: showAnimate .7s ease-out;
-  visibility: hidden;
+  /*visibility: hidden;*/
 }
 .container .section .show_motion:nth-child(4) {
   animation: showAnimate .8s ease-out; }
